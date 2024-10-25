@@ -1,0 +1,16 @@
+.footer {
+    background-color: #282c34;
+    color: white;
+    padding: 10px;
+    text-align: center;
+
+    .github-link {
+        color: white;
+        margin-top: 10px;
+        display: inline-block;
+
+        &:hover {
+            color: #61dafb; // 아이콘에 마우스를 올렸을 때 색상 변경
+        }
+    }
+}
