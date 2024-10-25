@@ -4,7 +4,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import '../css/Footer.scss'
 
-const Footer = () => {
+const Footer: React.FC = () => {
     return (
         <footer className="footer">
             <a href="https://github.com/hesuhesu" target="_blank" rel="noopener noreferrer" className="github-link">

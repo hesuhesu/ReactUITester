@@ -41,12 +41,10 @@
     padding: 20px;
     text-align: center;
 
-    /* Apply the animation to the h1 tag */
     h1 {
-        animation: focus-in-contract 2s ease forwards;
-        /* Adjust the duration and easing as necessary */
-        -webkit-animation: focus-in-contract 2s ease forwards;
-        /* For Safari compatibility */
+        font-size: 100px;
+        animation: focus-in-contract 1s ease forwards;
+        -webkit-animation: focus-in-contract 1s ease forwards;
     }
 
     .nav-list {
@@ -54,15 +52,48 @@
         padding: 0;
 
         li {
-            display: inline;
+            display: inline-block; // inline-block으로 변경하여 transform 효과 적용
             margin: 0 15px;
+            opacity: 0; // 기본적으로 숨김
+            transform: translateY(20px); // 아래에서 올라오는 효과
+            animation: fadeInUp 0.5s forwards; // 애니메이션 추가
+            -webkit-animation: fadeInUp 0.5s forwards;
 
+            // 순서에 따른 지연
+            &:nth-child(1) { animation-delay: 0.3s; }
+            &:nth-child(2) { animation-delay: 0.6s; }
+            &:nth-child(3) { animation-delay: 0.9s; }
+            // 필요에 따라 더 추가
+
+            // 애니메이션 정의
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px); // 시작 위치
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0); // 최종 위치
+                }
+            }
+            @-webkit-keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
             a {
                 color: white;
                 text-decoration: none;
-
+                display: inline-block; // inline-block으로 변경하여 transform 효과 적용
+                transition: transform 0.3s ease; // 부드러운 전환 효과 추가
+        
                 &:hover {
-                    text-decoration: underline;
+                    transform: translateY(-5px); // 마우스를 올렸을 때 위로 올라가는 효과
                 }
             }
         }

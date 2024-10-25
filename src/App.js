@@ -1,16 +1,20 @@
 import React from 'react';
-import Header from "./components/Header.tsx"
+import { Routes, Route } from "react-router-dom";
+import Header from "./components/Header.tsx";
 import Footer from "./components/Footer.tsx";
+import Home from "./components/Home.tsx";
+import About from "./components/About.tsx";
+import Project from "./components/Project.tsx";
 
 function App() {
-
   return (
     <div>
       <Header />
-            <main>
-                <h2>메인 콘텐츠</h2>
-                <p>여기에 콘텐츠가 들어갑니다.</p>
-            </main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/project" element={<Project />} />
+      </Routes>
       <Footer />
     </div>
   );
