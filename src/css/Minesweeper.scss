@@ -1,0 +1,155 @@
+@-webkit-keyframes jello-horizontal {
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1)
+    }
+
+    30% {
+        -webkit-transform: scale3d(1.25, .75, 1);
+        transform: scale3d(1.25, .75, 1)
+    }
+
+    40% {
+        -webkit-transform: scale3d(.75, 1.25, 1);
+        transform: scale3d(.75, 1.25, 1)
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.15, .85, 1);
+        transform: scale3d(1.15, .85, 1)
+    }
+
+    65% {
+        -webkit-transform: scale3d(.95, 1.05, 1);
+        transform: scale3d(.95, 1.05, 1)
+    }
+
+    75% {
+        -webkit-transform: scale3d(1.05, .95, 1);
+        transform: scale3d(1.05, .95, 1)
+    }
+
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1)
+    }
+}
+
+@keyframes jello-horizontal {
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1)
+    }
+
+    30% {
+        -webkit-transform: scale3d(1.25, .75, 1);
+        transform: scale3d(1.25, .75, 1)
+    }
+
+    40% {
+        -webkit-transform: scale3d(.75, 1.25, 1);
+        transform: scale3d(.75, 1.25, 1)
+    }
+
+    50% {
+        -webkit-transform: scale3d(1.15, .85, 1);
+        transform: scale3d(1.15, .85, 1)
+    }
+
+    65% {
+        -webkit-transform: scale3d(.95, 1.05, 1);
+        transform: scale3d(.95, 1.05, 1)
+    }
+
+    75% {
+        -webkit-transform: scale3d(1.05, .95, 1);
+        transform: scale3d(1.05, .95, 1)
+    }
+
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1)
+    }
+}
+
+
+  .minesweeper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+  
+    .timer {
+        margin-bottom: 10px;
+      }
+
+    .grid {
+      display: grid;
+      gap: 2px;
+      background: #333;
+      padding: 5px;
+  
+      .row {
+        display: flex;
+      }
+  
+      
+      .cell {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ccc;
+        border: 1px solid #999;
+        font-weight: bold;
+        color: #333;
+        cursor: pointer;
+  
+        &.revealed {
+          background-color: #e0e0e0;
+        }
+  
+        &.flagged {
+          background-color: #007bff;
+          color: white;
+        }
+  
+        &.mine {
+          background-color: #f00;
+        }
+      }
+    }
+  
+    .restart-button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #282c34; // 부드러운 그린 컬러
+        border: none;
+        border-radius: 20px; // 둥근 모서리
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // 가벼운 그림자
+      
+        &:hover {
+          box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); // 그림자 강조
+        }
+      
+        &:active {
+          box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+          transform: translateY(1px); // 눌렀을 때 약간 내려가는 효과
+        }
+      }
+
+    .restart-button:hover {
+        animation: jello-horizontal 1s ease forwards;
+        -webkit-animation: jello-horizontal 1s ease forwards;
+    }
+  }

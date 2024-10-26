@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/Project.scss';
 
 const Project: React.FC = () => {
 

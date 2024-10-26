@@ -5,6 +5,7 @@ import Footer from "./components/Footer.tsx";
 import Home from "./components/Home.tsx";
 import About from "./components/About.tsx";
 import Project from "./components/Project.tsx";
+import Experience from "./components/Experience.tsx";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/project" element={<Project />} />
+        <Route path="/experience" element={<Experience />} />
       </Routes>
       <Footer />
     </div>
