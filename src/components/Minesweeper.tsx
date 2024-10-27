@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import Swal from "sweetalert2";
 import '../css/Minesweeper.scss';
+
+const successMessage = (string) => {
+  Swal.fire({
+    title: "알림",
+    icon:'success',
+    html: string,
+    showCancelButton: false,
+    confirmButtonText: "확인",
+  }).then(() => {});
+}
 
 type Cell = {
   isMine: boolean;
@@ -156,7 +167,8 @@ const Minesweeper: React.FC = () => {
     if (allCellsCleared) {
       setGameCleared(true);
       stopTimer();
-      alert("Clear!");
+
+      successMessage("Clear!");
     }
   };
 
