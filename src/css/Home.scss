@@ -1,4 +1,4 @@
-@import "Structure.scss";
+@use "Structure.scss";
 
 .home {
     height: 100vh; // 전체 화면 높이
@@ -8,7 +8,7 @@
     justify-content: center; // 세로 중앙 정렬
     align-items: center; // 가로 중앙 정렬
     background-color: white; // 배경색 설정 (필요에 따라 변경)
-    color: #282c34;; // 텍스트 색상 설정
+    color: #282c34; // 텍스트 색상 설정
 
     h2 {
         font-size:50px;

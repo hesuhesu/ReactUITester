@@ -1,4 +1,4 @@
-@import "Structure.scss";
+@use "Structure.scss";
 
 .header {
     background-color: #282c34;
@@ -8,10 +8,12 @@
 
     h1 {
         font-size: 100px;
-        /*
-        animation: focus-in-contract 1s ease forwards;
-        -webkit-animation: focus-in-contract 1s ease forwards;
-        */
+        animation: fadeIn 0.7s ease forwards;
+        opacity: 0; // 초기 상태를 투명하게 설정
+    }
+
+    .project-page {
+        font-size: 100px;
         animation: text-flicker-in-glow 2s ease forwards;
         -webkit-animation: text-flicker-in-glow 2s ease forwards;
     }

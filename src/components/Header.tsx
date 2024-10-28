@@ -1,10 +1,27 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import '../css/Header.scss'
 
 const Header: React.FC = () => {
+    const location = useLocation();
+
+    // 경로에 따라 h1 텍스트 설정
+    const pageTitle = (() => {
+        switch (location.pathname) {
+            case '/about':
+                return 'About';
+            case '/project':
+                return 'Project';
+            case '/experience':
+                return 'Experience';
+            default:
+                return 'Portfolio';
+        }
+    })();
+
     return (
         <header className="header">
-            <h1>Portfolio</h1>
+            {pageTitle === "Project" ? <h1 className="project-page">{pageTitle}</h1> : <h1>{pageTitle}</h1>}
             <nav>
                 <ul className="nav-list">
                     <li><a href="/">Home</a></li>

@@ -420,3 +420,22 @@
         text-shadow: 0 0 30px rgba(255, 255, 255, .6), 0 0 60px rgba(255, 255, 255, .45), 0 0 110px rgba(255, 255, 255, .25), 0 0 100px rgba(255, 255, 255, .1)
     }
 }
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+// 배경이 위에서 아래로 흰색으로 바뀌는 애니메이션 키프레임 정의
+@keyframes slide-down {
+    0% {
+        background-position: bottom; // 위쪽에서 시작
+    }
+    100% {
+        background-position: top; // 아래쪽으로 이동하며 흰색으로 채움
+    }
+}

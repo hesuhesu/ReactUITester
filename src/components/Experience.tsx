@@ -4,7 +4,7 @@ import Minesweeper from './Minesweeper.tsx';
 
 const Experience: React.FC = () => {
 
-    const [mineSweeper, setMineSweeper] = useState(false);
+    const [mineSweeper, setMineSweeper] = useState<Boolean>(false);
 
     return (
         <div className="experience">
