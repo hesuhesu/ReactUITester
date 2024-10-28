@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Header from "./components/Header.tsx";
 import Footer from "./components/Footer.tsx";
 import Home from "./components/Home.tsx";
@@ -9,6 +9,7 @@ import Experience from "./components/Experience.tsx";
 
 function App() {
   return (
+    <BrowserRouter>
     <div>
       <Header />
       <Routes>
@@ -19,6 +20,7 @@ function App() {
       </Routes>
       <Footer />
     </div>
+    </BrowserRouter>
   );
 }
 
