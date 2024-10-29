@@ -5,6 +5,7 @@
  * w: http://animista.net, t: @cssanimista
  * ---------------------------------------------- */
 
+// 양 옆에서 텍스트 모이는 효과
 @-webkit-keyframes focus-in-contract {
     0% {
         letter-spacing: 1em;
@@ -35,6 +36,7 @@
     }
 }
 
+// button 통통 튀는 효과
 @-webkit-keyframes jello-horizontal {
     0% {
         -webkit-transform: scale3d(1, 1, 1);
@@ -109,6 +111,7 @@
     }
 }
 
+// Header h1 반짝이는 효과
 @-webkit-keyframes text-flicker-in-glow {
     0% {
         opacity: 0
@@ -421,20 +424,161 @@
     }
 }
 
+// 진동 효과
+@-webkit-keyframes vibrate-1 {
+    0% {
+        -webkit-transform: translate(0);
+        transform: translate(0)
+    }
+
+    20% {
+        -webkit-transform: translate(-2px, 2px);
+        transform: translate(-2px, 2px)
+    }
+
+    40% {
+        -webkit-transform: translate(-2px, -2px);
+        transform: translate(-2px, -2px)
+    }
+
+    60% {
+        -webkit-transform: translate(2px, 2px);
+        transform: translate(2px, 2px)
+    }
+
+    80% {
+        -webkit-transform: translate(2px, -2px);
+        transform: translate(2px, -2px)
+    }
+
+    100% {
+        -webkit-transform: translate(0);
+        transform: translate(0)
+    }
+}
+
+@keyframes vibrate-1 {
+    0% {
+        -webkit-transform: translate(0);
+        transform: translate(0)
+    }
+
+    20% {
+        -webkit-transform: translate(-2px, 2px);
+        transform: translate(-2px, 2px)
+    }
+
+    40% {
+        -webkit-transform: translate(-2px, -2px);
+        transform: translate(-2px, -2px)
+    }
+
+    60% {
+        -webkit-transform: translate(2px, 2px);
+        transform: translate(2px, 2px)
+    }
+
+    80% {
+        -webkit-transform: translate(2px, -2px);
+        transform: translate(2px, -2px)
+    }
+
+    100% {
+        -webkit-transform: translate(0);
+        transform: translate(0)
+    }
+}
+
+// About introduce flip-in-hor-bottom
+@-webkit-keyframes flip-in-hor-bottom {
+    0% {
+        -webkit-transform: rotateX(80deg);
+        transform: rotateX(80deg);
+        opacity: 0
+    }
+
+    100% {
+        -webkit-transform: rotateX(0);
+        transform: rotateX(0);
+        opacity: 1
+    }
+}
+@keyframes flip-in-hor-bottom {
+    0% {
+        -webkit-transform: rotateX(80deg);
+        transform: rotateX(80deg);
+        opacity: 0
+    }
+
+    100% {
+        -webkit-transform: rotateX(0);
+        transform: rotateX(0);
+        opacity: 1
+    }
+}
+
+// Header h1 fadeIn
 @keyframes fadeIn {
     from {
-      opacity: 0;
+        opacity: 0;
     }
+
     to {
-      opacity: 1;
+        opacity: 1;
     }
-  }
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+// Header li 애니메이션
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px); // 시작 위치
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0); // 최종 위치
+    }
+}
+
+@-webkit-keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 // 배경이 위에서 아래로 흰색으로 바뀌는 애니메이션 키프레임 정의
 @keyframes slide-down {
     0% {
         background-position: bottom; // 위쪽에서 시작
     }
+
+    100% {
+        background-position: top; // 아래쪽으로 이동하며 흰색으로 채움
+    }
+}
+
+@-webkit-keyframes slide-down {
+    0% {
+        background-position: bottom; // 위쪽에서 시작
+    }
+
     100% {
         background-position: top; // 아래쪽으로 이동하며 흰색으로 채움
     }

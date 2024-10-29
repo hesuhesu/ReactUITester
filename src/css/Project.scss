@@ -14,14 +14,14 @@
 
     h2 {
         font-size: 50px;
-        color: white; // 텍스트 색상 설정
+        color: rgba(214, 230, 245, 0.925); // 텍스트 색상 설정
         z-index: 1; // 텍스트는 비트맵 위에 유지
     }
 
 
     p {
         font-size: 20px;
-        color: white; // 텍스트 색상 설정
+        color: rgba(214, 230, 245, 0.925); // 텍스트 색상 설정
         z-index: 1; // 텍스트는 비트맵 위에 유지
     }
 
@@ -36,7 +36,7 @@
         background-image: linear-gradient(
             to bottom,
             #282c34 50%, 
-            white 50%
+            rgba(214, 230, 245, 0.925) 50%
         );
         background-size: 100% 200%; // 세로 스크롤 애니메이션 효과
         animation: slide-down 1s ease forwards; // 아래로 애니메이션
