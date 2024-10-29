@@ -3,9 +3,15 @@
     display: flex; // Flexbox 사용
     flex-direction: column; // 세로 방향으로 정렬
     align-items: center; // 가로 중앙 정렬
-    background-color: white; // 배경색 설정 (필요에 따라 변경)
+    // background-color: white; // 배경색 설정 (필요에 따라 변경)
     color: #282c34; // 텍스트 색상 설정
 
+    background-image: linear-gradient(
+            to bottom,
+            #282c34, 
+            rgba(214, 230, 245, 0.925),
+            #282c34
+        );
     .introduce {
         display: flex; // 플렉스 컨테이너로 설정
         flex-direction: column; // 위에서 아래로 수직 배치
