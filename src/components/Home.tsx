@@ -11,6 +11,9 @@ const Home: React.FC = () => {
                 <p>Full Stack 개발자 은희수입니다!</p>
             </div>
             
+            <div className="home-2">
+                <p>제 2 화면입니다.</p>
+            </div>
         </div>
     )
 }

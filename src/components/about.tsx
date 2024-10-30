@@ -12,12 +12,13 @@ const About: React.FC = () => {
                         <dd>1999.10.30</dd>
                     </dt>
                     
-                    <dt>취미
-                        <dd>운동, 피아노</dd>
+                    <dt>학력
+                        <dd>금성고등학교 (2015.03 ~ 2018.02)</dd>
+                        <dd>동아대학교 컴퓨터 공학과 (2018.03 ~ 2025.02)</dd>
                     </dt>
 
-                    <dt>이메일
-                        <dd>hesuhesu@naver.com</dd>
+                    <dt>취미
+                        <dd>운동, 피아노</dd>
                     </dt>
                 </dl>
             </div>

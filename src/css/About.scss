@@ -1,3 +1,5 @@
+@use "Structure";
+
 .about {
     height: 100vh; // 전체 화면 높이
     display: flex; // Flexbox 사용
@@ -6,12 +8,11 @@
     // background-color: white; // 배경색 설정 (필요에 따라 변경)
     color: #282c34; // 텍스트 색상 설정
 
-    background-image: linear-gradient(
-            to bottom,
-            #282c34, 
+    background-image: linear-gradient(to bottom,
+            #282c34,
             rgba(214, 230, 245, 0.925),
-            #282c34
-        );
+            #282c34);
+
     .introduce {
         display: flex; // 플렉스 컨테이너로 설정
         flex-direction: column; // 위에서 아래로 수직 배치
@@ -27,10 +28,10 @@
         width: 40%;
         animation: flip-in-hor-bottom 0.5s ease forwards;
         -webkit-animation: flip-in-hor-bottom 0.5s ease forwards;
-        
+
         img {
             max-width: 100%; // 이미지가 부모 요소에 맞게 조정
-            height: 40%; // 비율 유지
+            height: 30%; // 비율 유지
             border-radius: 10px; // 이미지 모서리 둥글게
         }
 
@@ -40,7 +41,7 @@
 
         dt {
             font-size: 25px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             position: relative;
 
             /* 가상 요소 위치 조정을 위해 필요 */

@@ -12,19 +12,6 @@
     position: relative; // 비트맵 애니메이션용 포지션 설정
     overflow: hidden;
 
-    h2 {
-        font-size: 50px;
-        color: rgba(214, 230, 245, 0.925); // 텍스트 색상 설정
-        z-index: 1; // 텍스트는 비트맵 위에 유지
-    }
-
-
-    p {
-        font-size: 20px;
-        color: rgba(214, 230, 245, 0.925); // 텍스트 색상 설정
-        z-index: 1; // 텍스트는 비트맵 위에 유지
-    }
-
     &::before {
         content: "";
         position: absolute;
@@ -42,4 +29,46 @@
         animation: slide-down 1s ease forwards; // 아래로 애니메이션
         z-index: 0; // 텍스트 뒤에 위치
     }
+
+    h2 {
+        font-size: 50px;
+        color: rgba(214, 230, 245, 0.925); // 텍스트 색상 설정
+        z-index: 1; // 텍스트는 비트맵 위에 유지
+    }
+
+    p {
+        font-size: 20px;
+        color: rgba(214, 230, 245, 0.925); // 텍스트 색상 설정
+        z-index: 1; // 텍스트는 비트맵 위에 유지
+    }
+
+    .card {
+        display: inline-grid;
+        color: white;
+        transition: transform 0.4s;
+        transform: perspective(800px) rotateY(0deg);
+        transform-style: preserve-3d;
+      }
+  
+      .card:hover {
+        transform: perspective(800px) rotateY(180deg);
+      }
+  
+      .card > * {
+        grid-area: 1 / 1 / 1 / 1;
+        width: 180px;
+        height: 100px;
+        padding: 12px;
+        border-radius: 8px;
+        backface-visibility: hidden;
+      }
+  
+      .card-front {
+        background: linear-gradient(rgb(80, 67, 52), rgb(111, 93, 73));
+      }
+  
+      .card-back {
+        background: linear-gradient(rgb(127, 106, 83), rgb(156, 132, 104));
+        transform: rotateY(180deg);
+      }
 }
