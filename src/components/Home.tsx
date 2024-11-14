@@ -8,7 +8,7 @@ const Home: React.FC = () => {
             <h2>Future Possibility</h2>
             <div className="home-1">
                 <strong>성장, 노력, 끈기</strong>
-                <p>Full Stack 개발자 은희수입니다!</p>
+                <p>Frontend 개발자 은희수입니다!</p>
             </div>
             
             <div className="home-2">
