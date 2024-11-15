@@ -138,7 +138,6 @@ const QuillEditor: React.FC = () => {
             const result = await axios.post(`${HOST}:${PORT}/img`, formData);
             console.log('성공 시, 백엔드가 보내주는 데이터', result.data.url);
             setImgData(prevFiles => [...prevFiles, result.data.realName]);
-            // localStorage.setItem("imgData", JSON.stringify(imgData));
 
             // 서버에서 반환된 이미지 URL을 변수에 저장
             const IMG_URL = result.data.url;

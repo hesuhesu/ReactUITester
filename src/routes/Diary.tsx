@@ -6,6 +6,8 @@ import '../scss/Diary.scss';
 const HOST = process.env.REACT_APP_HOST;
 const PORT = process.env.REACT_APP_PORT;
 
+
+
 interface ReviewItem {
     _id: string;
     title: string;
@@ -15,9 +17,8 @@ interface ReviewItem {
 
 const Experience: React.FC = () => {
     const [api, setApi] = useState<ReviewItem[]>([]);
-    const [data, setData] = useState<boolean>(false);
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         axios.get(`${HOST}:${PORT}/diary/all_read`)
             .then((response) => {
@@ -31,10 +32,8 @@ const Experience: React.FC = () => {
     return (
         <div className="experience">
             <h2>My Diary</h2>
-            <button onClick={() => setData(!data)}>데이터 보기</button>
             <button onClick={() => navigate("/quilleditor")}>게시물 작성하기</button>
-            {data && <>
-              {api.length > 0 ? (
+            {api.length > 0 ? (
                 <table>
                     <thead>
                         <tr>
@@ -56,7 +55,6 @@ const Experience: React.FC = () => {
                     </tbody>
                 </table>
             ) : <div>DB 데이터 없음</div>}
-            </>}
         </div>
     );
 };
