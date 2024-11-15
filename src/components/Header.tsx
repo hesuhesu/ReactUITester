@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import '../css/Header.scss'
+import '../scss/Header.scss'
 
 const Header: React.FC = () => {
     const location = useLocation();
@@ -27,7 +27,7 @@ const Header: React.FC = () => {
                     <li><a href="/">Home</a></li>
                     <li><a href="/about">About</a></li>
                     <li><a href="/project">Project</a></li>
-                    <li><a href="/experience">Experience</a></li>
+                    <li><a href="/diary">Diary</a></li>
                 </ul>
             </nav>
         </header>
