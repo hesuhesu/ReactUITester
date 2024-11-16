@@ -11,15 +11,15 @@ const FooterContainer = styled.footer`
     color: rgba(214, 230, 245, 0.925);
     padding: 10px;
     text-align: center;
-`;
 
-const Link = styled.a`
-    color: rgba(214, 230, 245, 0.925);
-    margin: 0 15px;
-    display: inline-block;
+    a {
+        color: rgba(214, 230, 245, 0.925);
+        margin: 0 15px;
+        display: inline-block;
 
-    &:hover {
-        color: #61dafb; // 아이콘에 마우스를 올렸을 때 색상 변경
+        &:hover {
+            color: #61dafb; // 아이콘에 마우스를 올렸을 때 색상 변경
+        }
     }
 `;
 
@@ -31,15 +31,15 @@ const Copyright = styled.p`
 const Footer: React.FC = () => {
     return (
         <FooterContainer>
-            <Link href="https://github.com/hesuhesu" target="_blank" rel="noopener noreferrer">
+            <a href="https://github.com/hesuhesu" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faGithub} size="2x" />
-            </Link>
-            <Link href={`mailto:${EMAIL}`}>
+            </a>
+            <a href={`mailto:${EMAIL}`}>
                 <FontAwesomeIcon icon={faEnvelope} size="2x" />
-            </Link>
-            <Link href="https://ko.legacy.reactjs.org/" target="_blank" rel="noopener noreferrer">
+            </a>
+            <a href="https://ko.legacy.reactjs.org/" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faReact} size="2x" />
-            </Link>
+            </a>
             <Copyright>© 2024. hesuhesu. All rights reserved</Copyright>
         </FooterContainer>
     );

@@ -1,5 +1,7 @@
 import React, { useState, useRef, useCallback, useMemo } from 'react';
 import { useNavigate } from "react-router-dom";
+import { styled } from 'styled-components';
+import { jelloVertical } from '../components/Animation.tsx';
 import ReactQuill, { Quill } from 'react-quill';
 import ImageResize from 'quill-image-resize';
 import { ImageDrop } from "quill-image-drop-module";
@@ -7,13 +9,43 @@ import katex from 'katex';
 import QuillImageDropAndPaste from 'quill-image-drop-and-paste'
 import axios from 'axios';
 import { errorMessage, errorMessageURI, successMessageURI } from '../utils/SweetAlertEvent';
-import { timeCheck } from '../utils/TimeCheck';
+import { authCheck } from '../utils/authCheck.js';
 import 'katex/dist/katex.min.css'; // formular 활성화
 import 'react-quill/dist/quill.snow.css'; // Quill snow스타일 시트 불러오기
 import '../scss/QuillEditor.scss';
 
 const HOST = process.env.REACT_APP_HOST;
 const PORT = process.env.REACT_APP_PORT;
+
+const ButtonContainer = styled.div`
+    display: flex; // Flexbox 사용
+    // justify-content: center; // 세로 중앙 정렬
+    align-items: center; // 가로 중앙 정렬
+
+    button {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #282c34;
+        border: none;
+        border-radius: 20px; // 둥근 모서리
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // 가벼운 그림자
+
+        &:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); // 그림자 강조
+            animation: ${jelloVertical} 1s ease forwards;
+        }
+
+        &:active {
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            transform: translateY(1px); // 눌렀을 때 약간 내려가는 효과
+        }
+    }
+`;
 
 declare global {
     interface Window {
@@ -180,8 +212,8 @@ const QuillEditor: React.FC = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (timeCheck() === 0) {
-          errorMessageURI("로그인 만료!", "/");
+        if (authCheck() === 0) {
+          errorMessage("잘못된 접근!");
           return;
         }
         const description = quillRef.current?.getEditor().getText(); //태그를 제외한 순수 text만을 받아온다. 검색기능을 구현하지 않을 거라면 굳이 text만 따로 저장할 필요는 없다.
@@ -304,8 +336,10 @@ const QuillEditor: React.FC = () => {
                 modules={modules}
                 formats={formats}
             />
-            <button onClick={handleSubmit}>저장하기</button>
-            <button onClick={handleCancel}>취소하기</button>
+            <ButtonContainer>
+                <button onClick={handleSubmit}>저장하기</button>
+                <button onClick={handleCancel}>취소하기</button>
+            </ButtonContainer>
         </>
     )
 }
