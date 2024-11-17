@@ -12,58 +12,6 @@ const AUTH: string = process.env.REACT_APP_AUTH as string;
 const USERNAME = process.env.REACT_APP_USER_NAME;
 const USERPASSWORD = process.env.REACT_APP_USER_PASSWORD;
 
-const Structure = `
-    width: 400px; // 고정 너비
-    padding: 40px; // 내부 여백
-    background-color: white; // 배경색
-    border-radius: 10px; // 둥근 모서리
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); // 부드러운 그림자
-    text-align: center; // 텍스트 중앙 정렬
-`;
-
-const AuthContainer = styled.div`
-    height: 100vh; // 전체 화면 높이
-    width: 100%; // 전체 너비
-    display: flex; // Flexbox 사용
-    flex-direction: column; // 세로 방향으로 정렬
-    justify-content: center; // 세로 중앙 정렬
-    align-items: center; // 가로 중앙 정렬
-    background-color: rgba(214, 230, 245, 0.925);
-    color: #282c34;
-
-    button {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #282c34;
-        border: none;
-        border-radius: 20px; // 둥근 모서리
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-        &:hover {
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-            animation: ${jelloVertical} 1s ease forwards;
-        }
-
-        &:active {
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-            transform: translateY(1px); // 눌렀을 때 약간 내려가는 효과
-        }
-    }
-`;
-
-const AuthBox = styled.form`
-    ${Structure}
-`;
-
-const AdminBox = styled.div`
-    ${Structure}
-`;
-
 interface LoginItem {
     username: string;
     password: string;
@@ -133,5 +81,57 @@ const AuthPage: React.FC = () => {
         </AuthContainer>
     );
 }
+
+const Structure = `
+    width: 400px; // 고정 너비
+    padding: 40px; // 내부 여백
+    background-color: white; // 배경색
+    border-radius: 10px; // 둥근 모서리
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); // 부드러운 그림자
+    text-align: center; // 텍스트 중앙 정렬
+`;
+
+const AuthContainer = styled.div`
+    height: 100vh; // 전체 화면 높이
+    width: 100%; // 전체 너비
+    display: flex; // Flexbox 사용
+    flex-direction: column; // 세로 방향으로 정렬
+    justify-content: center; // 세로 중앙 정렬
+    align-items: center; // 가로 중앙 정렬
+    background-color: rgba(214, 230, 245, 0.925);
+    color: #282c34;
+
+    button {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #282c34;
+        border: none;
+        border-radius: 20px; // 둥근 모서리
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+        &:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+            animation: ${jelloVertical} 1s ease forwards;
+        }
+
+        &:active {
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            transform: translateY(1px); // 눌렀을 때 약간 내려가는 효과
+        }
+    }
+`;
+
+const AuthBox = styled.form`
+    ${Structure}
+`;
+
+const AdminBox = styled.div`
+    ${Structure}
+`;
 
 export default AuthPage;

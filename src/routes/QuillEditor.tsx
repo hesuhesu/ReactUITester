@@ -8,7 +8,7 @@ import { ImageDrop } from "quill-image-drop-module";
 import katex from 'katex';
 import QuillImageDropAndPaste from 'quill-image-drop-and-paste'
 import axios from 'axios';
-import { errorMessage, errorMessageURI, successMessageURI } from '../utils/SweetAlertEvent';
+import { errorMessage, successMessageURI } from '../utils/SweetAlertEvent';
 import { authCheck } from '../utils/authCheck.js';
 import 'katex/dist/katex.min.css'; // formular 활성화
 import 'react-quill/dist/quill.snow.css'; // Quill snow스타일 시트 불러오기
@@ -16,36 +16,6 @@ import '../scss/QuillEditor.scss';
 
 const HOST = process.env.REACT_APP_HOST;
 const PORT = process.env.REACT_APP_PORT;
-
-const ButtonContainer = styled.div`
-    display: flex; // Flexbox 사용
-    // justify-content: center; // 세로 중앙 정렬
-    align-items: center; // 가로 중앙 정렬
-
-    button {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #282c34;
-        border: none;
-        border-radius: 20px; // 둥근 모서리
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // 가벼운 그림자
-
-        &:hover {
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); // 그림자 강조
-            animation: ${jelloVertical} 1s ease forwards;
-        }
-
-        &:active {
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-            transform: translateY(1px); // 눌렀을 때 약간 내려가는 효과
-        }
-    }
-`;
 
 declare global {
     interface Window {
@@ -81,43 +51,6 @@ const formats = [
     "header", "font", "size", "bold", "italic", "underline", "align", "strike", "script", "blockquote", "background", "list", "bullet", "indent",
     "link", "image", "video", "color", "code-block", "formula", "direction"
 ];
-
-// handle them correctly
-const CustomUndo = () => (
-    <svg viewBox="0 0 18 18">
-        <polygon className="ql-fill ql-stroke" points="6 10 4 12 2 10 6 10" />
-        <path
-            className="ql-stroke"
-            d="M8.09,13.91A4.6,4.6,0,0,0,9,14,5,5,0,1,0,4,9"
-        />
-    </svg>
-);
-// Redo button icon component for Quill editor
-const CustomRedo = () => (
-    <svg viewBox="0 0 18 18">
-        <polygon className="ql-fill ql-stroke" points="12 10 14 12 16 10 12 10" />
-        <path
-            className="ql-stroke"
-            d="M9.91,13.91A4.6,4.6,0,0,1,9,14a5,5,0,1,1,5-5"
-        />
-    </svg>
-);
-
-const CustomHeart = () => <span>♥</span>;
-
-function insertHeart() {
-    const cursorPosition = this.quill.getSelection().index;
-    this.quill.insertText(cursorPosition, "♥");
-    this.quill.setSelection(cursorPosition + 1);
-}
-
-// Undo and redo functions for Custom Toolbar
-function undoChange() {
-    this.quill.history.undo();
-}
-function redoChange() {
-    this.quill.history.redo();
-}
 
 const QuillEditor: React.FC = () => {
 
@@ -343,5 +276,72 @@ const QuillEditor: React.FC = () => {
         </>
     )
 }
+
+// handle them correctly
+const CustomUndo = () => (
+    <svg viewBox="0 0 18 18">
+        <polygon className="ql-fill ql-stroke" points="6 10 4 12 2 10 6 10" />
+        <path
+            className="ql-stroke"
+            d="M8.09,13.91A4.6,4.6,0,0,0,9,14,5,5,0,1,0,4,9"
+        />
+    </svg>
+);
+// Redo button icon component for Quill editor
+const CustomRedo = () => (
+    <svg viewBox="0 0 18 18">
+        <polygon className="ql-fill ql-stroke" points="12 10 14 12 16 10 12 10" />
+        <path
+            className="ql-stroke"
+            d="M9.91,13.91A4.6,4.6,0,0,1,9,14a5,5,0,1,1,5-5"
+        />
+    </svg>
+);
+
+const CustomHeart = () => <span>♥</span>;
+
+function insertHeart() {
+    const cursorPosition = this.quill.getSelection().index;
+    this.quill.insertText(cursorPosition, "♥");
+    this.quill.setSelection(cursorPosition + 1);
+}
+
+// Undo and redo functions for Custom Toolbar
+function undoChange() {
+    this.quill.history.undo();
+}
+function redoChange() {
+    this.quill.history.redo();
+}
+
+const ButtonContainer = styled.div`
+    display: flex; // Flexbox 사용
+    // justify-content: center; // 세로 중앙 정렬
+    align-items: center; // 가로 중앙 정렬
+
+    button {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #282c34;
+        border: none;
+        border-radius: 20px; // 둥근 모서리
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // 가벼운 그림자
+
+        &:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); // 그림자 강조
+            animation: ${jelloVertical} 1s ease forwards;
+        }
+
+        &:active {
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            transform: translateY(1px); // 눌렀을 때 약간 내려가는 효과
+        }
+    }
+`;
 
 export default QuillEditor;

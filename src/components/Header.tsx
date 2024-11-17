@@ -3,6 +3,38 @@ import { useLocation, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { textFlickerInGlow, fadeInUp, fadeIn } from './Animation.tsx';
 
+const Header: React.FC = () => {
+    const location = useLocation();
+
+    // 경로에 따라 h1 텍스트 설정
+    const pageTitle = (() => {
+        switch (location.pathname) {
+            case '/about':
+                return 'About';
+            case '/project':
+                return 'Project';
+            case '/diary':
+                return 'Diary';
+            case '/quilleditor':
+                return 'Quill Editor';
+            default:
+                return 'Portfolio';
+        }
+    })();
+
+    return (
+        <FooterContainer>
+            {pageTitle === "Project" ? <ProjectHeader>{pageTitle}</ProjectHeader> : <HeaderOne>{pageTitle}</HeaderOne>}
+                <NavList>
+                    <li><StyledLink to="/">Home</StyledLink></li>
+                    <li><StyledLink to="/about">About</StyledLink></li>
+                    <li><StyledLink to="/project">Project</StyledLink></li>
+                    <li><StyledLink to="/diary">Diary</StyledLink></li>
+                </NavList>
+        </FooterContainer>
+    );
+};
+
 const FooterContainer = styled.header`
     background-color: #282c34;
     color: rgba(214, 230, 245, 0.925);
@@ -36,15 +68,12 @@ const NavList = styled.ul`
         &:nth-child(1) {
             animation-delay: 0.1s;
         }
-
         &:nth-child(2) {
             animation-delay: 0.2s;
         }
-
         &:nth-child(3) {
             animation-delay: 0.3s;
         }
-
         &:nth-child(4) {
             animation-delay: 0.4s;
         }
@@ -61,35 +90,5 @@ const StyledLink = styled(Link)`
         transform: translateY(-5px); // 마우스를 올렸을 때 위로 올라가는 효과
     }
 `;
-
-const Header: React.FC = () => {
-    const location = useLocation();
-
-    // 경로에 따라 h1 텍스트 설정
-    const pageTitle = (() => {
-        switch (location.pathname) {
-            case '/about':
-                return 'About';
-            case '/project':
-                return 'Project';
-            case '/experience':
-                return 'Experience';
-            default:
-                return 'Portfolio';
-        }
-    })();
-
-    return (
-        <FooterContainer>
-            {pageTitle === "Project" ? <ProjectHeader>{pageTitle}</ProjectHeader> : <HeaderOne>{pageTitle}</HeaderOne>}
-                <NavList>
-                    <li><StyledLink to="/">Home</StyledLink></li>
-                    <li><StyledLink to="/about">About</StyledLink></li>
-                    <li><StyledLink to="/project">Project</StyledLink></li>
-                    <li><StyledLink to="/diary">Diary</StyledLink></li>
-                </NavList>
-        </FooterContainer>
-    );
-};
 
 export default Header;

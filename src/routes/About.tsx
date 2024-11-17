@@ -2,6 +2,28 @@ import React from 'react';
 import styled from 'styled-components';
 import { flipInHorBottom } from '../components/Animation.tsx';
 
+const About: React.FC = () => {
+    return (
+        <AboutContainer>
+            <IntroduceContainer>
+                <img src="profile.jpeg" alt="Description" />
+                <h2>은희수</h2>
+                <DescriptionContainer>
+                    <dt>생년월일</dt>
+                    <dd>1999.10.30</dd>
+
+                    <dt>학력</dt>
+                    <dd>금성고등학교 (2015.03 ~ 2018.02)</dd>
+                    <dd>동아대학교 컴퓨터 공학과 (2018.03 ~ 2025.02)</dd>
+
+                    <dt>취미</dt>
+                    <dd>운동, 피아노</dd>
+                </DescriptionContainer>
+            </IntroduceContainer>
+        </AboutContainer>
+    );
+}
+
 const AboutContainer = styled.div`
     height: 100vh; // 전체 화면 높이
     display: flex; // Flexbox 사용
@@ -66,27 +88,5 @@ const DescriptionContainer = styled.dl`
         font-size: 15px;
     }
 `;
-
-const About: React.FC = () => {
-    return (
-        <AboutContainer>
-            <IntroduceContainer>
-                <img src="profile.jpeg" alt="Description" />
-                <h2>은희수</h2>
-                <DescriptionContainer>
-                    <dt>생년월일</dt>
-                    <dd>1999.10.30</dd>
-
-                    <dt>학력</dt>
-                    <dd>금성고등학교 (2015.03 ~ 2018.02)</dd>
-                    <dd>동아대학교 컴퓨터 공학과 (2018.03 ~ 2025.02)</dd>
-
-                    <dt>취미</dt>
-                    <dd>운동, 피아노</dd>
-                </DescriptionContainer>
-            </IntroduceContainer>
-        </AboutContainer>
-    );
-}
 
 export default About;

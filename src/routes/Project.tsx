@@ -2,6 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { slideDown } from '../components/Animation.tsx';
 
+const Project: React.FC = () => {
+
+  return (
+    <ProjectContainer>
+      <h2>프로젝트 화면</h2>
+      <p>입니다.</p>
+
+      <ProjectDiv>프로젝트 1</ProjectDiv>
+      <ProjectDiv>프로젝트 2</ProjectDiv>
+    </ProjectContainer>
+  )
+}
+
 const ProjectContainer = styled.div`
     height: 100vh; // 전체 화면 높이
     width: 100%; // 전체 너비
@@ -45,14 +58,8 @@ const ProjectContainer = styled.div`
     }
 `
 
-const Project: React.FC = () => {
+const ProjectDiv = styled.div`
 
-  return (
-    <ProjectContainer>
-      <h2>프로젝트 화면</h2>
-      <p>입니다.</p>
-    </ProjectContainer>
-  )
-}
+`;
 
 export default Project
