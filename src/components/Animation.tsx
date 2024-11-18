@@ -1,5 +1,12 @@
 import { keyframes } from 'styled-components';
 
+// 자주쓰는 컬러
+/*
+Header 색상 : #282c34
+Header 글 색상 : rgba(214, 230, 245, 0.925)
+
+*/
+
 // 구버전 문법 예시
 /*
 const focusInContractWebkit = css`

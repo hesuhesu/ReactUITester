@@ -6,6 +6,7 @@ import Home from "./routes/Home.tsx";
 import About from "./routes/About.tsx";
 import Project from "./routes/Project.tsx";
 import Diary from "./routes/Diary.tsx";
+import DiaryDetail from './routes/DiaryDetail.tsx';
 import QuillEditor from "./routes/QuillEditor.tsx";
 import AuthPage from "./routes/AuthPage.tsx";
 import PrivateRoute from './utils/PrivateRoute.js';
@@ -32,6 +33,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/project" element={<Project />} />
             <Route path="/diary" element={<Diary />} />
+            <Route exact path = "/diary_detail/:_id" element = {<DiaryDetail/>}/>
             <Route element={<PrivateRoute/>}>
               <Route path="/quilleditor" element={<QuillEditor />} />
             </Route>

@@ -32,13 +32,13 @@ width: 100%; // 전체 너비
 `;
 
 const HomeContainer = styled.div`
-    height: 300vh; // 전체 화면 높이
+    height: 500vh; // 전체 화면 높이
     ${Structure}
     background-image: linear-gradient(
             to bottom,
             #282c34, 
             #7F8995,
-            rgba(214, 230, 245, 0.925)
+            #282c34
         );
     color: rgba(214, 230, 245, 0.925);
 

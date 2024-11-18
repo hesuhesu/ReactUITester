@@ -52,10 +52,13 @@ const formats = [
     "link", "image", "video", "color", "code-block", "formula", "direction"
 ];
 
+const CategoryList = ['React', 'Node', 'backend', 'Game'];
+
 const QuillEditor: React.FC = () => {
 
     const [editorHtml, setEditorHtml] = useState<string>('');
     const [title, setTitle] = useState<string>('');
+    const [selectedCategory, setSelectedCategory] = useState<string>(CategoryList[0]);
     const [imgData, setImgData] = useState<string[]>([]); // 이미지 배열
     const quillRef = useRef<ReactQuill | null>(null); // Ref 타입 설정
     const navigate = useNavigate();
@@ -108,12 +111,12 @@ const QuillEditor: React.FC = () => {
             const IMG_URL = result.data.url;
             // Quill 에디터 인스턴스를 호출
             const editor = quillRef.current?.getEditor(); // 에디터 객체 가져오기
-                if (!editor) return; // editor가 없으면 함수 종료
-                // 현재 에디터 커서 위치값을 가져온다
-                const range = editor.getSelection();
-                if (range) { // range가 null이 아닌 경우에만 이미지 삽입
-                    editor.insertEmbed(range.index, 'image', IMG_URL);
-                }
+            if (!editor) return; // editor가 없으면 함수 종료
+            // 현재 에디터 커서 위치값을 가져온다
+            const range = editor.getSelection();
+            if (range) { // range가 null이 아닌 경우에만 이미지 삽입
+                editor.insertEmbed(range.index, 'image', IMG_URL);
+            }
         } catch (error) { console.log('이미지 업로드 실패', error); }
     }, []);
 
@@ -146,34 +149,49 @@ const QuillEditor: React.FC = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (authCheck() === 0) {
-          errorMessage("잘못된 접근!");
-          return;
+            errorMessage("잘못된 접근!");
+            return;
         }
         const description = quillRef.current?.getEditor().getText(); //태그를 제외한 순수 text만을 받아온다. 검색기능을 구현하지 않을 거라면 굳이 text만 따로 저장할 필요는 없다.
         // description.trim()
         axios.post(`${HOST}:${PORT}/diary/write`, {
-          title: title,
-          content: description,
-          realContent: editorHtml,
-          imgData: imgData
+            title: title,
+            content: description,
+            realContent: editorHtml,
+            category: selectedCategory,
+            imgData: imgData
         }).then((res) => {
-          successMessageURI("저장되었습니다!", "/diary");
+            successMessageURI("저장되었습니다!", "/diary");
         }).catch((e) => { errorMessage("에러!!"); });
-      };
-    
+    };
+
     const handleCancel = async () => {
         if (imgData.length > 0) {
-          axios.delete(`${HOST}:${PORT}/files_delete`, {
-            params: {
-              imgData: imgData
-            }
-          }).then((response) => { }).catch((error) => { errorMessage("에러!!"); });
+            axios.delete(`${HOST}:${PORT}/delete_files`, {
+                params: {
+                    imgData: imgData
+                }
+            }).then((response) => { }).catch((error) => { errorMessage("에러!!"); });
         }
-        navigate(-1);
+        navigate('/diary');
     }
+
+    const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedCategory(event.target.value);
+    };
     return (
-        <>
-        <input type="text" placeholder="Title" className = "quill-title" onChange={(e) => setTitle(e.target.value)} required/>
+        <FormContainer onSubmit={handleSubmit}>
+            <input type="text" placeholder="Title" className="quill-title" onChange={(e) => setTitle(e.target.value)} required />
+            <SelectContainer>
+                <label htmlFor="category">카테고리 선택: </label>
+                <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
+                    {CategoryList.map((category) => (
+                        <option key={category} value={category}>
+                            {category}
+                        </option>
+                    ))}
+                </select>
+            </SelectContainer>
             <div id="toolbar">
                 <span className="ql-formats">
                     <select className="ql-font" defaultValue="arial" title="서체 변경">
@@ -270,10 +288,10 @@ const QuillEditor: React.FC = () => {
                 formats={formats}
             />
             <ButtonContainer>
-                <button onClick={handleSubmit}>저장하기</button>
+                <button>저장하기</button>
                 <button onClick={handleCancel}>취소하기</button>
             </ButtonContainer>
-        </>
+        </FormContainer>
     )
 }
 
@@ -314,10 +332,31 @@ function redoChange() {
     this.quill.history.redo();
 }
 
+const FormContainer = styled.form`
+    background-color:rgba(214, 230, 245, 0.925);
+`;
+
+const SelectContainer = styled.div`
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+
+    label {
+        margin-right: 10px;
+        font-weight: bold;
+    }
+
+    select {
+        padding: 5px 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+`;
+
 const ButtonContainer = styled.div`
     display: flex; // Flexbox 사용
-    // justify-content: center; // 세로 중앙 정렬
-    align-items: center; // 가로 중앙 정렬
+    justify-content: center;
 
     button {
         margin-top: 20px;

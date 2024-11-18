@@ -18,6 +18,9 @@ const Header: React.FC = () => {
             case '/quilleditor':
                 return 'Quill Editor';
             default:
+                if (location.pathname.startsWith('/diary_detail')) {
+                    return 'Welcome to My Blog'; // diary_detail 경로일 때
+                }
                 return 'Portfolio';
         }
     })();
