@@ -22,7 +22,6 @@ interface Data {
 }
 
 const DiaryDetail: React.FC = () => {
-
     const params = useParams()._id
     const [admin, setAdmin]= useState<Number>(0);
     const navigate = useNavigate();
@@ -54,7 +53,7 @@ const DiaryDetail: React.FC = () => {
 
     const handleDelete = () => {
         if (data.imgData.length > 0) {
-            axios.delete(`${HOST}:${PORT}/file_all_delete`, {
+            axios.delete(`${HOST}:${PORT}/delete_files`, {
               params: {
                 imgData: data.imgData
               }
@@ -74,7 +73,7 @@ const DiaryDetail: React.FC = () => {
             <ButtonContainer>
                 <button onClick={() => navigate("/diary")}>돌아가기</button>
                 {admin === 1 && <>
-                    <button>수정하기</button>
+                    <button onClick={() => navigate(`/quilleditor_update/${params}`)}>수정하기</button>
                     <button onClick={handleDelete}>삭제하기</button>
                 </>}
             </ButtonContainer>

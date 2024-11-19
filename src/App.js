@@ -8,6 +8,7 @@ import Project from "./routes/Project.tsx";
 import Diary from "./routes/Diary.tsx";
 import DiaryDetail from './routes/DiaryDetail.tsx';
 import QuillEditor from "./routes/QuillEditor.tsx";
+import QuillEditorUpdate from "./routes/QuillEditorUpdate.tsx";
 import AuthPage from "./routes/AuthPage.tsx";
 import PrivateRoute from './utils/PrivateRoute.js';
 
@@ -36,6 +37,7 @@ function App() {
             <Route exact path = "/diary_detail/:_id" element = {<DiaryDetail/>}/>
             <Route element={<PrivateRoute/>}>
               <Route path="/quilleditor" element={<QuillEditor />} />
+              <Route path="/quilleditor_update/:_id" element={<QuillEditorUpdate />} />
             </Route>
           </Route>
           <Route path="/authpage" element={<AuthPage />} />

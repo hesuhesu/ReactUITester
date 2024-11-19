@@ -8,7 +8,7 @@ import { focusInContract, jelloHorizontal } from '../components/Animation.tsx';
 const HOST = process.env.REACT_APP_HOST;
 const PORT = process.env.REACT_APP_PORT;
 
-const CategoryList = [ '전체', 'React', 'Node', 'backend', 'Game'];
+const CategoryList = [ '전체', 'React', 'Node', 'Backend', 'Game', 'Etc'];
 
 interface ReviewItem {
     _id: string;

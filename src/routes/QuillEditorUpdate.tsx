@@ -1,5 +1,5 @@
-import React, { useState, useRef, useCallback, useMemo } from 'react';
-import { useNavigate } from "react-router-dom";
+import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react';
+import { useNavigate, useParams } from "react-router-dom";
 import { styled } from 'styled-components';
 import { jelloVertical } from '../components/Animation.tsx';
 import ReactQuill, { Quill } from 'react-quill';
@@ -54,13 +54,31 @@ const formats = [
 
 const CategoryList = ['React', 'Node', 'Backend', 'Game', 'Etc'];
 
-const QuillEditor: React.FC = () => {
+const QuillEditorUpdate: React.FC = () => {
     const [editorHtml, setEditorHtml] = useState<string>('');
     const [title, setTitle] = useState<string>('');
     const [selectedCategory, setSelectedCategory] = useState<string>(CategoryList[0]);
     const [imgData, setImgData] = useState<string[]>([]); // 이미지 배열
+    const [imgDataSub, setImgDataSub] = useState<string[]>([]); // 새로 추가하는 img 저장 => 취소할 때 리스트 이미지 삭제 api 호출
     const quillRef = useRef<ReactQuill | null>(null); // Ref 타입 설정
+    const params = useParams()._id
     const navigate = useNavigate();
+
+    useEffect(() => {
+        axios.get(`${HOST}:${PORT}/diary/read`, {
+            params: { _id: params }
+        }).then((response) => {
+            setTitle(response.data.list.title);
+            setImgData(response.data.list.imgData);
+            setEditorHtml(response.data.list.realContent);
+            setSelectedCategory(response.data.list.category);
+        }).catch((error) => { console.error(error); });
+    }, [params]);
+
+    // 에디터 내용 변경 핸들러
+    const handleChange = useCallback((html: string) => {
+        setEditorHtml(html);
+    }, []);
 
     // 이미지 처리를 하는 핸들러
     const imageHandler = () => {
@@ -81,6 +99,7 @@ const QuillEditor: React.FC = () => {
                 const result = await axios.post(`${HOST}:${PORT}/img`, formData);
                 console.log('성공 시, 백엔드가 보내주는 데이터', result.data.url);
                 setImgData(prevFiles => [...prevFiles, result.data.realName]);
+                setImgDataSub(prevFiles => [...prevFiles, result.data.realName]);
                 const IMG_URL = result.data.url;
                 // 이미지 태그를 에디터에 써주기 - 여러 방법이 있다.
                 const editor = quillRef.current?.getEditor(); // 에디터 객체 가져오기
@@ -105,6 +124,7 @@ const QuillEditor: React.FC = () => {
             const result = await axios.post(`${HOST}:${PORT}/img`, formData);
             console.log('성공 시, 백엔드가 보내주는 데이터', result.data.url);
             setImgData(prevFiles => [...prevFiles, result.data.realName]);
+            setImgDataSub(prevFiles => [...prevFiles, result.data.realName]);
 
             // 서버에서 반환된 이미지 URL을 변수에 저장
             const IMG_URL = result.data.url;
@@ -117,11 +137,6 @@ const QuillEditor: React.FC = () => {
                 editor.insertEmbed(range.index, 'image', IMG_URL);
             }
         } catch (error) { console.log('이미지 업로드 실패', error); }
-    }, []);
-
-    // 에디터 내용 변경 핸들러
-    const handleChange = useCallback((html: string) => {
-        setEditorHtml(html);
     }, []);
 
     const modules = useMemo(() => ({
@@ -153,7 +168,8 @@ const QuillEditor: React.FC = () => {
         }
         const description = quillRef.current?.getEditor().getText(); //태그를 제외한 순수 text만을 받아온다. 검색기능을 구현하지 않을 거라면 굳이 text만 따로 저장할 필요는 없다.
         // description.trim()
-        axios.post(`${HOST}:${PORT}/diary/write`, {
+        axios.put(`${HOST}:${PORT}/diary/update`, {
+            _id: params,
             title: title,
             content: description,
             realContent: editorHtml,
@@ -165,25 +181,26 @@ const QuillEditor: React.FC = () => {
     };
 
     const handleCancel = async () => {
-        if (imgData.length > 0) {
+        if (imgDataSub.length > 0) {
             axios.delete(`${HOST}:${PORT}/delete_files`, {
                 params: {
-                    imgData: imgData
+                    imgData: imgDataSub
                 }
             }).then((response) => { }).catch((error) => { errorMessage("에러!!"); });
         }
-        navigate('/diary');
+        navigate(-1);
     }
 
     const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedCategory(event.target.value);
     };
+
     return (
         <FormContainer onSubmit={handleSubmit}>
-            <input type="text" placeholder="Title" className="quill-title" onChange={(e) => setTitle(e.target.value)} required />
+            <input type="text" placeholder="Title" className="quill-title" value={title} onChange={(e) => setTitle(e.target.value)} required />
             <SelectContainer>
                 <label htmlFor="category">카테고리 선택: </label>
-                <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
+                <select value={selectedCategory} onChange={handleCategoryChange}>
                     {CategoryList.map((category) => (
                         <option key={category} value={category}>
                             {category}
@@ -288,7 +305,7 @@ const QuillEditor: React.FC = () => {
             />
             <ButtonContainer>
                 <button>저장하기</button>
-                <button onClick={handleCancel}>취소하기</button>
+                <button type="button" onClick={handleCancel}>취소하기</button>
             </ButtonContainer>
         </FormContainer>
     )
@@ -382,4 +399,4 @@ const ButtonContainer = styled.div`
     }
 `;
 
-export default QuillEditor;
+export default QuillEditorUpdate;
