@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-import { jelloVertical } from '../components/Animation.tsx';
+import { vibrate1 } from '../components/Animation.tsx';
 import { authCheck } from '../utils/authCheck';
 import { errorMessage, successMessageURI } from '../utils/SweetAlertEvent';
 import ReactQuill from 'react-quill';
@@ -35,7 +35,6 @@ const DiaryDetail: React.FC = () => {
     });
 
     useEffect(() => {
-        authCheck();
         axios.get(`${HOST}:${PORT}/diary/read`, {
             params: { _id: params }
         }).then((response) => {
@@ -73,7 +72,7 @@ const DiaryDetail: React.FC = () => {
             <ButtonContainer>
                 <button onClick={() => navigate("/diary")}>돌아가기</button>
                 {admin === 1 && <>
-                    <button onClick={() => navigate(`/quilleditor_update/${params}`)}>수정하기</button>
+                    <button onClick={() => navigate(`/quilleditor_update/${params}`, { state: data })}>수정하기</button>
                     <button onClick={handleDelete}>삭제하기</button>
                 </>}
             </ButtonContainer>
@@ -106,7 +105,7 @@ const ReactQuillContainer = styled.div`
 
         &:hover {
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); // 그림자 강조
-            animation: ${jelloVertical} 1s ease forwards;
+            animation: ${vibrate1} 0.3s ease infinite;
         }
 
         &:active {
@@ -128,23 +127,12 @@ const HeaderOne = styled.h1`
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 가벼운 그림자 */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 텍스트 그림자 */
     border: 2px solid rgba(214, 230, 245, 0.925); /* 부드러운 테두리 */
-    animation: fadeIn 1s ease forwards;
+    
 
     &:hover {
         background-color: #3a3f47; /* 호버 시 색상 변화 */
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* 호버 시 그림자 강조 */
         transform: translateY(-2px); /* 살짝 위로 올라가는 효과 */
-    }
-
-    @keyframes fadeIn {
-        0% {
-            opacity: 0;
-            transform: scale(0.9);
-        }
-        100% {
-            opacity: 1;
-            transform: scale(1);
-        }
     }
 `;
 

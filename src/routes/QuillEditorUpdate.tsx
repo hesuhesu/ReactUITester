@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react';
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { styled } from 'styled-components';
 import { jelloVertical } from '../components/Animation.tsx';
 import ReactQuill, { Quill } from 'react-quill';
@@ -55,8 +55,9 @@ const formats = [
 const CategoryList = ['React', 'Node', 'Backend', 'Game', 'Etc'];
 
 const QuillEditorUpdate: React.FC = () => {
-    const [editorHtml, setEditorHtml] = useState<string>('');
+    const location = useLocation();
     const [title, setTitle] = useState<string>('');
+    const [editorHtml, setEditorHtml] = useState<string>('');
     const [selectedCategory, setSelectedCategory] = useState<string>(CategoryList[0]);
     const [imgData, setImgData] = useState<string[]>([]); // 이미지 배열
     const [imgDataSub, setImgDataSub] = useState<string[]>([]); // 새로 추가하는 img 저장 => 취소할 때 리스트 이미지 삭제 api 호출
@@ -65,15 +66,12 @@ const QuillEditorUpdate: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`${HOST}:${PORT}/diary/read`, {
-            params: { _id: params }
-        }).then((response) => {
-            setTitle(response.data.list.title);
-            setImgData(response.data.list.imgData);
-            setEditorHtml(response.data.list.realContent);
-            setSelectedCategory(response.data.list.category);
-        }).catch((error) => { console.error(error); });
-    }, [params]);
+        setTitle(location.state.title);
+        setEditorHtml(location.state.realContent);
+        setImgData(location.state.imgData);
+        setSelectedCategory(location.state.category);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     // 에디터 내용 변경 핸들러
     const handleChange = useCallback((html: string) => {

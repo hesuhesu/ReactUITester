@@ -3,17 +3,24 @@ import styled from 'styled-components';
 import { slideDown } from '../components/Animation.tsx';
 
 const Project: React.FC = () => {
-
   return (
     <ProjectContainer>
       <ProjectIntro>
       <h2>프로젝트 화면</h2>
       <p>입니다.</p>
       </ProjectIntro>
-
-      <ProjectDiv>프로젝트 1</ProjectDiv>
-      <ProjectDiv>프로젝트 2</ProjectDiv>
-      <ProjectDiv>프로젝트 3</ProjectDiv>
+      <ProjectDiv>
+        <LeftDiv>프로젝트 1</LeftDiv>
+        <RightDiv></RightDiv>
+      </ProjectDiv>
+      <ProjectDiv>
+        <LeftDiv>프로젝트 2</LeftDiv>
+        <RightDiv></RightDiv>
+      </ProjectDiv>
+      <ProjectDiv>
+        <LeftDiv>프로젝트 3</LeftDiv>
+        <RightDiv></RightDiv>
+      </ProjectDiv>
     </ProjectContainer>
   )
 }
@@ -50,13 +57,13 @@ const ProjectContainer = styled.div`
 `
 
 const ProjectIntro = styled.div`
-height: 80vh; // 전체 화면 높이
-display: flex; // Flexbox 사용
+    height: 80vh; // 전체 화면 높이
+    display: flex; // Flexbox 사용
     flex-direction: column; // 세로 방향으로 정렬
     justify-content: center; // 세로 중앙 정렬
     align-items: center; // 가로 중앙 정렬
 
-h2 {
+    h2 {
         font-size: 50px;
         color: rgba(214, 230, 245, 0.925); // 텍스트 색상 설정
         z-index: 1; // 텍스트는 비트맵 위에 유지
@@ -72,10 +79,23 @@ h2 {
 `
 
 const ProjectDiv = styled.div`
-height: 80vh; // 전체 화면 높이
-width: 70%;
-background-color: rgba(214, 230, 245, 0.925);
-        z-index: 1; // 텍스트는 비트맵 위에 유지
+  display: flex;
+  height: 80vh; // 전체 화면 높이
+  width: 70%;
+  border: none;
+  border-radius: 20px; // 둥근 모서리
+  background-color: rgba(214, 230, 245, 0.925);
+  z-index: 1; // 텍스트는 비트맵 위에 유지
+`;
+
+const LeftDiv = styled.div`
+  width: 50%;
+  background-color: rgba(214, 230, 245, 0.925);
+`;
+
+const RightDiv = styled.div`
+  width: 50%;
+  background-color: #7F8995;
 `;
 
 export default Project

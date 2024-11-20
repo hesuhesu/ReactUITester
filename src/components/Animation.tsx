@@ -333,6 +333,17 @@ export const fadeIn = keyframes`
     }
 `;
 
+export const fadeIn2 = keyframes`
+    0% {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+`;
+
 // Header li 애니메이션
 export const fadeInUp = keyframes`
     from {

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import { authCheck } from '../utils/authCheck';
-import { focusInContract, jelloHorizontal } from '../components/Animation.tsx';
+import { fadeIn, jelloHorizontal } from '../components/Animation.tsx';
 
 const HOST = process.env.REACT_APP_HOST;
 const PORT = process.env.REACT_APP_PORT;
@@ -20,6 +20,7 @@ interface ReviewItem {
 
 const Experience: React.FC = () => {
     const [api, setApi] = useState<ReviewItem[]>([]);
+    const [filteredData, setFilteredData] = useState<ReviewItem[]>([]); // 필터링된 데이터
     const [status, setStatus] = useState<boolean>(false);
     const [selectedCategory, setSelectedCategory] = useState<string>(CategoryList[0]);
     const navigate = useNavigate();
@@ -28,6 +29,7 @@ const Experience: React.FC = () => {
         axios.get(`${HOST}:${PORT}/diary/all_read`)
             .then((response) => {
                 setApi(response.data.list);
+                setFilteredData(response.data.list);
             })
             .catch((error) => {
                 console.error(error);
@@ -39,31 +41,14 @@ const Experience: React.FC = () => {
 
     // select 가 변경되면 api 호출
     useEffect(() => {
-        if (selectedCategory === '전체'){
-            axios.get(`${HOST}:${PORT}/diary/all_read`)
-            .then((response) => {
-                setApi(response.data.list);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-            return;
+        // 카테고리에 따라 필터링
+        if (selectedCategory === '전체') {
+            setFilteredData(api);
+        } else {
+            const filtered = api.filter(item => item.category === selectedCategory);
+            setFilteredData(filtered);
         }
-        axios.get(`${HOST}:${PORT}/diary/search`, {
-            params: { category: selectedCategory }
-        })
-            .then((response) => {
-                setApi(response.data.list);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-        if (authCheck() === 0){ 
-            setStatus(false);
-            return; 
-        }
-        setStatus(true);
-    },[selectedCategory]);
+    }, [selectedCategory, api]); // api와 selectedCategory가 변경될 때 실행
 
     const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedCategory(event.target.value);
@@ -71,8 +56,12 @@ const Experience: React.FC = () => {
 
     return (
         <DiaryContainer>
-            <h2>My Diary</h2>
-            {status && <button onClick={() => navigate("/quilleditor")}>게시물 작성하기</button>}
+            <ButtonContainer>
+                {status && <>
+                <button onClick={() => navigate("/quilleditor")}>게시물 작성하기</button>
+                <button>선택 삭제하기</button>
+                </>} 
+            </ButtonContainer>
             <SelectContainer>
                 <label htmlFor="category">카테고리 선택: </label>
                 <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
@@ -83,7 +72,7 @@ const Experience: React.FC = () => {
                     ))}
                 </select>
             </SelectContainer>
-            {api.length > 0 ? (
+            {filteredData.length > 0 ? (
                 <TableContainer>
                     <thead>
                         <tr>
@@ -94,7 +83,7 @@ const Experience: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {api.map((item) => (
+                        {filteredData.map((item) => (
                             <tr key={item._id} onClick={() => navigate(`/diary_detail/${item._id}`)}>
                                 <td>{item.category}</td>
                                 <td>{item.title}</td>
@@ -117,49 +106,54 @@ const DiaryContainer = styled.div`
     align-items: center; // 가로 중앙 정렬
     background-color: rgba(214, 230, 245, 0.925);
     color: #282c34;
+`;
 
-    h2 {
-        font-size: 50px;
-        animation: ${focusInContract} 1s ease forwards;
-    }
-
+const ButtonContainer = styled.div`
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    
+    animation: ${fadeIn} 1.5s ease forwards;
     button {
-        margin-top: 20px;
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #282c34; // 부드러운 그린 컬러
-        border: none;
-        border-radius: 20px; // 둥근 모서리
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // 가벼운 그림자
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #282c34; // 부드러운 그린 컬러
+            border: none;
+            border-radius: 20px; // 둥근 모서리
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // 가벼운 그림자
+            
+            &:hover {
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); // 그림자 강조
+                animation: ${jelloHorizontal} 1s ease forwards;
+            }
 
-        &:hover {
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); // 그림자 강조
-            animation: ${jelloHorizontal} 1s ease forwards;
+            &:active {
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+                transform: translateY(1px); // 눌렀을 때 약간 내려가는 효과
+            }
         }
-
-        &:active {
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-            transform: translateY(1px); // 눌렀을 때 약간 내려가는 효과
-        }
-    }
 `;
 
 const SelectContainer = styled.div`
     margin: 20px 0;
     display: flex;
-    align-items: center;
+    justify-content: right; // 세로 중앙 정렬
+    width: 100%;
+    animation: ${fadeIn} 2s ease forwards;
 
     label {
+        font-size: 20px;
         margin-right: 10px;
         font-weight: bold;
     }
 
     select {
         padding: 5px 10px;
-        font-size: 16px;
+        margin-right: 10px;
+        font-size: 15px;
         border: 1px solid #ddd;
         border-radius: 5px;
     }
@@ -172,6 +166,7 @@ const TableContainer = styled.table`
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
+    animation: ${fadeIn} 2.5s ease forwards;
 
     thead {
         background-color: #282c34;
@@ -185,7 +180,7 @@ const TableContainer = styled.table`
     }
 
     tbody {
-        tr {
+        tr{
             &:nth-child(even) {
                 background-color: #f9f9f9;
             }
@@ -194,7 +189,6 @@ const TableContainer = styled.table`
                 background-color: #f1f1f1;
             }
         }
-
         td {
             padding: 12px;
             text-align: left;

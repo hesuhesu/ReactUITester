@@ -29,12 +29,8 @@ const AboutContainer = styled.div`
     display: flex; // Flexbox 사용
     flex-direction: column; // 세로 방향으로 정렬
     align-items: center; // 가로 중앙 정렬
-    color: #282c34; // 텍스트 색상 설정
-
-    background-image: linear-gradient(to bottom,
-            #282c34,
-            rgba(214, 230, 245, 0.925),
-            #282c34);
+    color: rgba(214, 230, 245, 0.925); // 텍스트 색상 설정
+    background-color: #282c34;
 `;
 
 const IntroduceContainer = styled.div`
@@ -42,10 +38,9 @@ const IntroduceContainer = styled.div`
     flex-direction: column; // 위에서 아래로 수직 배치
     align-items: center; // 수평 중앙 정렬
     justify-content: center; // 수직 중앙 정렬
-    background-color: rgba(214, 230, 245, 0.925); // 배경색
-    border: 1px solid #ddd; // 테두리
+    background-color: ; // 배경색
+    border: 5px solid rgba(214, 230, 245, 0.925); // 테두리
     border-radius: 10px; // 모서리 둥글게
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // 그림자 효과
     overflow: hidden;
     margin-top: 5vh;
     height: 90%;

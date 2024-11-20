@@ -26,7 +26,7 @@ const Header: React.FC = () => {
     })();
 
     return (
-        <FooterContainer>
+        <HeaderContainer>
             {pageTitle === "Project" ? <ProjectHeader>{pageTitle}</ProjectHeader> : <HeaderOne>{pageTitle}</HeaderOne>}
                 <NavList>
                     <li><StyledLink to="/">Home</StyledLink></li>
@@ -34,11 +34,11 @@ const Header: React.FC = () => {
                     <li><StyledLink to="/project">Project</StyledLink></li>
                     <li><StyledLink to="/diary">Diary</StyledLink></li>
                 </NavList>
-        </FooterContainer>
+        </HeaderContainer>
     );
 };
 
-const FooterContainer = styled.header`
+const HeaderContainer = styled.header`
     background-color: #282c34;
     color: rgba(214, 230, 245, 0.925);
     padding: 10px;
