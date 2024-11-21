@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-import { authCheck } from '../utils/authCheck';
+import { authCheck } from '../utils/authCheck.tsx';
 import { fadeIn, jelloHorizontal } from '../components/Animation.tsx';
 
 const HOST = process.env.REACT_APP_HOST;

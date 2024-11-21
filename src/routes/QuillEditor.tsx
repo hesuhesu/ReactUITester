@@ -8,8 +8,8 @@ import { ImageDrop } from "quill-image-drop-module";
 import katex from 'katex';
 import QuillImageDropAndPaste from 'quill-image-drop-and-paste'
 import axios from 'axios';
-import { errorMessage, successMessageURI } from '../utils/SweetAlertEvent';
-import { authCheck } from '../utils/authCheck.js';
+import { errorMessage, successMessage } from '../utils/SweetAlertEvent.tsx';
+import { authCheck } from '../utils/authCheck.tsx';
 import 'katex/dist/katex.min.css'; // formular 활성화
 import 'react-quill/dist/quill.snow.css'; // Quill snow스타일 시트 불러오기
 import '../scss/QuillEditor.scss';
@@ -160,7 +160,8 @@ const QuillEditor: React.FC = () => {
             category: selectedCategory,
             imgData: imgData
         }).then((res) => {
-            successMessageURI("저장되었습니다!", "/diary");
+            successMessage("저장되었습니다!");
+            navigate("/diary");
         }).catch((e) => { errorMessage("에러!!"); });
     };
 

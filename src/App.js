@@ -10,7 +10,7 @@ import DiaryDetail from './routes/DiaryDetail.tsx';
 import QuillEditor from "./routes/QuillEditor.tsx";
 import QuillEditorUpdate from "./routes/QuillEditorUpdate.tsx";
 import AuthPage from "./routes/AuthPage.tsx";
-import PrivateRoute from './utils/PrivateRoute.js';
+import PrivateRoute from './utils/PrivateRoute.tsx';
 
 // npm install axios sweetalert2 react-paginate react-router-dom
 // npm install katex quill-image-resize quill-image-drop-module quill-image-drop-and-paste --save

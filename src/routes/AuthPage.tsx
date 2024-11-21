@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { jelloVertical } from '../components/Animation.tsx';
-import { errorMessage, successMessage } from '../utils/SweetAlertEvent';
-import { authCheck } from '../utils/authCheck';
+import { errorMessage, successMessage } from '../utils/SweetAlertEvent.tsx';
+import { authCheck } from '../utils/authCheck.tsx';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 

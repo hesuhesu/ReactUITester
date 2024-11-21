@@ -3,8 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import { vibrate1 } from '../components/Animation.tsx';
-import { authCheck } from '../utils/authCheck';
-import { errorMessage, successMessageURI } from '../utils/SweetAlertEvent';
+import { authCheck } from '../utils/authCheck.tsx';
+import { errorMessage, successMessage } from '../utils/SweetAlertEvent.tsx';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Quill snow스타일 시트 불러오기
 import '../scss/QuillEditor.scss';
@@ -25,6 +25,7 @@ const DiaryDetail: React.FC = () => {
     const params = useParams()._id
     const [admin, setAdmin]= useState<Number>(0);
     const navigate = useNavigate();
+    const [modal, setModal] = useState(false);
     const [data, setData] = useState<Data>({
         title: '',
         content: '',
@@ -33,6 +34,7 @@ const DiaryDetail: React.FC = () => {
         imgData: [],
         createdAt: ''
     });
+    
 
     useEffect(() => {
         axios.get(`${HOST}:${PORT}/diary/read`, {
@@ -61,7 +63,8 @@ const DiaryDetail: React.FC = () => {
           axios.delete(`${HOST}:${PORT}/diary/delete`, {
             params: { _id: params }
           }).then((response) => {
-            successMessageURI("게시물이 삭제되었습니다!", `/diary`);
+            successMessage("게시물이 삭제되었습니다!");
+            navigate('/diary');
           }).catch((error) => { errorMessage("삭제 실패"); })
     }
 
@@ -71,6 +74,7 @@ const DiaryDetail: React.FC = () => {
             <HeaderTwo>작성 일시 : {data.createdAt}</HeaderTwo>
             <ButtonContainer>
                 <button onClick={() => navigate("/diary")}>돌아가기</button>
+                <button onClick={ () => setModal(true) }>모달 열기</button>
                 {admin === 1 && <>
                     <button onClick={() => navigate(`/quilleditor_update/${params}`, { state: data })}>수정하기</button>
                     <button onClick={handleDelete}>삭제하기</button>
