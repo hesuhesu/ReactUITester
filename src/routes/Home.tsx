@@ -22,22 +22,22 @@ const Home: React.FC = () => {
 
 
 const HomeContainer = styled.div`
-    width: 100%; // 전체 너비
-    display: flex; // Flexbox 사용
-    flex-direction: column; // 세로 방향으로 정렬
-    justify-content: center; // 세로 중앙 정렬
-    align-items: center; // 가로 중앙 정렬
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color : #282c34
     height: 300vh; // 전체 화면 높이
     background-color: rgba(214, 230, 245, 0.925);
 `;
 
 const FirstHome = styled.div`
-    height: 100vh; // 전체 화면 높이
-    display: flex; // Flexbox 사용
-    flex-direction: column; // 세로 방향으로 정렬
-    justify-content: center; // 세로 중앙 정렬
-    align-items: center; // 가로 중앙 정렬
+    height: 100vh;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     h2 {
         font-size:60px;
@@ -53,11 +53,11 @@ const FirstHome = styled.div`
 `;
 
 const SecondHome = styled.div`
-    height: 100vh; // 전체 화면 높이
-    display: flex; // Flexbox 사용
-    flex-direction: column; // 세로 방향으로 정렬
-    justify-content: center; // 세로 중앙 정렬
-    align-items: center; // 가로 중앙 정렬
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     p{
         font-size:30px;
@@ -65,11 +65,11 @@ const SecondHome = styled.div`
 `;
 
 const ThirdHome = styled.div`
-    height: 100vh; // 전체 화면 높이
-    display: flex; // Flexbox 사용
-    flex-direction: column; // 세로 방향으로 정렬
-    justify-content: center; // 세로 중앙 정렬
-    align-items: center; // 가로 중앙 정렬
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     p{
         font-size:30px;

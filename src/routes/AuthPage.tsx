@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { jelloVertical } from '../components/Animation.tsx';
 import { errorMessage, successMessage } from '../utils/SweetAlertEvent.tsx';
 import { authCheck } from '../utils/authCheck.tsx';
@@ -82,22 +82,22 @@ const AuthPage: React.FC = () => {
     );
 }
 
-const Structure = `
-    width: 400px; // 고정 너비
-    padding: 40px; // 내부 여백
-    background-color: white; // 배경색
-    border-radius: 10px; // 둥근 모서리
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); // 부드러운 그림자
-    text-align: center; // 텍스트 중앙 정렬
+const Structure = css`
+    width: 400px; 
+    padding: 40px;
+    background-color: white; 
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+    text-align: center;
 `;
 
 const AuthContainer = styled.div`
-    height: 100vh; // 전체 화면 높이
-    width: 100%; // 전체 너비
-    display: flex; // Flexbox 사용
-    flex-direction: column; // 세로 방향으로 정렬
-    justify-content: center; // 세로 중앙 정렬
-    align-items: center; // 가로 중앙 정렬
+    height: 100vh; 
+    width: 100%;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: rgba(214, 230, 245, 0.925);
     color: #282c34;
 
@@ -108,7 +108,7 @@ const AuthContainer = styled.div`
         font-size: 16px;
         background-color: #282c34;
         border: none;
-        border-radius: 20px; // 둥근 모서리
+        border-radius: 20px;
         color: white;
         font-weight: bold;
         cursor: pointer;
@@ -121,7 +121,7 @@ const AuthContainer = styled.div`
 
         &:active {
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-            transform: translateY(1px); // 눌렀을 때 약간 내려가는 효과
+            transform: translateY(1px);
         }
     }
 `;

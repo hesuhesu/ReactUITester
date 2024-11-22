@@ -25,22 +25,22 @@ const About: React.FC = () => {
 }
 
 const AboutContainer = styled.div`
-    height: 100vh; // 전체 화면 높이
-    display: flex; // Flexbox 사용
+    height: 100vh;
+    display: flex;
     flex-direction: column; // 세로 방향으로 정렬
     align-items: center; // 가로 중앙 정렬
-    color: rgba(214, 230, 245, 0.925); // 텍스트 색상 설정
+    color: rgba(214, 230, 245, 0.925);
     background-color: #282c34;
 `;
 
 const IntroduceContainer = styled.div`
-    display: flex; // 플렉스 컨테이너로 설정
-    flex-direction: column; // 위에서 아래로 수직 배치
-    align-items: center; // 수평 중앙 정렬
-    justify-content: center; // 수직 중앙 정렬
-    background-color: ; // 배경색
-    border: 5px solid rgba(214, 230, 245, 0.925); // 테두리
-    border-radius: 10px; // 모서리 둥글게
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    background-color: #282c34;
+    border: 5px solid rgba(214, 230, 245, 0.925);
+    border-radius: 10px;
     overflow: hidden;
     margin-top: 5vh;
     height: 90%;
@@ -48,9 +48,9 @@ const IntroduceContainer = styled.div`
     animation: ${flipInHorBottom} 0.5s ease forwards;
 
     img {
-        max-width: 100%; // 이미지가 부모 요소에 맞게 조정
-        height: 30%; // 비율 유지
-        border-radius: 10px; // 이미지 모서리 둥글게
+        max-width: 100%;
+        height: 30%;
+        border-radius: 10px;
     }
 
     h2 {
@@ -69,11 +69,11 @@ const DescriptionContainer = styled.dl`
         &::after {
             content: "";
             display: block;
-            width: 100%; /* 전체 폭 사용 */
-            height: 3px; /* 언더바 두께 */
+            width: 100%;
+            height: 3px;
             background: linear-gradient(to right, rgba(214, 230, 245, 0.925), #777, #282c34); /* 그라데이션 색상 */
             position: absolute;
-            bottom: -1vh; /* dt 아래로 위치 조정 */
+            bottom: -1vh;
             left: 0;
         }
     }

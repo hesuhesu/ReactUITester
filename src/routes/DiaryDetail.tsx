@@ -25,7 +25,6 @@ const DiaryDetail: React.FC = () => {
     const params = useParams()._id
     const [admin, setAdmin]= useState<Number>(0);
     const navigate = useNavigate();
-    const [modal, setModal] = useState(false);
     const [data, setData] = useState<Data>({
         title: '',
         content: '',
@@ -34,7 +33,6 @@ const DiaryDetail: React.FC = () => {
         imgData: [],
         createdAt: ''
     });
-    
 
     useEffect(() => {
         axios.get(`${HOST}:${PORT}/diary/read`, {
@@ -73,8 +71,8 @@ const DiaryDetail: React.FC = () => {
             <HeaderOne>[{data.category}] {data.title}</HeaderOne>
             <HeaderTwo>작성 일시 : {data.createdAt}</HeaderTwo>
             <ButtonContainer>
+                <button>댓글 달기</button>
                 <button onClick={() => navigate("/diary")}>돌아가기</button>
-                <button onClick={ () => setModal(true) }>모달 열기</button>
                 {admin === 1 && <>
                     <button onClick={() => navigate(`/quilleditor_update/${params}`, { state: data })}>수정하기</button>
                     <button onClick={handleDelete}>삭제하기</button>
@@ -105,16 +103,16 @@ const ReactQuillContainer = styled.div`
         color: white;
         font-weight: bold;
         cursor: pointer;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // 가벼운 그림자
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
         &:hover {
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); // 그림자 강조
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
             animation: ${vibrate1} 0.3s ease infinite;
         }
 
         &:active {
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-            transform: translateY(1px); // 눌렀을 때 약간 내려가는 효과
+            transform: translateY(1px);
         }
     }
 `;
@@ -127,16 +125,16 @@ const HeaderOne = styled.h1`
     color: white;
     background-color: #282c34;
     padding: 20px 40px;
-    border-radius: 25px; /* 모서리 둥글게 */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 가벼운 그림자 */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 텍스트 그림자 */
-    border: 2px solid rgba(214, 230, 245, 0.925); /* 부드러운 테두리 */
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(214, 230, 245, 0.925); 
     
 
     &:hover {
-        background-color: #3a3f47; /* 호버 시 색상 변화 */
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* 호버 시 그림자 강조 */
-        transform: translateY(-2px); /* 살짝 위로 올라가는 효과 */
+        background-color: #3a3f47;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); 
+        transform: translateY(-2px); 
     }
 `;
 

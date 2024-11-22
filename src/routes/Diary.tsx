@@ -59,7 +59,6 @@ const Experience: React.FC = () => {
             <ButtonContainer>
                 {status && <>
                 <button onClick={() => navigate("/quilleditor")}>게시물 작성하기</button>
-                <button>선택 삭제하기</button>
                 </>} 
             </ButtonContainer>
             <SelectContainer>
@@ -99,10 +98,9 @@ const Experience: React.FC = () => {
 };
 
 const DiaryContainer = styled.div`
-    height: 100vh; // 전체 화면 높이
-    display: flex; // Flexbox 사용
+    height: 100vh;
+    display: flex;
     flex-direction: column; // 세로 방향으로 정렬
-    // justify-content: center; // 세로 중앙 정렬
     align-items: center; // 가로 중앙 정렬
     background-color: rgba(214, 230, 245, 0.925);
     color: #282c34;
@@ -113,26 +111,26 @@ const ButtonContainer = styled.div`
     display: flex;
     align-items: center;
     
-    animation: ${fadeIn} 1.5s ease forwards;
+    animation: ${fadeIn} 1.0s ease forwards;
     button {
             padding: 10px 20px;
             font-size: 16px;
-            background-color: #282c34; // 부드러운 그린 컬러
+            background-color: #282c34;
             border: none;
-            border-radius: 20px; // 둥근 모서리
+            border-radius: 20px;
             color: white;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // 가벼운 그림자
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             
             &:hover {
-                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); // 그림자 강조
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
                 animation: ${jelloHorizontal} 1s ease forwards;
             }
 
             &:active {
                 box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-                transform: translateY(1px); // 눌렀을 때 약간 내려가는 효과
+                transform: translateY(1px);
             }
         }
 `;
@@ -140,9 +138,9 @@ const ButtonContainer = styled.div`
 const SelectContainer = styled.div`
     margin: 20px 0;
     display: flex;
-    justify-content: right; // 세로 중앙 정렬
+    justify-content: right;
     width: 100%;
-    animation: ${fadeIn} 2s ease forwards;
+    animation: ${fadeIn} 1.5s ease forwards;
 
     label {
         font-size: 20px;
@@ -166,7 +164,7 @@ const TableContainer = styled.table`
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
-    animation: ${fadeIn} 2.5s ease forwards;
+    animation: ${fadeIn} 2s ease forwards;
 
     thead {
         background-color: #282c34;

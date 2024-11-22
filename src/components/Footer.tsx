@@ -35,7 +35,7 @@ const FooterContainer = styled.footer`
         display: inline-block;
 
         &:hover {
-            color: #61dafb; // 아이콘에 마우스를 올렸을 때 색상 변경
+            color: #61dafb;
         }
     }
 `;

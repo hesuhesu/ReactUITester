@@ -64,7 +64,7 @@ const NavList = styled.ul`
         display: inline-block; // inline-block으로 변경하여 transform 효과 적용
         margin: 0 15px;
         opacity: 0; // 기본적으로 숨김
-        transform: translateY(20px); // 아래에서 올라오는 효과
+        transform: translateY(20px);
         animation: ${fadeInUp} 0.5s forwards;
 
         // 순서에 따른 지연
@@ -90,7 +90,7 @@ const StyledLink = styled(Link)`
     transition: transform 0.3s ease; // 부드러운 전환 효과 추가
 
     &:hover {
-        transform: translateY(-5px); // 마우스를 올렸을 때 위로 올라가는 효과
+        transform: translateY(-5px);
     }
 `;
 
