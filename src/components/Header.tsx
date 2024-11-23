@@ -39,6 +39,9 @@ const Header: React.FC = () => {
 };
 
 const HeaderContainer = styled.header`
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
     background-color: #282c34;
     color: rgba(214, 230, 245, 0.925);
     padding: 10px;

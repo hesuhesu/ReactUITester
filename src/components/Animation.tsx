@@ -367,3 +367,16 @@ export const slideDown = keyframes`
         background-position: top; // 아래쪽으로 이동하며 흰색으로 채움
     }
 `;
+
+// 프레임이 이동하는 애니메이션
+export const frameInAnimation = keyframes`
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+
+  100%{
+    opacity: 1;
+    transform: translateX(0%);
+  }
+`;

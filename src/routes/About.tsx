@@ -16,6 +16,9 @@ const About: React.FC = () => {
                     <dd>금성고등학교 (2015.03 ~ 2018.02)</dd>
                     <dd>동아대학교 컴퓨터 공학과 (2018.03 ~ 2025.02)</dd>
 
+                    <dt>병역</dt>
+                    <dd>육군 만기 전역 (2019.08 ~ 2021.03)</dd>
+
                     <dt>취미</dt>
                     <dd>운동, 피아노</dd>
                 </DescriptionContainer>
@@ -54,14 +57,14 @@ const IntroduceContainer = styled.div`
     }
 
     h2 {
-        font-size: 50px;
+        font-size: 40px;
     }
 `;
 
 
 const DescriptionContainer = styled.dl`
     dt {
-        font-size: 25px;
+        font-size: 15px;
         margin-top: 20px;
         margin-bottom: 20px;
         position: relative;
