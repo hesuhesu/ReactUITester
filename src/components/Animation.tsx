@@ -116,6 +116,44 @@ export const jelloVertical = keyframes`
     }
 `
 
+export const glow = keyframes`
+  0% {
+    box-shadow: 0 0 5px rgba(214, 230, 245, 0.5), 0 0 10px rgba(214, 230, 245, 0.4);
+  }
+  
+  12.5% {
+    box-shadow: 0 0 10px rgba(214, 230, 245, 0.55), 0 0 20px rgba(214, 230, 245, 0.45);
+  }
+
+  25% {
+    box-shadow: 0 0 10px rgba(214, 230, 245, 0.6), 0 0 20px rgba(214, 230, 245, 0.5);
+  }
+
+  37.5% {
+    box-shadow: 0 0 10px rgba(214, 230, 245, 0.65), 0 0 20px rgba(214, 230, 245, 0.55);
+  }
+
+  50% {
+    box-shadow: 0 0 10px rgba(214, 230, 245, 0.7), 0 0 20px rgba(214, 230, 245, 0.6);
+  }
+
+  62.5% {
+    box-shadow: 0 0 10px rgba(214, 230, 245, 0.65), 0 0 20px rgba(214, 230, 245, 0.55);
+  }
+
+  75% {
+    box-shadow: 0 0 10px rgba(214, 230, 245, 0.6), 0 0 20px rgba(214, 230, 245, 0.5);
+  }
+
+  87.5% {
+    box-shadow: 0 0 10px rgba(214, 230, 245, 0.55), 0 0 20px rgba(214, 230, 245, 0.45);
+  }
+
+  100% {
+    box-shadow: 0 0 5px rgba(214, 230, 245, 0.5), 0 0 10px rgba(214, 230, 245, 0.4);
+  }
+`;
+
 // Header h1 반짝이는 효과
 export const textFlickerInGlow = keyframes`
     0% {

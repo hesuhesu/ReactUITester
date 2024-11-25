@@ -20,16 +20,15 @@ const Home: React.FC = () => {
     )
 }
 
-
 const HomeContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color : #282c34
-    height: 300vh; // 전체 화면 높이
-    background-color: rgba(214, 230, 245, 0.925);
+    color: #282c34;
+    height: 300vh;
+    background-color : rgba(214, 230, 245, 0.925);
 `;
 
 const FirstHome = styled.div`
