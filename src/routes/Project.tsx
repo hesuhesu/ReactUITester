@@ -41,15 +41,22 @@ const Project: React.FC = () => {
       </ProjectIntro>
       {[
         {
+          title: "My Diary",
+          description: "나의 일기 앱을 Kotlin 을 사용하여 만든 toy 프로젝트 입니다.",
+          link: "https://github.com/hesuhesu/MyDiary",
+          picture: ["MyDiary.png"],
+        },
+        {
           title: "완성도 높은 WYSIWYG Editor 구축",
           description: "Javascript-Based 문서 편집 기능과 ThreeJS 를 활용한 GLTF Editor 를 결합한 졸업 과제 프로젝트입니다.",
           link: "https://github.com/hesuhesu/SW_Project",
           picture: ["WYSIWYG_Editor.png", "WYSIWYG_Editor2.png"],
         },
         {
-          title: "3D WYSIWYG Editor",
-          description: "졸업 과제의 3D Editor 기능을 보강하여 코드 리팩토링 및 클라이언트 배포를 진행한 토이 프로젝트 입니다.",
-          link: "https://gltfeditor.o-r.kr",
+          title: "GLTF 3D Editor",
+          description: "3D Editor 기능을 보강하여 코드 리팩토링 및 클라이언트 배포를 진행한 토이 프로젝트 입니다.",
+          link: "https://github.com/hesuhesu/gltfeditor",
+          secondLink: "https://gltfeditor.o-r.kr",
           picture: ["3D_Editor.png", "3D_Editor2.png"],
         },
         {
@@ -76,9 +83,15 @@ const Project: React.FC = () => {
               <p>{project.description}</p>
               <button>
                 <Link to={project.link} target="_blank">
-                  {project.title === "3D WYSIWYG Editor" ? "Site Link" : "Github"}
+                  Github
                 </Link>
               </button>
+              {project.secondLink && 
+              <button>
+                <Link to={project.secondLink} target="_blank">
+                  Site Link
+                </Link>
+              </button>}
             </ContentDiv>
           </> : <>
             <ContentDiv>
@@ -86,9 +99,15 @@ const Project: React.FC = () => {
               <p>{project.description}</p>
               <button>
                 <Link to={project.link} target="_blank">
-                  {project.title === "3D WYSIWYG Editor" ? "Site Link" : "Github"}
+                  Github
                 </Link>
               </button>
+              {project.secondLink && 
+              <button>
+                <Link to={project.secondLink} target="_blank">
+                  Site Link
+                </Link>
+              </button>}
             </ContentDiv>
             <PictureDiv>
               {project.picture.map((src, idx) => (
@@ -213,10 +232,14 @@ const PictureDiv = styled.div`
   justify-content: center;
   align-items: center;
   width: 50%;
-  background-color: #7f8995;
+  background-color: #282c34;
+  border-radius: 10px;
 
   img {
-    height: 50%;
+    border: 2px solid rgba(214, 230, 245, 0.925);
+    border-radius: 10px;
+    object-fit: scale-down;
+    height: 100%;
     width: 100%;
   }
 `;

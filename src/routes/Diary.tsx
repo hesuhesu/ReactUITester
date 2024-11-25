@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
@@ -20,7 +20,7 @@ interface ReviewItem {
 
 const Experience: React.FC = () => {
     const [api, setApi] = useState<ReviewItem[]>([]);
-    const [filteredData, setFilteredData] = useState<ReviewItem[]>([]); // 필터링된 데이터
+    // const [filteredData, setFilteredData] = useState<ReviewItem[]>([]);
     const [status, setStatus] = useState<boolean>(false);
     const [selectedCategory, setSelectedCategory] = useState<string>(CategoryList[0]);
     const navigate = useNavigate();
@@ -29,7 +29,7 @@ const Experience: React.FC = () => {
         axios.get(`${HOST}:${PORT}/diary/all_read`)
             .then((response) => {
                 setApi(response.data.list);
-                setFilteredData(response.data.list);
+                // filteredData(response.data.list);
             })
             .catch((error) => {
                 console.error(error);
@@ -39,16 +39,24 @@ const Experience: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    // select 가 변경되면 api 호출
+    /*
     useEffect(() => {
-        // 카테고리에 따라 필터링
         if (selectedCategory === '전체') {
-            setFilteredData(api);
-        } else {
+            filteredData(api);
+        }
+        else {
             const filtered = api.filter(item => item.category === selectedCategory);
             setFilteredData(filtered);
         }
-    }, [selectedCategory, api]); // api와 selectedCategory가 변경될 때 실행
+    }, [selectedCategory, api]);
+    */
+    
+    const filteredData = useMemo(() => {
+        if (selectedCategory === '전체') {
+            return api; // 전체 데이터를 반환
+        }
+        return api.filter(item => item.category === selectedCategory); // 필터링된 데이터를 반환
+    }, [selectedCategory, api]);
 
     const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedCategory(event.target.value);
