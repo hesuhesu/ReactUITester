@@ -13,6 +13,7 @@
     "@types/jest": "^29.5.14",
     "@types/node": "^22.7.9",
     "axios": "^1.7.7",
+    "babel-plugin-styled-components": "^2.1.4",
     "katex": "^0.16.11",
     "quill-image-drop-and-paste": "^2.0.1",
     "quill-image-drop-module": "^1.0.3",

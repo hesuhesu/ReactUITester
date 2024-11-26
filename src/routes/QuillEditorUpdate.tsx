@@ -48,9 +48,8 @@ Align.whitelist = ["left", "center", "right", "justify"];
 const Icons = ReactQuill.Quill.import("ui/icons");
 Icons.align["left"] = Icons.align[""];
 
-const CategoryList = ['React', 'Node', 'Backend', 'Game', 'Etc'];
-
 const QuillEditorUpdate: React.FC = () => {
+    const CategoryList = useMemo(() => ['전체', 'React', 'Node', 'Backend', 'Game', 'Etc'], []);
     const location = useLocation();
     const [title, setTitle] = useState<string>('');
     const [editorHtml, setEditorHtml] = useState<string>('');

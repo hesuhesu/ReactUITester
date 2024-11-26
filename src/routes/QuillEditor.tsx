@@ -14,9 +14,8 @@ import '../scss/QuillEditor.scss';
 const HOST = process.env.REACT_APP_HOST;
 const PORT = process.env.REACT_APP_PORT;
 
-const CategoryList = ['React', 'Node', 'Backend', 'Game', 'Etc'];
-
 const QuillEditor: React.FC = () => {
+    const CategoryList = useMemo(() => ['전체', 'React', 'Node', 'Backend', 'Game', 'Etc'], []);
     const [editorHtml, setEditorHtml] = useState<string>('');
     const [title, setTitle] = useState<string>('');
     const [selectedCategory, setSelectedCategory] = useState<string>(CategoryList[0]);

@@ -34,6 +34,14 @@ const AboutContainer = styled.div`
     align-items: center; // 가로 중앙 정렬
     color: rgba(214, 230, 245, 0.925);
     background-color: #282c34;
+
+    @media (max-width: 768px) {
+        padding: 10px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 5px;
+    }
 `;
 
 const IntroduceContainer = styled.div`
@@ -58,6 +66,34 @@ const IntroduceContainer = styled.div`
 
     h2 {
         font-size: 40px;
+    }
+
+    @media (max-width: 768px) {
+        width: 70%;
+        height: 90%;
+        border-width: 3px;
+
+        img {
+            height: 30%;
+        }
+
+        h2 {
+            font-size: 30px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        width: 90%;
+        height: 90%;
+        border-width: 2px;
+
+        img {
+            height: 30%;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
     }
 `;
 
@@ -84,6 +120,34 @@ const DescriptionContainer = styled.dl`
     dd {
         margin-top: 10px;
         font-size: 15px;
+    }
+
+    @media (max-width: 768px) {
+        dt {
+            font-size: 13px;
+
+            &::after {
+                height: 2px;
+            }
+        }
+
+        dd {
+            font-size: 13px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        dt {
+            font-size: 12px;
+
+            &::after {
+                height: 1px;
+            }
+        }
+
+        dd {
+            font-size: 12px;
+        }
     }
 `;
 

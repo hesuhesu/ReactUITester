@@ -46,17 +46,41 @@ const HeaderContainer = styled.header`
     color: rgba(214, 230, 245, 0.925);
     padding: 10px;
     text-align: center;
+
+    @media (max-width: 768px) {
+        padding: 20px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 15px;
+    }
 `;
 
 const HeaderOne = styled.h1`
     font-size: 100px;
     animation: ${fadeIn} 0.7s ease forwards;
     opacity: 0;
+
+    @media (max-width: 768px) {
+        font-size: 60px;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 40px;
+    }
 `;
 
 const ProjectHeader = styled.h1`
     font-size: 100px;
     animation: ${textFlickerInGlow} 2s ease forwards;
+
+    @media (max-width: 768px) {
+        font-size: 60px;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 40px;
+    }
 `;
 
 const NavList = styled.ul`
@@ -84,6 +108,19 @@ const NavList = styled.ul`
             animation-delay: 0.4s;
         }
     }
+
+    @media (max-width: 768px) {
+        li {
+            margin: 0 10px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        li {
+            margin: 0 5px;
+            font-size: 14px; /* 링크 텍스트 크기 축소 */
+        }
+    }
 `;
 
 const StyledLink = styled(Link)`
@@ -94,6 +131,10 @@ const StyledLink = styled(Link)`
 
     &:hover {
         transform: translateY(-5px);
+    }
+
+    @media (max-width: 480px) {
+        font-size: 12px; /* 작은 화면에서 텍스트 크기 축소 */
     }
 `;
 

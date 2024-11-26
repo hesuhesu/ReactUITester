@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import PictureSlide from '../components/PictureSlide.tsx';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 import { glow, fadeIn, jelloHorizontal } from '../components/Animation.tsx';
@@ -44,7 +45,7 @@ const Project: React.FC = () => {
           title: "My Diary",
           description: "나의 일기 앱을 Kotlin 을 사용하여 만든 toy 프로젝트 입니다.",
           link: "https://github.com/hesuhesu/MyDiary",
-          picture: ["MyDiary.png"],
+          picture: ["MyDiary.png", "MyDiary2.png", "MyDiary3.png", "MyDiary4.png", "MyDiary5.png"],
         },
         {
           title: "완성도 높은 WYSIWYG Editor 구축",
@@ -73,11 +74,14 @@ const Project: React.FC = () => {
           className={visibleIndexes.has(index) ? "fade-in" : ""}
         >
           {index % 2 === 0 ? <>
+            <PictureSlide pictures={project.picture}/>
+            {/*
             <PictureDiv>
               {project.picture.map((src, idx) => (
                 <img key={idx} src={src} alt="" />
               ))}
             </PictureDiv>
+            */}
             <ContentDiv>
               <h2>{project.title}</h2>
               <p>{project.description}</p>
@@ -109,11 +113,14 @@ const Project: React.FC = () => {
                 </Link>
               </button>}
             </ContentDiv>
+            <PictureSlide pictures={project.picture}/>
+            {/*
             <PictureDiv>
               {project.picture.map((src, idx) => (
                 <img key={idx} src={src} alt="" />
               ))}
             </PictureDiv>
+            */}
           </>}
         </ProjectDiv>
       ))}
@@ -226,6 +233,7 @@ const ContentDiv = styled.div`
   }
 `;
 
+/*
 const PictureDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -243,5 +251,6 @@ const PictureDiv = styled.div`
     width: 100%;
   }
 `;
+*/
 
 export default Project;

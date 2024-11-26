@@ -21,19 +21,20 @@ interface ReviewItem {
 const Experience: React.FC = () => {
     const [api, setApi] = useState<ReviewItem[]>([]);
     // const [filteredData, setFilteredData] = useState<ReviewItem[]>([]);
+    // const CategoryList = useMemo(() => ['전체', 'React', 'Node', 'Backend', 'Game', 'Etc'], []);
     const [status, setStatus] = useState<boolean>(false);
     const [selectedCategory, setSelectedCategory] = useState<string>(CategoryList[0]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`${HOST}:${PORT}/diary/all_read`)
-            .then((response) => {
+        (async () => {
+            try {
+                const response = await axios.get(`${HOST}:${PORT}/diary/all_read`);
                 setApi(response.data.list);
-                // filteredData(response.data.list);
-            })
-            .catch((error) => {
+            } catch (error) {
                 console.error(error);
-            });
+            } 
+        })();
         if (authCheck() === 0){ return; }
         setStatus(prevStatus => !prevStatus);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,9 +66,7 @@ const Experience: React.FC = () => {
     return (
         <DiaryContainer>
             <ButtonContainer>
-                {status && <>
-                <button onClick={() => navigate("/quilleditor")}>게시물 작성하기</button>
-                </>} 
+                {status && <button onClick={() => navigate("/quilleditor")} aria-label="게시물 작성">게시물 작성하기</button>} 
             </ButtonContainer>
             <SelectContainer>
                 <label htmlFor="category">카테고리 선택: </label>
