@@ -52,6 +52,13 @@ const FooterContainer = styled.footer`
             font-size: 0.8rem; /* 작은 화면에서 텍스트 크기 축소 */
         }
     }
+
+    @media (max-width: 360px) {
+        a {
+            margin: 0 4px;
+            font-size: 0.7rem; /* 작은 화면에서 텍스트 크기 축소 */
+        }
+    }
 `;
 
 const Copyright = styled.p`
@@ -64,6 +71,10 @@ const Copyright = styled.p`
 
     @media (max-width: 480px) {
         font-size: 0.7rem; /* 작은 화면에서 폰트 크기 축소 */
+    }
+
+    @media (max-width: 360px) {
+        font-size: 0.6rem; /* 작은 화면에서 폰트 크기 축소 */
     }
 `;
 

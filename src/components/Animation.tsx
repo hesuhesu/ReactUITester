@@ -29,7 +29,7 @@ const focusInContractWebkit = css`
 // 양 옆에서 텍스트 모이는 효과
 export const focusInContract = keyframes`
     0% {
-        letter-spacing: 1em;
+        letter-spacing: 0.3em;
         -webkit-filter: blur(12px);
         filter: blur(12px);
         opacity: 0;

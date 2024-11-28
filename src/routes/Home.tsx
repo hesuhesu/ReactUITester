@@ -49,6 +49,24 @@ const FirstHome = styled.div`
         font-size:30px;
         animation: ${fadeIn} 3s ease forwards;
     }
+
+    @media (max-width: 768px) {
+        h2 {
+            font-size:48px;
+        }
+        p {
+            font-size:24px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        h2 {
+            font-size:32px;
+        }
+        p {
+            font-size:16px;
+        }
+    }
 `;
 
 const SecondHome = styled.div`
@@ -61,6 +79,18 @@ const SecondHome = styled.div`
     p{
         font-size:30px;
     }
+
+    @media (max-width: 768px) {
+        p {
+            font-size:24px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        p {
+            font-size:18px;
+        }
+    }
 `;
 
 const ThirdHome = styled.div`
@@ -72,6 +102,18 @@ const ThirdHome = styled.div`
 
     p{
         font-size:30px;
+    }
+
+    @media (max-width: 768px) {
+        p {
+            font-size:24px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        p {
+            font-size:18px;
+        }
     }
 `;
 

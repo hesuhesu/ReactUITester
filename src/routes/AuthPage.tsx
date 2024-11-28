@@ -89,6 +89,16 @@ const Structure = css`
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
     text-align: center;
+
+    @media (max-width: 768px) {
+            width: 320px;
+            padding: 30px;
+        }
+
+    @media (max-width: 480px) {
+        width: 240px;
+        padding: 25px;
+    }
 `;
 
 const AuthContainer = styled.div`
@@ -122,6 +132,16 @@ const AuthContainer = styled.div`
         &:active {
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
             transform: translateY(1px);
+        }
+
+        @media (max-width: 768px) {
+            font-size: 14px;
+            padding: 8px 18px;
+        }
+
+        @media (max-width: 480px) {
+            font-size: 12px;
+            padding: 6px 16px;
         }
     }
 `;

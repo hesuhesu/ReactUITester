@@ -48,11 +48,15 @@ const HeaderContainer = styled.header`
     text-align: center;
 
     @media (max-width: 768px) {
-        padding: 20px;
+        padding: 8px;
     }
 
     @media (max-width: 480px) {
-        padding: 15px;
+        padding: 6px;
+    }
+
+    @media (max-width: 360px) {
+        padding: 5px;
     }
 `;
 
@@ -62,11 +66,15 @@ const HeaderOne = styled.h1`
     opacity: 0;
 
     @media (max-width: 768px) {
-        font-size: 60px;
+        font-size: 70px;
     }
 
     @media (max-width: 480px) {
-        font-size: 40px;
+        font-size: 50px;
+    }
+
+    @media (max-width: 360px) {
+        padding: 40px;
     }
 `;
 
@@ -75,11 +83,15 @@ const ProjectHeader = styled.h1`
     animation: ${textFlickerInGlow} 2s ease forwards;
 
     @media (max-width: 768px) {
-        font-size: 60px;
+        font-size: 70px;
     }
 
     @media (max-width: 480px) {
-        font-size: 40px;
+        font-size: 50px;
+    }
+
+    @media (max-width: 360px) {
+        padding: 40px;
     }
 `;
 
@@ -121,6 +133,13 @@ const NavList = styled.ul`
             font-size: 14px; /* 링크 텍스트 크기 축소 */
         }
     }
+
+    @media (max-width: 360px) {
+        li {
+            margin: 0 4px;
+            font-size: 10px; /* 링크 텍스트 크기 축소 */
+        }
+    }
 `;
 
 const StyledLink = styled(Link)`
@@ -135,6 +154,10 @@ const StyledLink = styled(Link)`
 
     @media (max-width: 480px) {
         font-size: 12px; /* 작은 화면에서 텍스트 크기 축소 */
+    }
+
+    @media (max-width: 360px) {
+        font-size: 10px; /* 작은 화면에서 텍스트 크기 축소 */
     }
 `;
 

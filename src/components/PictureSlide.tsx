@@ -18,7 +18,6 @@ const PictureSlide: React.FC<PictureDivProps> = ({ pictures }) => {
 
     return (
         <SlideDiv>
-            
             <img src={pictures[slideIndex]} alt={`Slide ${slideIndex}`} />
             {pictures.length > 1 && <>
                 <LeftButton onClick={handlePrev}>&lt;</LeftButton>
@@ -43,16 +42,20 @@ const SlideDiv = styled.div`
 
     @media (max-width: 768px) {
         border-radius: 8px;
-
+        width: 100%;
+        height: 50%;
         img {
+            width: 100%;
             border-radius: 8px;
         }
     }
 
     @media (max-width: 480px) {
         border-radius: 5px;
-
+        width: 100%;
+        height: 50%;
         img {
+            width: 100%;
             border-radius: 5px;
         }
     }

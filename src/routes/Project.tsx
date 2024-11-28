@@ -139,22 +139,6 @@ const ProjectContainer = styled.div`
   color: #282c34;
   position: relative;
   overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #282c34;
-    background-image: linear-gradient(
-      to bottom,
-      #282c34 50%,
-      rgba(214, 230, 245, 0.925) 50%
-    );
-    background-size: 100% 200%;
-  }
 `;
 
 const ProjectIntro = styled.div`
@@ -173,6 +157,25 @@ const ProjectIntro = styled.div`
         color: rgba(214, 230, 245, 0.925); 
         z-index: 1;
     }
+
+    @media (max-width: 768px) {
+      h2 {
+        font-size: 35px;
+      }
+      p {
+        font-size: 16px;
+      }
+      
+    }
+
+    @media (max-width: 480px) {
+      h2 {
+        font-size: 28px;
+      }
+      p {
+        font-size: 12px;
+      }
+    }
 `
 
 const ProjectDiv = styled.div`
@@ -190,6 +193,21 @@ const ProjectDiv = styled.div`
     animation: ${glow} 4s infinite, ${fadeIn} 1s ease forwards;
     opacity: 1;
     transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;  // 모바일에서는 세로로 정렬
+    width: 90%;              // 모바일에서의 너비 조정
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    width: 90%;   
+  }
+
+  @media (max-width: 360px) {
+    flex-direction: column;
+    width: 90%;   
   }
 `;
 
@@ -230,6 +248,21 @@ const ContentDiv = styled.div`
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
       transform: translateY(1px);
     }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;             
+    height: 50%;         
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;             
+    height: 50%;
+  }
+
+  @media (max-width: 360px) {
+    width: 100%;             
+    height: 50%;
   }
 `;
 
