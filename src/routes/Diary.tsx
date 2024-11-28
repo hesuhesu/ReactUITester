@@ -8,8 +8,6 @@ import { fadeIn, jelloHorizontal } from '../components/Animation.tsx';
 const HOST = process.env.REACT_APP_HOST;
 const PORT = process.env.REACT_APP_PORT;
 
-const CategoryList = [ '전체', 'React', 'Node', 'Backend', 'Game', 'Etc'];
-
 interface ReviewItem {
     _id: string;
     title: string;
@@ -21,7 +19,7 @@ interface ReviewItem {
 const Experience: React.FC = () => {
     const [api, setApi] = useState<ReviewItem[]>([]);
     // const [filteredData, setFilteredData] = useState<ReviewItem[]>([]);
-    // const CategoryList = useMemo(() => ['전체', 'React', 'Node', 'Backend', 'Game', 'Etc'], []);
+    const CategoryList = useMemo(() => ['전체', 'React', 'Node', 'Backend', 'Game', 'Etc'], []);
     const [status, setStatus] = useState<boolean>(false);
     const [selectedCategory, setSelectedCategory] = useState<string>(CategoryList[0]);
     const navigate = useNavigate();
