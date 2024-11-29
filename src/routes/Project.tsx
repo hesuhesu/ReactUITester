@@ -85,6 +85,7 @@ const Project: React.FC = () => {
             <ContentDiv>
               <h2>{project.title}</h2>
               <p>{project.description}</p>
+              <ButtonContainer>
               <button>
                 <Link to={project.link} target="_blank">
                   Github
@@ -96,11 +97,13 @@ const Project: React.FC = () => {
                   Site Link
                 </Link>
               </button>}
+              </ButtonContainer>
             </ContentDiv>
           </> : <>
             <ContentDiv>
               <h2>{project.title}</h2>
               <p>{project.description}</p>
+              <ButtonContainer>
               <button>
                 <Link to={project.link} target="_blank">
                   Github
@@ -112,6 +115,7 @@ const Project: React.FC = () => {
                   Site Link
                 </Link>
               </button>}
+              </ButtonContainer>
             </ContentDiv>
             <PictureSlide pictures={project.picture}/>
             {/*
@@ -195,20 +199,10 @@ const ProjectDiv = styled.div`
     transform: translateY(0);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     flex-direction: column;  // 모바일에서는 세로로 정렬
-    width: 90%;              // 모바일에서의 너비 조정
   }
 
-  @media (max-width: 480px) {
-    flex-direction: column;
-    width: 90%;   
-  }
-
-  @media (max-width: 360px) {
-    flex-direction: column;
-    width: 90%;   
-  }
 `;
 
 const ContentDiv = styled.div`
@@ -222,6 +216,18 @@ const ContentDiv = styled.div`
   h2 {
     font-size: 30px;
   }
+
+  @media (max-width: 1200px) {
+    width: 100%;             
+    height: 50%;         
+  }
+
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   button {
     padding: 10px 20px;
@@ -248,21 +254,6 @@ const ContentDiv = styled.div`
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
       transform: translateY(1px);
     }
-  }
-
-  @media (max-width: 768px) {
-    width: 100%;             
-    height: 50%;         
-  }
-
-  @media (max-width: 480px) {
-    width: 100%;             
-    height: 50%;
-  }
-
-  @media (max-width: 360px) {
-    width: 100%;             
-    height: 50%;
   }
 `;
 

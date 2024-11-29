@@ -30,17 +30,29 @@ const About: React.FC = () => {
 const AboutContainer = styled.div`
     height: 100vh;
     display: flex;
+    padding: 1rem;
     flex-direction: column; // 세로 방향으로 정렬
+    justify-content: center; 
     align-items: center; // 가로 중앙 정렬
     color: rgba(214, 230, 245, 0.925);
     background-color: #282c34;
 
+    @media (max-width: 1200px) {
+        padding: 0.875rem; /* 14px */
+        height: 90vh;
+    }
+
     @media (max-width: 768px) {
-        padding: 10px;
+        padding: 0.625rem; /* 10px */
+        height: 85vh;
     }
 
     @media (max-width: 480px) {
-        padding: 5px;
+        padding: 0.375rem; /* 6px */
+    }
+
+    @media (max-width: 344px) {
+        padding: 0.25rem; /* 4px */
     }
 `;
 
@@ -51,9 +63,8 @@ const IntroduceContainer = styled.div`
     justify-content: center;
     background-color: #282c34;
     border: 5px solid rgba(214, 230, 245, 0.925);
-    border-radius: 10px;
+    border-radius: 0.625rem;
     overflow: hidden;
-    margin-top: 5vh;
     height: 90%;
     width: 40%;
     animation: ${flipInHorBottom} 0.5s ease forwards;
@@ -61,38 +72,49 @@ const IntroduceContainer = styled.div`
     img {
         max-width: 100%;
         height: 30%;
-        border-radius: 10px;
+        border-radius: 0.625rem;
     }
 
     h2 {
-        font-size: 40px;
+        font-size: 3rem;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1200px) {
         width: 70%;
-        height: 90%;
-        border-width: 3px;
+        height: 80%;
 
         img {
             height: 30%;
         }
+    }
 
+    @media (max-width: 768px) {
+        height: 70%;
         h2 {
-            font-size: 30px;
+            font-size: 2.5rem;
+        }
+
+        img {
+            height: 25%;
         }
     }
 
     @media (max-width: 480px) {
         width: 90%;
-        height: 90%;
-        border-width: 2px;
-
-        img {
-            height: 30%;
-        }
+        height: 60%;
 
         h2 {
-            font-size: 24px;
+            font-size: 2.0rem;
+        }
+
+        img {
+            height: 20%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        h2 {
+            font-size: 1.5rem;
         }
     }
 `;
@@ -100,7 +122,6 @@ const IntroduceContainer = styled.div`
 
 const DescriptionContainer = styled.dl`
     dt {
-        font-size: 15px;
         margin-top: 20px;
         margin-bottom: 20px;
         position: relative;
@@ -109,7 +130,7 @@ const DescriptionContainer = styled.dl`
             content: "";
             display: block;
             width: 100%;
-            height: 3px;
+            height: 0.25rem;
             background: linear-gradient(to right, rgba(214, 230, 245, 0.925), #777, #282c34); /* 그라데이션 색상 */
             position: absolute;
             bottom: -1vh;
@@ -118,35 +139,50 @@ const DescriptionContainer = styled.dl`
     }
 
     dd {
-        margin-top: 10px;
-        font-size: 15px;
+        margin-top: 0.625rem;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1200px) {
         dt {
-            font-size: 13px;
+            font-size: 0.875rem; /* 14px */
 
             &::after {
-                height: 2px;
+                height: 0.125rem; /* 2px */
             }
         }
 
         dd {
-            font-size: 13px;
+            font-size: 0.875rem; /* 14px */
+        }
+    }
+
+    @media (max-width: 768px) {
+        dt {
+            font-size: 0.75rem; /* 12px */
+        }
+
+        dd {
+            font-size: 0.75rem; /* 12px */
         }
     }
 
     @media (max-width: 480px) {
         dt {
-            font-size: 12px;
-
-            &::after {
-                height: 1px;
-            }
+            font-size: 0.625rem; /* 10px */
         }
 
         dd {
-            font-size: 12px;
+            font-size: 0.625rem; /* 10px */
+        }
+    }
+
+    @media (max-width: 344px) {
+        dt {
+            font-size: 0.5rem; /* 8px */
+        }
+
+        dd {
+            font-size: 0.5rem; /* 8px */
         }
     }
 `;

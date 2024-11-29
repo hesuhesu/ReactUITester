@@ -32,7 +32,7 @@ const SlideDiv = styled.div`
     width:50%;
     height: 100%;
     background-color: #282c34;
-    border-radius: 10px;
+    border-radius: 0.625rem;
     img {
         border-radius: 10px;
         object-fit: scale-down;
@@ -40,24 +40,9 @@ const SlideDiv = styled.div`
         width: 100%;
     }
 
-    @media (max-width: 768px) {
-        border-radius: 8px;
+    @media (max-width: 1200px) {
         width: 100%;
         height: 50%;
-        img {
-            width: 100%;
-            border-radius: 8px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        border-radius: 5px;
-        width: 100%;
-        height: 50%;
-        img {
-            width: 100%;
-            border-radius: 5px;
-        }
     }
 `;
 

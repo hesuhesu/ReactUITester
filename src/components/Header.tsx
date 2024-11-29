@@ -44,54 +44,66 @@ const HeaderContainer = styled.header`
     justify-content: center; 
     background-color: #282c34;
     color: rgba(214, 230, 245, 0.925);
-    padding: 10px;
+    padding: 0.625rem; /* 10px */
     text-align: center;
 
+    @media (max-width: 1200px) {
+        padding: 0.5625rem; /* 9px */
+    }
+
     @media (max-width: 768px) {
-        padding: 8px;
+        padding: 0.5rem; /* 8px */
     }
 
     @media (max-width: 480px) {
-        padding: 6px;
+        padding: 0.375rem; /* 6px */
     }
 
-    @media (max-width: 360px) {
-        padding: 5px;
+    @media (max-width: 344px) {
+        padding: 0.3125rem; /* 5px */
     }
 `;
 
 const HeaderOne = styled.h1`
-    font-size: 100px;
+    font-size: 6.25rem; /* 100px */
     animation: ${fadeIn} 0.7s ease forwards;
     opacity: 0;
 
+    @media (max-width: 1200px) {
+        font-size: 5.3125rem; /* 85px */
+    }
+
     @media (max-width: 768px) {
-        font-size: 70px;
+        font-size: 4.375rem; /* 70px */
     }
 
     @media (max-width: 480px) {
-        font-size: 50px;
+        font-size: 3.125rem; /* 50px */
     }
 
-    @media (max-width: 360px) {
-        padding: 40px;
+    @media (max-width: 344px) {
+        font-size: 2.5rem; /* 40px */
     }
 `;
 
 const ProjectHeader = styled.h1`
-    font-size: 100px;
+    font-size: 6.25rem; /* 100px */
     animation: ${textFlickerInGlow} 2s ease forwards;
 
+    @media (max-width: 1200px) {
+        font-size: 5.3125rem; /* 85px */
+    }
+
     @media (max-width: 768px) {
-        font-size: 70px;
+        font-size: 4.375rem; /* 70px */
     }
 
     @media (max-width: 480px) {
-        font-size: 50px;
+        font-size: 3.125rem; /* 50px */
     }
 
-    @media (max-width: 360px) {
-        padding: 40px;
+    @media (max-width: 344px) {
+        font-size: 2.5rem; /* 40px */
     }
 `;
 
@@ -101,7 +113,7 @@ const NavList = styled.ul`
 
     li {
         display: inline-block; // inline-block으로 변경하여 transform 효과 적용
-        margin: 0 15px;
+        margin: 0 0.9375rem; /* 15px */
         opacity: 0; // 기본적으로 숨김
         transform: translateY(20px);
         animation: ${fadeInUp} 0.5s forwards;
@@ -121,23 +133,30 @@ const NavList = styled.ul`
         }
     }
 
+    @media (max-width: 1200px) {
+        li {
+            margin: 0 0.875rem; /* 14px */
+        }
+    }
+
     @media (max-width: 768px) {
         li {
-            margin: 0 10px;
+            margin: 0 0.625rem; /* 10px */
+            font-size: 0.875rem; /* 14px */
         }
     }
 
     @media (max-width: 480px) {
         li {
-            margin: 0 5px;
-            font-size: 14px; /* 링크 텍스트 크기 축소 */
+            margin: 0 0.3125rem; /* 5px */
+            font-size: 0.75rem; /* 12px */
         }
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 344px) {
         li {
-            margin: 0 4px;
-            font-size: 10px; /* 링크 텍스트 크기 축소 */
+            margin: 0 0.25rem; /* 4px */
+            font-size: 0.625rem; /* 10px */
         }
     }
 `;
@@ -152,12 +171,16 @@ const StyledLink = styled(Link)`
         transform: translateY(-5px);
     }
 
-    @media (max-width: 480px) {
-        font-size: 12px; /* 작은 화면에서 텍스트 크기 축소 */
+    @media (max-width: 768px) {
+        font-size: 0.875rem; /* 14px */
     }
 
-    @media (max-width: 360px) {
-        font-size: 10px; /* 작은 화면에서 텍스트 크기 축소 */
+    @media (max-width: 480px) {
+        font-size: 0.75rem; /* 12px */
+    }
+
+    @media (max-width: 344px) {
+        font-size: 0.625rem; /* 10px */
     }
 `;
 

@@ -26,12 +26,12 @@ const Footer: React.FC = () => {
 const FooterContainer = styled.footer`
     background-color: #282c34;
     color: rgba(214, 230, 245, 0.925);
-    padding: 10px;
+    padding: 0.625rem; /* 10px */
     text-align: center;
 
     a {
         color: rgba(214, 230, 245, 0.925);
-        margin: 0 15px;
+        margin: 0 0.9375rem; /* 15px */
         display: inline-block;
 
         &:hover {
@@ -39,42 +39,51 @@ const FooterContainer = styled.footer`
         }
     }
 
+    @media (max-width: 1200px) {
+        a {
+            margin: 0 0.875rem; /* 14px */
+        }
+    }
+
     @media (max-width: 768px) {
         a {
-            margin: 0 10px;
-            font-size: 0.9rem; /* 링크 크기 줄이기 */
+            margin: 0 0.625rem; /* 10px */
+            font-size: 0.9rem;
         }
     }
 
     @media (max-width: 480px) {
         a {
-            margin: 0 5px;
-            font-size: 0.8rem; /* 작은 화면에서 텍스트 크기 축소 */
+            margin: 0 0.3125rem; /* 5px */
+            font-size: 0.8rem; 
         }
     }
 
-    @media (max-width: 360px) {
+    @media (max-width: 344px) {
         a {
-            margin: 0 4px;
-            font-size: 0.7rem; /* 작은 화면에서 텍스트 크기 축소 */
+            margin: 0 0.25rem; /* 4px */
+            font-size: 0.7rem;
         }
     }
 `;
 
 const Copyright = styled.p`
-    margin-top: 10px;
-    font-size: 0.9rem;
+    margin-top: 0.625rem; /* 10px */
+
+    @media (max-width: 1200px) {
+        font-size: 0.9rem; 
+    }
 
     @media (max-width: 768px) {
-        font-size: 0.8rem; /* 태블릿 크기에서 폰트 크기 축소 */
+        font-size: 0.8rem; 
     }
 
     @media (max-width: 480px) {
-        font-size: 0.7rem; /* 작은 화면에서 폰트 크기 축소 */
+        font-size: 0.7rem; 
     }
 
-    @media (max-width: 360px) {
-        font-size: 0.6rem; /* 작은 화면에서 폰트 크기 축소 */
+    @media (max-width: 344px) {
+        font-size: 0.6rem; 
     }
 `;
 
