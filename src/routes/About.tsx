@@ -30,29 +30,29 @@ const About: React.FC = () => {
 const AboutContainer = styled.div`
     height: 100vh;
     display: flex;
-    padding: 1rem;
-    flex-direction: column; // 세로 방향으로 정렬
+    padding: 1rem; // 16px
+    flex-direction: column;
     justify-content: center; 
-    align-items: center; // 가로 중앙 정렬
+    align-items: center;
     color: rgba(214, 230, 245, 0.925);
     background-color: #282c34;
 
     @media (max-width: 1200px) {
-        padding: 0.875rem; /* 14px */
+        padding: 0.875rem; // 14px
         height: 90vh;
     }
 
     @media (max-width: 768px) {
-        padding: 0.625rem; /* 10px */
+        padding: 0.625rem; // 10px
         height: 85vh;
     }
 
     @media (max-width: 480px) {
-        padding: 0.375rem; /* 6px */
+        padding: 0.375rem; // 6px
     }
 
     @media (max-width: 344px) {
-        padding: 0.25rem; /* 4px */
+        padding: 0.25rem; // 4px 
     }
 `;
 
@@ -62,8 +62,8 @@ const IntroduceContainer = styled.div`
     align-items: center;
     justify-content: center;
     background-color: #282c34;
-    border: 5px solid rgba(214, 230, 245, 0.925);
-    border-radius: 0.625rem;
+    border: 0.3125rem solid rgba(214, 230, 245, 0.925); // 5px
+    border-radius: 0.625rem; // 10px
     overflow: hidden;
     height: 90%;
     width: 40%;
@@ -72,16 +72,20 @@ const IntroduceContainer = styled.div`
     img {
         max-width: 100%;
         height: 30%;
-        border-radius: 0.625rem;
+        border-radius: 0.625rem; // 10px
     }
 
     h2 {
-        font-size: 3rem;
+        font-size: 3rem; // 48px
     }
 
     @media (max-width: 1200px) {
         width: 70%;
         height: 80%;
+
+        h2 {
+            font-size: 2.75rem; // 44px
+        }
 
         img {
             height: 30%;
@@ -89,9 +93,10 @@ const IntroduceContainer = styled.div`
     }
 
     @media (max-width: 768px) {
+        width: 90%;
         height: 70%;
         h2 {
-            font-size: 2.5rem;
+            font-size: 2.5rem; // 40px
         }
 
         img {
@@ -100,21 +105,20 @@ const IntroduceContainer = styled.div`
     }
 
     @media (max-width: 480px) {
-        width: 90%;
         height: 60%;
 
         h2 {
-            font-size: 2.0rem;
+            font-size: 2.25rem; // 36px
         }
 
         img {
-            height: 20%;
+            height: 22.5%;
         }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 344px) {
         h2 {
-            font-size: 1.5rem;
+            font-size: 2rem; // 32px
         }
     }
 `;
@@ -122,67 +126,63 @@ const IntroduceContainer = styled.div`
 
 const DescriptionContainer = styled.dl`
     dt {
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin-top: 1.25rem; // 20px
+        margin-bottom: 1.25rem; // 20px
         position: relative;
 
         &::after {
             content: "";
             display: block;
             width: 100%;
-            height: 0.25rem;
-            background: linear-gradient(to right, rgba(214, 230, 245, 0.925), #777, #282c34); /* 그라데이션 색상 */
+            height: 0.25rem; // 4px
+            background: linear-gradient(to right, 
+                rgba(214, 230, 245, 0.925), 
+                #777, 
+                #282c34); /* 그라데이션 색상 */
             position: absolute;
             bottom: -1vh;
-            left: 0;
         }
     }
 
     dd {
-        margin-top: 0.625rem;
+        margin-top: 0.625rem; // 10px
     }
 
     @media (max-width: 1200px) {
         dt {
-            font-size: 0.875rem; /* 14px */
-
             &::after {
-                height: 0.125rem; /* 2px */
+                height: 0.125rem; // 2px
             }
-        }
-
-        dd {
-            font-size: 0.875rem; /* 14px */
         }
     }
 
     @media (max-width: 768px) {
         dt {
-            font-size: 0.75rem; /* 12px */
+            font-size: 0.875rem; // 14px
         }
 
         dd {
-            font-size: 0.75rem; /* 12px */
+            font-size: 0.875rem; // 14px
         }
     }
 
     @media (max-width: 480px) {
         dt {
-            font-size: 0.625rem; /* 10px */
+            font-size: 0.75rem; // 12px
         }
 
         dd {
-            font-size: 0.625rem; /* 10px */
+            font-size: 0.75rem; // 12px
         }
     }
 
     @media (max-width: 344px) {
         dt {
-            font-size: 0.5rem; /* 8px */
+            font-size: 0.625rem; // 10px 
         }
 
         dd {
-            font-size: 0.5rem; /* 8px */
+            font-size: 0.625rem; // 10px 
         }
     }
 `;

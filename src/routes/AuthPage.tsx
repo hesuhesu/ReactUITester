@@ -83,21 +83,31 @@ const AuthPage: React.FC = () => {
 }
 
 const Structure = css`
-    width: 400px; 
-    padding: 40px;
+    width: 25rem; // 400px 
+    padding: 2.5rem; // 40px
     background-color: white; 
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+    border-radius: 0.625rem; // 10px
+    box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.1); // 0 4px 20px
     text-align: center;
 
+    @media (max-width: 1200px) {
+        width: 22.5rem; // 360px
+        padding: 2.25rem; // 36px
+    }
+
     @media (max-width: 768px) {
-            width: 320px;
-            padding: 30px;
-        }
+        width: 20rem; // 320px
+        padding: 2rem,; // 32px
+    }
 
     @media (max-width: 480px) {
-        width: 240px;
-        padding: 25px;
+        width: 17.5rem; // 280px
+        padding: 1.75rem; // 28px
+    }
+
+    @media (max-width: 344px) {
+        width: 15rem; // 240px 
+        padding: 1.5rem; // 24px
     }
 `;
 
@@ -112,36 +122,40 @@ const AuthContainer = styled.div`
     color: #282c34;
 
     button {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        padding: 10px 20px;
-        font-size: 16px;
+        margin-top: 1rem; 
+        margin-bottom: 1rem; 
+        padding: 0.5rem 1rem; // 8px 16px
         background-color: #282c34;
         border: none;
-        border-radius: 20px;
+        border-radius: 0.625rem; // 10px 
         color: white;
         font-weight: bold;
         cursor: pointer;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2); // 0 4px 8px
 
         &:hover {
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.25); // 0 6px 12px
             animation: ${jelloVertical} 1s ease forwards;
         }
 
         &:active {
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.2); // 0 3px 6px
             transform: translateY(1px);
         }
 
         @media (max-width: 768px) {
-            font-size: 14px;
-            padding: 8px 18px;
+            font-size: 0.875rem; // 14px
+            padding: 0.5rem 1rem; // 8px 16px
         }
 
         @media (max-width: 480px) {
-            font-size: 12px;
-            padding: 6px 16px;
+            font-size: 0.75rem; // 12px
+            padding: 0.375rem 0.875rem; // 6px 14px
+        }
+
+        @media (max-width: 344px) {
+            font-size: 0.625rem; // 10px 
+            padding: 0.25rem 0.75rem; // 4px 12px
         }
     }
 `;

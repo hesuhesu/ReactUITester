@@ -26,12 +26,12 @@ const Footer: React.FC = () => {
 const FooterContainer = styled.footer`
     background-color: #282c34;
     color: rgba(214, 230, 245, 0.925);
-    padding: 0.625rem; /* 10px */
+    padding: 0.625rem; // 10px
     text-align: center;
 
     a {
         color: rgba(214, 230, 245, 0.925);
-        margin: 0 0.9375rem; /* 15px */
+        margin: 0 1rem; // 0 16px
         display: inline-block;
 
         &:hover {
@@ -41,49 +41,45 @@ const FooterContainer = styled.footer`
 
     @media (max-width: 1200px) {
         a {
-            margin: 0 0.875rem; /* 14px */
+            margin: 0 0.875rem; // 14px
         }
     }
 
     @media (max-width: 768px) {
         a {
-            margin: 0 0.625rem; /* 10px */
-            font-size: 0.9rem;
+            margin: 0 0.625rem; // 10px
+            font-size: 0.875rem; // 14px
         }
     }
 
     @media (max-width: 480px) {
         a {
-            margin: 0 0.3125rem; /* 5px */
-            font-size: 0.8rem; 
+            margin: 0 0.375rem; // 6px
+            font-size: 0.75rem; // 12px
         }
     }
 
     @media (max-width: 344px) {
         a {
-            margin: 0 0.25rem; /* 4px */
-            font-size: 0.7rem;
+            margin: 0 0.25rem; // 4px 
+            font-size: 0.625rem; // 10px 
         }
     }
 `;
 
 const Copyright = styled.p`
-    margin-top: 0.625rem; /* 10px */
-
-    @media (max-width: 1200px) {
-        font-size: 0.9rem; 
-    }
+    margin-top: 0.625rem; // 10px
 
     @media (max-width: 768px) {
-        font-size: 0.8rem; 
+        font-size: 0.875rem; // 14px
     }
 
     @media (max-width: 480px) {
-        font-size: 0.7rem; 
+        font-size: 0.75rem; // 12px
     }
 
     @media (max-width: 344px) {
-        font-size: 0.6rem; 
+        font-size: 0.625rem; // 10px 
     }
 `;
 

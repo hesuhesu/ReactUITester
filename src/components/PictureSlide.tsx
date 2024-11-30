@@ -32,9 +32,9 @@ const SlideDiv = styled.div`
     width:50%;
     height: 100%;
     background-color: #282c34;
-    border-radius: 0.625rem;
+    border-radius: 0.625rem; // 10px
     img {
-        border-radius: 10px;
+        border-radius: 0.625rem; // 10px
         object-fit: scale-down;
         height: 100%;
         width: 100%;
@@ -49,52 +49,52 @@ const SlideDiv = styled.div`
 const LeftButton = styled.button`
     position: absolute;
     top: 50%;
-    left: 20px;
+    left: 1.25rem; // 20px
     transform: translateY(-50%);
     background: #282c34;
     border: none;
     border-radius: 50%;
-    padding: 10px;
+    padding: 0.625rem; // 10px
     cursor: pointer;
-    font-size: 30px;
+    font-size: 2rem; // 32px
     color: rgba(214, 230, 245, 0.925);
 
     @media (max-width: 768px) {
-        left: 10px; /* 버튼 위치를 더 안쪽으로 이동 */
-        padding: 8px; /* 버튼 크기 축소 */
-        font-size: 25px; /* 폰트 크기 축소 */
+        left: 0.625rem; // 10px
+        padding: 0.5rem; // 8px
+        font-size: 1.5rem; // 24px
     }
 
     @media (max-width: 480px) {
-        left: 5px; /* 작은 화면에서 버튼 위치 조정 */
-        padding: 6px; /* 버튼 크기 더 축소 */
-        font-size: 20px; /* 폰트 크기 축소 */
+        left: 0.5rem; // 8px
+        padding: 0.375rem; // 6px
+        font-size: 1.25rem; // 20px
     }
 `;
 
 const RightButton = styled.button`
     position: absolute;
     top: 50%;
-    right: 20px;
+    right: 1.25rem; // 20px
     transform: translateY(-50%);
     background: #282c34;
     border: none;
     border-radius: 50%;
-    padding: 10px;
+    padding: 0.625rem; // 10px
     cursor: pointer;
-    font-size: 30px;
+    font-size: 2rem; // 32px
     color: rgba(255, 255, 255, 1);
 
     @media (max-width: 768px) {
-        right: 10px; /* 버튼 위치를 더 안쪽으로 이동 */
-        padding: 8px; /* 버튼 크기 축소 */
-        font-size: 25px; /* 폰트 크기 축소 */
+        right: 0.625rem; // 10px
+        padding: 0.5rem; // 8px
+        font-size: 1.5rem; // 24px
     }
 
     @media (max-width: 480px) {
-        right: 5px; /* 작은 화면에서 버튼 위치 조정 */
-        padding: 6px; /* 버튼 크기 더 축소 */
-        font-size: 20px; /* 폰트 크기 축소 */
+        right: 0.5rem; // 8px
+        padding: 0.375rem; // 6px
+        font-size: 1.25rem; // 20px
     }
 `;
 

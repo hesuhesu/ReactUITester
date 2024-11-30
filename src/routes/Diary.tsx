@@ -118,38 +118,54 @@ const ButtonContainer = styled.div`
     
     animation: ${fadeIn} 1.0s ease forwards;
     button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #282c34;
-            border: none;
-            border-radius: 20px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            
-            &:hover {
-                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-                animation: ${jelloHorizontal} 1s ease forwards;
-            }
+        margin-top: 1rem; 
+        margin-bottom: 1rem; 
+        padding: 0.5rem 1rem; // 8px 16px
+        background-color: #282c34;
+        border: none;
+        border-radius: 0.625rem; // 10px 
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2); // 0 4px 8px
 
-            &:active {
-                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-                transform: translateY(1px);
-            }
+        &:hover {
+            box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.25); // 0 6px 12px
+            animation: ${jelloHorizontal} 1s ease forwards;
         }
+
+        &:active {
+            box-shadow: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.2); // 0 3px 6px
+            transform: translateY(1px);
+        }
+
+        @media (max-width: 768px) {
+            font-size: 0.875rem; // 14px
+            padding: 0.5rem 1rem; // 8px 16px
+        }
+
+        @media (max-width: 480px) {
+            font-size: 0.75rem; // 12px
+            padding: 0.375rem 0.875rem; // 6px 14px
+        }
+
+        @media (max-width: 344px) {
+            font-size: 0.625rem; // 10px 
+            padding: 0.25rem 0.75rem; // 4px 12px
+        }
+    }
 `;
 
 const SelectContainer = styled.div`
-    margin: 20px 0;
+    margin: 1rem 0; // 16px 0
     display: flex;
     justify-content: right;
     width: 100%;
     animation: ${fadeIn} 1.5s ease forwards;
 
     label {
-        font-size: 20px;
-        margin-right: 10px;
+        font-size: 1.25rem; // 20px
+        margin-right: 0.625rem; // 10px
         font-weight: bold;
     }
 
@@ -159,6 +175,18 @@ const SelectContainer = styled.div`
         font-size: 15px;
         border: 1px solid #ddd;
         border-radius: 5px;
+    }
+
+    @media (max-width: 1200px) {
+        justify-content: center;
+
+        select {
+            padding: 5px 10px;
+            margin-right: 0;
+            font-size: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
     }
 `;
 
@@ -176,7 +204,7 @@ const TableContainer = styled.table`
         color: rgba(214, 230, 245, 0.925);
 
         th {
-            padding: 15px;
+            padding: 1rem; // 16px
             text-align: left;
             font-weight: 600;
         }
@@ -203,13 +231,19 @@ const TableContainer = styled.table`
     td {
         text-align: center;
     }
+
+    @media (max-width: 1200px) {
+        td:nth-child(n+3), th:nth-child(n+3) { // 분류, 내용 제외 숨김처리
+            display: none;
+        }
+    }
 `;
 
 const NoDataMessage = styled.div`
     text-align: center;
-    margin-top: 20px;
+    margin-top: 1rem; // 16px
     color: #666;
-    font-size: 1.1rem;
+    font-size: 1.25rem; // 20px
 `;
 
 export default Experience;
