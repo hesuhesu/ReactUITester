@@ -16,7 +16,7 @@ import PrivateRoute from './utils/PrivateRoute.tsx';
 // npm install katex quill-image-resize quill-image-drop-module quill-image-drop-and-paste --save
 // npm install styled-components three babel-plugin-styled-components
 
-const Layout = () => {
+const Layout: React.FC = () => {
   return (
     <>
       <Header/>
@@ -26,7 +26,7 @@ const Layout = () => {
   )
 }
 
-function App() {
+const App: React.FC = () => {
   return (
     <BrowserRouter>
         <Routes>
@@ -35,7 +35,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/project" element={<Project />} />
             <Route path="/diary" element={<Diary />} />
-            <Route exact path = "/diary_detail/:_id" element = {<DiaryDetail/>}/>
+            <Route path = "/diary_detail/:_id" element = {<DiaryDetail/>}/>
             <Route element={<PrivateRoute/>}>
               <Route path="/quilleditor" element={<QuillEditor />} />
               <Route path="/quilleditor_update/:_id" element={<QuillEditorUpdate />} />
