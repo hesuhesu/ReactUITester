@@ -30,8 +30,8 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route element={<Layout/>}>
+            <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/project" element={<Project />} />
             <Route path="/diary" element={<Diary />} />

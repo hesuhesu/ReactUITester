@@ -1,3 +1,4 @@
+/*
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -275,7 +276,7 @@ const PlanetContainer = styled.div`
   animation: ${fadeIn} 1s ease forwards;
 `;
 
-/*
+*/
 import React from 'react';
 import styled from 'styled-components';
 import { focusInContract, fadeIn } from '../components/Animation.tsx';
@@ -396,4 +397,3 @@ const ThirdHome = styled.div`
 `;
 
 export default Home
-*/
