@@ -5,21 +5,21 @@ const SecondHome: React.FC = () => {
   const [buttonOn, setButtonOn] = useState<boolean>(false);
 
   const techStacks = [
-    { name: 'HTML', logo: 'html.svg'},
-    { name: 'CSS', logo: 'css.svg'},
-    { name: 'SASS', logo: 'sass.svg' },
-    { name: 'JQuery', logo: 'jquery.svg'},
-    { name: 'JavaScript', logo: 'javascript.svg' },
-    { name: 'TypeScript', logo: 'typescript.svg' },
-    { name: 'React', logo: 'react.svg' },
-    { name: 'Kotlin', logo: 'kotlin.svg'},
-    { name: 'Three.js', logo: 'threejs.svg' },
-    { name: 'NodeJS', logo: 'nodejs.svg'},
-    { name: 'MongoDB', logo: 'mongodb.svg' },
-    { name: 'MySQL', logo: 'mysql.svg' },
-    { name: 'AWS EC2', logo: 'aws.svg' },
-    { name: 'NGINX', logo: 'nginx.svg' },
-    { name: 'PM2', logo: 'pm2.svg' },
+    { name: 'HTML', logo: 'HTML.svg'},
+    { name: 'CSS', logo: 'CSS.svg'},
+    { name: 'SASS', logo: 'SASS.svg' },
+    { name: 'JQuery', logo: 'JQuery.svg'},
+    { name: 'JavaScript', logo: 'Javascript.svg' },
+    { name: 'TypeScript', logo: 'Typescript.svg' },
+    { name: 'React', logo: 'React.svg' },
+    { name: 'Kotlin', logo: 'Kotlin.svg'},
+    { name: 'Three.js', logo: 'ThreeJS.svg' },
+    { name: 'NodeJS', logo: 'NodeJS.svg'},
+    { name: 'MongoDB', logo: 'MongoDB.svg' },
+    { name: 'MySQL', logo: 'MySQL.svg' },
+    { name: 'AWS EC2', logo: 'AWS.svg' },
+    { name: 'NGINX', logo: 'Nginx.svg' },
+    { name: 'PM2', logo: 'PM2.svg' },
   ];
 
   return (
