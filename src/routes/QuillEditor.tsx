@@ -134,6 +134,7 @@ const QuillEditor: React.FC = () => {
         }
         
         const description = quillRef.current?.getEditor().getText(); //태그를 제외한 순수 text만을 받아온다. 검색기능을 구현하지 않을 거라면 굳이 text만 따로 저장할 필요는 없다.
+        // const worker = new Worker('../utils/WebWorker.tsx');
         // description.trim()
         axios.post(`${HOST}:${PORT}/diary/write`, {
             title: title,
@@ -145,6 +146,33 @@ const QuillEditor: React.FC = () => {
             successMessage("저장되었습니다!");
             navigate("/diary");
         }).catch((e) => { errorMessage("에러!!"); });
+
+        /*
+        worker.onmessage = (message) => {
+            const { status, data, error } = message.data;
+
+            if (status === 'success') {
+                successMessage("저장되었습니다!");
+                navigate("/diary");
+            } else if (status === 'error') {
+                errorMessage(`에러: ${error}`);
+            }
+
+            worker.terminate(); // 작업 완료 후 Web Worker 종료
+        };
+
+        worker.postMessage({
+            url: `${HOST}:${PORT}/diary/write`,
+            method: 'POST',
+            data: {
+                title: title,
+                content: description,
+                realContent: editorHtml,
+                category: selectedCategory,
+                imgData: imgData,
+            },
+        });
+        */
     };
 
     const handleCancel = async () => {
