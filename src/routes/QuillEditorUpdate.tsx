@@ -4,10 +4,6 @@ import { styled } from 'styled-components';
 import { jelloVertical } from '../components/Animation.tsx';
 import ReactQuill, { Quill } from 'react-quill';
 import EditorToolBar, { undoChange, redoChange, insertHeart } from '../components/EditorToolBar.tsx';
-import ImageResize from 'quill-image-resize';
-import { ImageDrop } from "quill-image-drop-module";
-import katex from 'katex';
-import QuillImageDropAndPaste from 'quill-image-drop-and-paste'
 import axios from 'axios';
 import { errorMessage, successMessage } from '../utils/SweetAlertEvent.tsx';
 import { authCheck } from '../utils/authCheck.tsx';
@@ -18,44 +14,14 @@ import hljs from "highlight.js";
 import "highlight.js/styles/github.css";
 
 hljs.configure({
-  languages: ["javascript", "python", "java", "cpp", "kotlin", "sql"],
+  languages: ["javascript", "python", "java", "cpp"],
 });
 
 const HOST = process.env.REACT_APP_HOST;
 const PORT = process.env.REACT_APP_PORT;
 
-declare global {
-    interface Window {
-        katex: typeof katex;
-    }
-}
-window.katex = katex;
-
-// 모듈 등록
-Quill.register("modules/imageDrop", ImageDrop);
-Quill.register('modules/imageDropAndPaste', QuillImageDropAndPaste);
-Quill.register('modules/ImageResize', ImageResize);
-
-// 폰트 사이즈 추가
-const Size = Quill.import("attributors/style/size");
-Size.whitelist = ["8px", "10px", "12px",
-    "14px", "20px", "24px", "30px", "36px", "48px",
-    "60px", "72px", "84px", "96px", "120px"];
-Quill.register(Size, true);
-
-// 폰트 추가
-const Font = Quill.import("attributors/class/font");
-Font.whitelist = ["arial", "buri", "gangwon", "Quill", "serif", "monospace", "끄트머리체", "할아버지의나눔", "나눔고딕", "궁서체", "굴림체", "바탕체", "돋움체"];
-Quill.register(Font, true);
-
-// align & icon 변경
-const Align = ReactQuill.Quill.import("formats/align");
-Align.whitelist = ["left", "center", "right", "justify"];
-const Icons = ReactQuill.Quill.import("ui/icons");
-Icons.align["left"] = Icons.align[""];
-
 const QuillEditorUpdate: React.FC = () => {
-    const CategoryList = useMemo(() => ['전체', 'React', 'NodeJS', 'Backend', 'Game', 'Etc'], []);
+    const CategoryList = useMemo<string[]>(() => ['전체', 'React', 'NodeJS', 'Backend', 'Game', 'Etc'], []);
     const location = useLocation();
     const [title, setTitle] = useState<string>('');
     const [editorHtml, setEditorHtml] = useState<string>('');

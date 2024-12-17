@@ -14,21 +14,21 @@ import hljs from "highlight.js";
 import "highlight.js/styles/github.css";
 
 hljs.configure({
-  languages: ["javascript", "python", "java", "cpp", "kotlin", "sql"],
+  languages: ["javascript", "python", "java", "cpp"],
 });
 
 const HOST = process.env.REACT_APP_HOST;
 const PORT = process.env.REACT_APP_PORT;
 
 const QuillEditor: React.FC = () => {
-    const CategoryList = useMemo(() => ['전체', 'React', 'NodeJS', 'Backend', 'Game', 'Etc'], []);
+    const CategoryList = useMemo<string[]>(() => ['전체', 'React', 'NodeJS', 'Backend', 'Game', 'Etc'], []);
     const [editorHtml, setEditorHtml] = useState<string>('');
     const [title, setTitle] = useState<string>('');
     const [selectedCategory, setSelectedCategory] = useState<string>(CategoryList[0]);
     const [imgData, setImgData] = useState<string[]>([]); // 이미지 배열
     const quillRef = useRef<ReactQuill | null>(null); // Ref 타입 설정
     const navigate = useNavigate();
-
+    
     // 이미지 처리를 하는 핸들러
     const imageHandler = () => {
         // 1. 이미지를 저장할 input type=file DOM을 만든다.
