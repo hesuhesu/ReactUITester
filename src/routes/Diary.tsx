@@ -26,6 +26,7 @@ const Experience: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        let timeoutId: NodeJS.Timeout;
         (async () => {
             try {
                 const response = await axios.get(`${HOST}:${PORT}/diary/all_read`);
@@ -34,23 +35,27 @@ const Experience: React.FC = () => {
                 console.error(error);
             }
             finally {
-                setIsLoading(false);
+                // setIsLoading(false);
+                timeoutId = setTimeout(() => setIsLoading(false), 500);
             } 
         })();
         if (authCheck() === 0){ return; }
         setStatus(prevStatus => !prevStatus);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+
+        return () => {
+            clearTimeout(timeoutId);
+        };
     }, []);
 
     const filteredData = useMemo(() => {
         if (selectedCategory === '전체') {
-            return api; // 전체 데이터를 반환
+            return api;
         }
-        return api.filter(item => item.category === selectedCategory); // 필터링된 데이터를 반환
+        return api.filter(item => item.category === selectedCategory);
     }, [selectedCategory, api]);
 
     if (isLoading) {
-        return <Spinner/>; // 데이터 로딩 중 GIF 표시
+        return <Spinner/>;
     }
 
     const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

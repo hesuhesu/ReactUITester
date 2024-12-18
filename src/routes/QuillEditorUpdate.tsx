@@ -1,12 +1,12 @@
 import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { styled } from 'styled-components';
-import { jelloVertical } from '../components/Animation.tsx';
 import ReactQuill, { Quill } from 'react-quill';
 import EditorToolBar, { undoChange, redoChange, insertHeart } from '../components/EditorToolBar.tsx';
 import axios from 'axios';
 import { errorMessage, successMessage } from '../utils/SweetAlertEvent.tsx';
 import { authCheck } from '../utils/authCheck.tsx';
+import ButtonContainer from '../components/QuillEditor/ButtonContainer.tsx';
 import 'katex/dist/katex.min.css'; // formular 활성화
 import 'react-quill/dist/quill.snow.css'; // Quill snow스타일 시트 불러오기
 import '../scss/QuillEditor.scss';
@@ -44,6 +44,10 @@ const QuillEditorUpdate: React.FC = () => {
     const handleChange = useCallback((html: string) => {
         setEditorHtml(html);
     }, []);
+
+    const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedCategory(event.target.value);
+    };
 
     // 이미지 처리를 하는 핸들러
     const imageHandler = () => {
@@ -147,7 +151,6 @@ const QuillEditorUpdate: React.FC = () => {
         
         const description = quillRef.current?.getEditor().getText(); //태그를 제외한 순수 text만을 받아온다. 검색기능을 구현하지 않을 거라면 굳이 text만 따로 저장할 필요는 없다.
         // description.trim()
-        // const worker = new Worker('../utils/WebWorker.tsx');
 
         axios.put(`${HOST}:${PORT}/diary/update`, {
             _id: params,
@@ -160,33 +163,6 @@ const QuillEditorUpdate: React.FC = () => {
             successMessage("저장되었습니다!");
             navigate(-1);
         }).catch((e) => { errorMessage("에러!!"); });
-
-        /*
-        worker.onmessage = (message) => {
-            const { status, data, error } = message.data;
-
-            if (status === 'success') {
-                successMessage("저장되었습니다!");
-                navigate("/diary");
-            } else if (status === 'error') {
-                errorMessage(`에러: ${error}`);
-            }
-
-            worker.terminate(); // 작업 완료 후 Web Worker 종료
-        };
-
-        worker.postMessage({
-            url: `${HOST}:${PORT}/diary/write`,
-            method: 'POST',
-            data: {
-                title: title,
-                content: description,
-                realContent: editorHtml,
-                category: selectedCategory,
-                imgData: imgData,
-            },
-        });
-        */
     };
 
     const handleCancel = async () => {
@@ -199,10 +175,6 @@ const QuillEditorUpdate: React.FC = () => {
         }
         navigate(-1);
     }
-
-    const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedCategory(event.target.value);
-    };
 
     return (
         <FormContainer onSubmit={handleSubmit}>
@@ -226,10 +198,7 @@ const QuillEditorUpdate: React.FC = () => {
                 modules={modules}
                 style={{ height:'60vh'}}
             />
-            <ButtonContainer>
-                <button>저장하기</button>
-                <button type="button" onClick={handleCancel}>취소하기</button>
-            </ButtonContainer>
+            <ButtonContainer onSave={handleSubmit} onCancel={handleCancel} />
         </FormContainer>
     )
 }
@@ -261,35 +230,6 @@ const SelectContainer = styled.div`
         font-size: 16px;
         border: 1px solid #ddd;
         border-radius: 5px;
-    }
-`;
-
-const ButtonContainer = styled.div`
-    display: flex; 
-    justify-content: center;
-
-    button {
-        margin-top: 20px;
-        margin-bottom: 20px;
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #282c34;
-        border: none;
-        border-radius: 20px; 
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
-        &:hover {
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-            animation: ${jelloVertical} 1s ease forwards;
-        }
-
-        &:active {
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-            transform: translateY(1px);
-        }
     }
 `;
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import CanvasHome from '../components/Home/CanvasHome.tsx';
 import FirstHome from '../components/Home/FirstHome.tsx';
 import SecondHome from '../components/Home/SecondHome.tsx';
 import ThirdHome from '../components/Home/ThirdHome.tsx';
-import CanvasHome from '../components/Home/CanvasHome.tsx';
 
 const Home: React.FC = () => {
   return (
