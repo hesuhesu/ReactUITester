@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { authCheck } from '../utils/authCheck.tsx';
 import { fadeIn, jelloHorizontal } from '../components/Animation.tsx';
 import Spinner from '../components/Spinner.tsx';
+import Pagination from '../components/Diary/Pagination.tsx';
 
 const HOST = process.env.REACT_APP_HOST;
 const PORT = process.env.REACT_APP_PORT;
@@ -17,20 +18,28 @@ interface ReviewItem {
     createdAt: string;
 }
 
+const ITEMS_PER_PAGE = 10;
+
 const Diary: React.FC = () => {
     const [api, setApi] = useState<ReviewItem[]>([]);
     const CategoryList = useMemo(() => ['전체', 'React', 'NodeJS', 'Backend', 'Game', 'Etc'], []);
     const [status, setStatus] = useState<boolean>(false); // 관리자 인증
     const [selectedCategory, setSelectedCategory] = useState<string>(CategoryList[0]);
     const [isLoading, setIsLoading] = useState<Boolean>(true); // 로딩 상태 관리
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [totalPages, setTotalPages] = useState(1); // 전체 페이지 수
     const navigate = useNavigate();
 
     useEffect(() => {
         let timeoutId: NodeJS.Timeout;
         (async () => {
             try {
-                const response = await axios.get(`${HOST}:${PORT}/diary/all_read`);
+                // const response = await axios.get(`${HOST}:${PORT}/diary/all_read`);
+                const response = await axios.get(`${HOST}:${PORT}/diary/one_read`, {
+                    params: { page: currentPage, limit: ITEMS_PER_PAGE },
+                });
                 setApi(response.data.list);
+                setTotalPages(response.data.totalPages); // 전체 페이지 수 업데이트
             } catch (error) {
                 console.error(error);
             }
@@ -45,7 +54,7 @@ const Diary: React.FC = () => {
         return () => {
             clearTimeout(timeoutId);
         };
-    }, []);
+    }, [currentPage]);
 
     const filteredData = useMemo(() => {
         if (selectedCategory === '전체') {
@@ -54,13 +63,18 @@ const Diary: React.FC = () => {
         return api.filter(item => item.category === selectedCategory);
     }, [selectedCategory, api]);
 
+    const handleCategoryChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectedCategory(event.target.value);
+    };
+
+    const handlePageChange = (page: number) => {
+        setCurrentPage(page);
+        setIsLoading(true);
+    };
+
     if (isLoading) {
         return <Spinner/>;
     }
-
-    const handleCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedCategory(event.target.value);
-    };
 
     return (
         <DiaryContainer>
@@ -77,36 +91,32 @@ const Diary: React.FC = () => {
                     ))}
                 </select>
             </SelectContainer>
-            {filteredData.length > 0 ? (
-                <TableContainer>
-                    <thead>
-                        <tr>
-                            <th>분류</th>
-                            <th>제목</th>
-                            <th>내용</th>
-                            <th>작성일</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredData.map((item) => (
-                            <tr key={item._id} onClick={() => navigate(`/diary_detail/${item._id}`)}>
-                                <td><img src={`/${item.category.toLowerCase()}.svg`} alt="없음"/></td>
-                                <td>{item.title}</td>
-                                <td>{item.content}</td>
-                                <td>{item.createdAt}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </TableContainer>
-            ): 
-            <div>No Data</div>
-            }
+            <CardsContainer>
+                {filteredData.length > 0 ? (
+                    filteredData.map((item) => (
+                        <Card key={item._id} onClick={() => navigate(`/diary_detail/${item._id}`)}>
+                            <CardImage src={`/${item.category.toLowerCase()}.svg`} alt={item.title} />
+                            <CardContent>
+                                <h2>{item.title}</h2>
+                                <small>{item.createdAt}</small>
+                            </CardContent>
+                        </Card>
+                    ))
+                ) : (
+                    <div>No Data</div>
+                )}
+            </CardsContainer>
+            <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+            />
         </DiaryContainer>
     );
 };
 
 const DiaryContainer = styled.div`
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column; // 세로 방향으로 정렬
     align-items: center; // 가로 중앙 정렬
@@ -193,63 +203,52 @@ const SelectContainer = styled.div`
     }
 `;
 
-const TableContainer = styled.table`
-    width: 90%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-    animation: ${fadeIn} 2s ease forwards;
+const CardsContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50vw, 1fr)); /* 카드 크기 조정 */
+    gap: 2rem; /* 카드 간격 */
+    width: 100%;
+    max-width: 1200px; /* 컨테이너 최대 너비 */
+    margin: 0 auto; /* 가운데 정렬 */
+    padding: 1rem;
+`;
 
-    thead {
-        background-color: #282c34;
-        color: rgba(214, 230, 245, 0.925);
+const Card = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
 
-        th {
-            padding: 1rem; // 16px
-            text-align: left;
-            font-weight: 600;
-        }
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
+`;
 
-    tbody {
-        tr{
-            &:nth-child(even) {
-                background-color: #f9f9f9;
-            }
+const CardImage = styled.img`
+    width: 300px; /* 이미지 크기 */
+    height: 300px; /* 이미지 크기 */
+    object-fit: cover;
+    margin-bottom: 1rem;
+`;
 
-            &:hover {
-                background-color: #f1f1f1;
-            }
-        }
-        td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-
-            /* 글자 수 제한 */
-            white-space: nowrap;       /* 줄 바꿈 방지 */
-            overflow: hidden;          /* 넘치는 텍스트 숨기기 */
-            text-overflow: ellipsis;   /* '...'으로 표시 */
-            max-width: 150px;          /* 최대 너비 설정 */
-
-            img {
-                width: 50px;
-                height: 50px;
-            }
-        }
-    }
-
-    th,
-    td {
+const CardContent = styled.div`
+    h2 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        padding: 0.5rem;
         text-align: center;
+        margin-bottom: 10px;
     }
 
-    @media (max-width: 1200px) {
-        td:nth-child(n+3), th:nth-child(n+3) { // 분류, 내용 제외 숨김처리
-            display: none;
-        }
+    small {
+        font-size: 0.875rem;
     }
 `;
 
