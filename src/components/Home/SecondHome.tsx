@@ -42,6 +42,8 @@ const SecondHome: React.FC = () => {
   );
 };
 
+export default SecondHome;
+
 const fadeIn = keyframes`
   from {
   }
@@ -137,5 +139,3 @@ const Card = styled.div`
     box-shadow: 0 0 15px 5px rgba(214, 230, 245, 0.925) !important; /* 빛나는 효과 */
   }
 `;
-
-export default SecondHome;

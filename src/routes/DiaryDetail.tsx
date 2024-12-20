@@ -7,7 +7,7 @@ import { vibrate1, fadeIn } from '../components/Animation.tsx';
 import { authCheck } from '../utils/authCheck.tsx';
 import { errorMessage, successMessage } from '../utils/SweetAlertEvent.tsx';
 import Spinner from '../components/Spinner.tsx';
-import ScrollButtonContainer from '../components/DiaryDetail/ScrollButtonContainer.tsx';
+import ScrollButton from '../components/DiaryDetail/ScrollButton.tsx';
 import 'react-quill/dist/quill.snow.css'; // Quill snow스타일 시트 불러오기
 import '../scss/QuillEditor.scss';
 import hljs from "highlight.js";
@@ -111,7 +111,7 @@ const DiaryDetail: React.FC = () => {
                     modules={modules}
                     />
                 </QuillContainer>
-                <ScrollButtonContainer/>
+                <ScrollButton/>
             </DiaryDetailContainer>
       );
     };

@@ -16,6 +16,8 @@ const Home: React.FC = () => {
   );
 };
 
+export default Home;
+
 const HomeContainer = styled.div`
   width: 100%;
   display: flex;
@@ -31,5 +33,3 @@ const HomeContainer = styled.div`
     0 0 100px rgba(255, 255, 255, 0.1);
   position: relative;
 `;
-
-export default Home;

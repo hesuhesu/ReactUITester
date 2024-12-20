@@ -17,7 +17,7 @@ interface ReviewItem {
     createdAt: string;
 }
 
-const Experience: React.FC = () => {
+const Diary: React.FC = () => {
     const [api, setApi] = useState<ReviewItem[]>([]);
     const CategoryList = useMemo(() => ['전체', 'React', 'NodeJS', 'Backend', 'Game', 'Etc'], []);
     const [status, setStatus] = useState<boolean>(false); // 관리자 인증
@@ -253,4 +253,4 @@ const TableContainer = styled.table`
     }
 `;
 
-export default Experience;
+export default Diary;

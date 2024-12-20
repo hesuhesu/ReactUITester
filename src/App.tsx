@@ -15,7 +15,8 @@ import PrivateRoute from './utils/PrivateRoute.tsx';
 // npm install axios sweetalert2 react-paginate react-router-dom
 // npm install katex quill-image-resize quill-image-drop-module quill-image-drop-and-paste --save
 // npm install styled-components three babel-plugin-styled-components
-// npm install highlight.js
+// npm install highlight.js compression-webpack-plugin --save-dev
+// npm install --save-dev ts-jest @types/jest
 
 const Layout: React.FC = () => {
   return (

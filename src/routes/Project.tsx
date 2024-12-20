@@ -81,13 +81,6 @@ const Project: React.FC = () => {
         >
           {index % 2 === 0 ? <>
             <PictureSlide pictures={project.picture}/>
-            {/*
-            <PictureDiv>
-              {project.picture.map((src, idx) => (
-                <img key={idx} src={src} alt="" />
-              ))}
-            </PictureDiv>
-            */}
             <ContentDiv>
               <h2>{project.title}</h2>
               <p>{project.description}</p>
