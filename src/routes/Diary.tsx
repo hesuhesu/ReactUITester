@@ -32,11 +32,12 @@ const Diary: React.FC = () => {
 
     useEffect(() => {
         let timeoutId: NodeJS.Timeout;
+        setIsLoading(true);
         (async () => {
             try {
                 // const response = await axios.get(`${HOST}:${PORT}/diary/all_read`);
-                const response = await axios.get(`${HOST}:${PORT}/diary/one_read`, {
-                    params: { page: currentPage, limit: ITEMS_PER_PAGE },
+                const response = await axios.get(`${HOST}:${PORT}/diary/one_page_read`, {
+                    params: { page: currentPage, limit: ITEMS_PER_PAGE, category: selectedCategory },
                 });
                 setApi(response.data.list);
                 setTotalPages(response.data.totalPages); // 전체 페이지 수 업데이트
@@ -44,7 +45,6 @@ const Diary: React.FC = () => {
                 console.error(error);
             }
             finally {
-                // setIsLoading(false);
                 timeoutId = setTimeout(() => setIsLoading(false), 500);
             } 
         })();
@@ -54,22 +54,15 @@ const Diary: React.FC = () => {
         return () => {
             clearTimeout(timeoutId);
         };
-    }, [currentPage]);
-
-    const filteredData = useMemo(() => {
-        if (selectedCategory === '전체') {
-            return api;
-        }
-        return api.filter(item => item.category === selectedCategory);
-    }, [selectedCategory, api]);
+    }, [currentPage, selectedCategory]);
 
     const handleCategoryChange = async (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedCategory(event.target.value);
+        setCurrentPage(1);
     };
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
-        setIsLoading(true);
     };
 
     if (isLoading) {
@@ -92,8 +85,8 @@ const Diary: React.FC = () => {
                 </select>
             </SelectContainer>
             <CardsContainer>
-                {filteredData.length > 0 ? (
-                    filteredData.map((item) => (
+                {api.length > 0 ? (
+                    api.map((item) => (
                         <Card key={item._id} onClick={() => navigate(`/diary_detail/${item._id}`)}>
                             <CardImage src={`/${item.category.toLowerCase()}.svg`} alt={item.title} />
                             <CardContent>

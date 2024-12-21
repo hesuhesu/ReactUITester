@@ -3,9 +3,9 @@ import { Routes, Route, BrowserRouter, Outlet } from "react-router-dom";
 import Header from "./components/Header.tsx";
 import Footer from "./components/Footer.tsx";
 import Home from "./routes/Home.tsx";
-import About from "./routes/About.tsx";
-import Project from "./routes/Project.tsx";
-import Diary from "./routes/Diary.tsx";
+import About from './routes/About.tsx';
+import Project from './routes/Project.tsx';
+import Diary from './routes/Diary.tsx';
 import DiaryDetail from './routes/DiaryDetail.tsx';
 import QuillEditor from "./routes/QuillEditor.tsx";
 import QuillEditorUpdate from "./routes/QuillEditorUpdate.tsx";
@@ -18,10 +18,11 @@ import PrivateRoute from './utils/PrivateRoute.tsx';
 // npm install highlight.js compression-webpack-plugin --save-dev
 // npm install --save-dev ts-jest @types/jest
 
+
 const Layout: React.FC = () => {
   return (
     <>
-      <Header/>
+      <Header/>      
         <Outlet/>
       <Footer/>
     </>

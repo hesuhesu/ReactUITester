@@ -45,7 +45,7 @@ const DiaryDetail: React.FC = () => {
 
     useEffect(() => {
         let timeoutId: NodeJS.Timeout;
-        axios.get(`${HOST}:${PORT}/diary/read`, {
+        axios.get(`${HOST}:${PORT}/diary/read_detail`, {
             params: { _id: params }
         }).then((response) => {
             setData(response.data.list);
@@ -55,7 +55,6 @@ const DiaryDetail: React.FC = () => {
             setAdmin(1);
         }).catch((error) => { console.error(error); })
         .finally(() => {
-            // setTimeout(() => setIsLoading(false), 500);
             timeoutId = setTimeout(() => setIsLoading(false), 500);
           });
         return () => {

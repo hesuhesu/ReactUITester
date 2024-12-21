@@ -81,6 +81,10 @@ const PaginationContainer = styled.div`
             background-color: #ddd;
             cursor: not-allowed;
         }
+
+        &:hover {
+            background-color: #ddd;
+        }
     }
 `;
 
