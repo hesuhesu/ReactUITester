@@ -31,6 +31,7 @@ const Diary: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         let timeoutId: NodeJS.Timeout;
         setIsLoading(true);
         (async () => {

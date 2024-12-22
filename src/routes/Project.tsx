@@ -9,6 +9,7 @@ const Project: React.FC = () => {
   const [visibleIndexes, setVisibleIndexes] = useState<Set<number>>(new Set());
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const refs = projectRefs.current; // refs 값을 로컬 변수로 복사
     const observer = new IntersectionObserver(
       (entries) => {
@@ -187,14 +188,12 @@ const ProjectDiv = styled.div`
 
   &.fade-in {
     animation: ${glow} 4s infinite, ${fadeIn} 1s ease forwards;
-    opacity: 1;
     transform: translateY(0);
   }
 
   @media (max-width: 1200px) {
     flex-direction: column;  // 모바일에서는 세로로 정렬
   }
-
 `;
 
 const ContentDiv = styled.div`
@@ -248,25 +247,5 @@ const ButtonContainer = styled.div`
     }
   }
 `;
-
-/*
-const PictureDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  background-color: #282c34;
-  border-radius: 10px;
-
-  img {
-    border: 2px solid rgba(214, 230, 245, 0.925);
-    border-radius: 10px;
-    object-fit: scale-down;
-    height: 100%;
-    width: 100%;
-  }
-`;
-*/
 
 export default Project;
