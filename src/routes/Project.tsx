@@ -56,7 +56,7 @@ const Project: React.FC = () => {
         },
         {
           title: "완성도 높은 WYSIWYG Editor 구축",
-          description: "Javascript-Based 문서 편집 기능과 ThreeJS 를 활용한 GLTF Editor 를 결합한 졸업 과제 프로젝트입니다.",
+          description: "Javascript-Based 문서 편집 기능인 Quill Editor 와 ThreeJS 를 활용한 GLTF Editor 를 결합한 졸업 과제 프로젝트입니다.",
           link: "https://github.com/hesuhesu/SW_Project",
           picture: ["WYSIWYG_Editor.webp", "WYSIWYG_Editor2.webp"],
         },
@@ -67,8 +67,8 @@ const Project: React.FC = () => {
           picture: ["3D_Editor.webp", "3D_Editor2.webp"],
         },
         {
-          title: "나만의 블로그 만들기",
-          description: "포트폴리오 겸 직접 블로그를 제작하였습니다. 개발 했던 일기를 바탕으로 고민했던 부분들을 다시 볼 수 있습니다.",
+          title: "포트폴리오",
+          description: "포트폴리오 겸 개발 일기를 제작하였습니다. 개발 했던 일기를 바탕으로 고민했던 부분들을 다시 볼 수 있습니다.",
           link: "https://github.com/hesuhesu/ReactUITester",
           secondLink: "https://hesuhesu.o-r.kr",
           picture: ["MyBlog.webp", "MyBlog2.webp"],

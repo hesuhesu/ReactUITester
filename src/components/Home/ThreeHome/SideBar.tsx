@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import useIntersectionObserver from '../../../utils/useIntersectionObserver.tsx';
-import { fadeIn } from '../../Animation.tsx';
 
 const HOST = process.env.REACT_APP_HOST;
 const PORT = process.env.REACT_APP_PORT;
@@ -17,7 +16,7 @@ interface data {
 }
 
 const SideBar: React.FC = () => {
-  const { isVisible, elementRef } = useIntersectionObserver({ threshold: 0.2 });
+  const { isVisible, elementRef } = useIntersectionObserver({ threshold: 0 });
   const [data, setData] = useState<data[]>([]);
   const navigate = useNavigate();
 
@@ -36,16 +35,17 @@ const SideBar: React.FC = () => {
 
   return (
     <SideBarContainer ref={elementRef} style={{ opacity: isVisible ? 1 : 0 }}>
-      <SideBarHeader className={isVisible ? 'fade-in' : ''}>
+      <SideBarHeader>
         <h2>Diary 목록</h2>
         <button onClick={() => navigate('/diary')}>자세히 보기</button>
       </SideBarHeader>
-      <DataList className={isVisible ? 'fade-in' : ''}>
+      <DataList>
         {data.map((item, index) => (
-          <DataItem key={index} onClick={() => navigate(`/diary_detail/${item._id}`)}>
-            <h3>title : {item.title || `제목 ${index + 1}`}</h3>
-            <p>{item.content || `설명 ${index + 1}`}</p>
-          </DataItem>
+            <DataItem key={index} onClick={() => navigate(`/diary_detail/${item._id}`)}>
+              <DataImg src={`/${item.category.toLowerCase()}.svg`} alt={item.title} />
+              <h3>title : {item.title || `제목 ${index + 1}`}</h3>
+              <p>{item.content || `설명 ${index + 1}`}</p>
+            </DataItem>
         ))}
       </DataList>
     </SideBarContainer>
@@ -65,10 +65,6 @@ const SideBarContainer = styled.div`
   padding: 20px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   transition: opacity 0.5s ease-in-out; // fadeIn 을 위한 효과
-  
-  .fade-in {
-    animation: ${fadeIn} 1s ease forwards;
-  }
 
   @media (max-width: 768px) {
     width: 50vw;
@@ -84,8 +80,7 @@ const SideBarHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
-  opacity: 0;
-
+  
   h2 {
     font-size: 24px;
   }
@@ -107,15 +102,26 @@ const SideBarHeader = styled.div`
 `;
 
 const DataList = styled.div`
-  flex: 1;
-  overflow-y: auto;
   display: flex;
-  flex-direction: row;
+  overflow-x: auto;
   gap: 15px;
-  opacity: 0;
+  scroll-behavior: smooth;
+  padding: 10px;
+  will-change: transform; // GPU 가속
+`;
+
+const DataImg = styled.img`
+  width: 100px; /* 이미지 크기 */
+  height: 100px; /* 이미지 크기 */
+  object-fit: cover;
+  margin-bottom: 1rem;
 `;
 
 const DataItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: white;
   min-width: 20vw;
   margin-bottom: 15px;
@@ -133,5 +139,9 @@ const DataItem = styled.div`
     margin: 0;
     font-size: 14px;
     color: #555;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
 `;

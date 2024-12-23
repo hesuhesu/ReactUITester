@@ -22,10 +22,10 @@ const HomeContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   color: rgba(214, 230, 245, 0.925);
-  height: 300vh;
+  height: 400vh;
   background-color: #282c34;
   text-shadow: 0 0 30px rgba(255, 255, 255, 0.6),
     0 0 60px rgba(255, 255, 255, 0.45),
