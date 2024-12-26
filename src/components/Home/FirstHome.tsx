@@ -7,7 +7,7 @@ const FirstHome: React.FC = () => {
   const { isVisible, elementRef } = useIntersectionObserver({ threshold: 0.5 });
 
     return (
-        <FirstHomeContainer ref={elementRef} style={{ opacity: isVisible ? 1 : 0 }}>
+      <FirstHomeContainer ref={elementRef} style={{ opacity: isVisible ? 1 : 0 }}>
             <h2>Future Possibility</h2>
             <strong>노력, 인내, 성취</strong>
             <strong>지식의 점진적 과부화</strong>
@@ -19,7 +19,7 @@ const FirstHome: React.FC = () => {
 export default FirstHome;
 
 const FirstHomeContainer = styled.div`
-  height: 150vh;
+  height: 130vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
