@@ -9,7 +9,7 @@ const HomeHeader: React.FC = () => {
     const start = window.scrollY; // 현 위치
     const target = window.innerHeight * 1.0; // 100vh
     const distance = target - start; // 100vh 에서 현 위치 뺀 거리
-    const duration = 1000; // 1초
+    const duration = 2000; // 2초
     let startTime: number | null = null;
 
     const animation = (currentTime: number) => {

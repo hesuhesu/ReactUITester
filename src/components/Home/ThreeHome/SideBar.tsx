@@ -42,7 +42,7 @@ const SideBar: React.FC = () => {
       <DataList>
         {data.map((item, index) => (
             <DataItem key={index} onClick={() => navigate(`/diary_detail/${item._id}`)}>
-              <DataImg src={`/${item.category.toLowerCase()}.svg`} alt={item.title} />
+              <DataImg src={require(`../../../assets/images/${item.category.toLowerCase()}.svg`)} alt={item.title} />
               <h3>{item.title || `제목 ${index + 1}`}</h3>
               <p>{item.content || `설명 ${index + 1}`}</p>
             </DataItem>
