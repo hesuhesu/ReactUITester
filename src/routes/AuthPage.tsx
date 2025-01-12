@@ -34,12 +34,9 @@ const AuthPage: React.FC = () => {
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // 폼 제출 기본 동작 방지
         if (loginData.username === USERNAME && loginData.password === USERPASSWORD){
-            try {
-                await axios.post(`${HOST}:${PORT}/login`, loginData);  
-                successMessage("환영합니다 관리자님!");
-                localStorage.setItem("auth", AUTH);
-                navigate("/");
-            } catch (e) { errorMessage('에러'); }
+            successMessage("환영합니다 관리자님!");
+            localStorage.setItem("auth", AUTH);
+            navigate("/");
         }
         else {
             errorMessage('유저가 아님!!');

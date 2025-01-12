@@ -11,7 +11,7 @@ import 'katex/dist/katex.min.css'; // formular 활성화
 import 'react-quill/dist/quill.snow.css'; // Quill snow스타일 시트 불러오기
 import '../scss/QuillEditor.scss';
 import hljs from "highlight.js";
-import { CategoryList } from '../utils/CategoryList.tsx';
+import { CategoryList } from '../utils/Variable.tsx';
 import "highlight.js/styles/github.css";
 
 hljs.configure({

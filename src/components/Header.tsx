@@ -3,7 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { textFlickerInGlow, fadeInUp, fadeIn } from './Animation.tsx';
 
-const Header: React.FC = () => {
+const Header = React.memo(() => {
     const location = useLocation();
 
     // 경로에 따라 h1 텍스트 설정
@@ -35,7 +35,7 @@ const Header: React.FC = () => {
                 </NavList>
         </HeaderContainer>
     );
-};
+});
 
 const HeaderContainer = styled.header`
     display: flex;

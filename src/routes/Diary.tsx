@@ -7,7 +7,7 @@ import { authCheck } from '../utils/authCheck.tsx';
 import { fadeIn, jelloHorizontal } from '../components/Animation.tsx';
 import Spinner from '../components/Spinner.tsx';
 import Pagination from '../components/Diary/Pagination.tsx';
-import { CategoryList } from '../utils/CategoryList.tsx';
+import { CategoryList } from '../utils/Variable.tsx';
 import SelectCategory from '../components/Diary/SelectCategory.tsx';
 
 const HOST = process.env.REACT_APP_HOST;
