@@ -13,6 +13,7 @@ import QuillEditor from "./routes/QuillEditor.tsx";
 import QuillEditorUpdate from "./routes/QuillEditorUpdate.tsx";
 import AuthPage from "./routes/AuthPage.tsx";
 import PrivateRoute from './utils/PrivateRoute.tsx';
+import Callback from './routes/Callback.tsx';
 
 // npm install axios sweetalert2 react-paginate react-router-dom
 // npm install katex quill-image-resize quill-image-drop-module quill-image-drop-and-paste --save
@@ -51,6 +52,7 @@ const App: React.FC = () => {
               </Route>
             </Route>
             <Route path="/authpage" element={<AuthPage />} />
+            <Route path="/oauth" element={<Callback/>}/>
           </Routes>
         </QueryClientProvider>
       </GlobalStateProvider>

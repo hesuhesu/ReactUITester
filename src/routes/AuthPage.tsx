@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { jelloVertical } from '../components/Animation.tsx';
 import { errorMessage, successMessage } from '../utils/SweetAlertEvent.tsx';
 import { authCheck } from '../utils/authCheck.tsx';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import KakaoLogin from '../components/KakaoLogin.tsx';
 
-const HOST = process.env.REACT_APP_HOST;
-const PORT = process.env.REACT_APP_PORT;
 const AUTH: string = process.env.REACT_APP_AUTH as string;
 const USERNAME = process.env.REACT_APP_USER_NAME;
 const USERPASSWORD = process.env.REACT_APP_USER_PASSWORD;
@@ -46,7 +44,6 @@ const AuthPage: React.FC = () => {
     const handleLogout = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`${HOST}:${PORT}/logout`);
             successMessage("사용자 모드로 돌아갑니다");
             localStorage.clear();
             setStatus(prevStatus => !prevStatus);
@@ -74,6 +71,7 @@ const AuthPage: React.FC = () => {
                 />
                 <button type="submit">Auth In</button>
                 <button onClick={() => navigate("/")}>HomePage</button>
+                <KakaoLogin/>
             </AuthBox>}
         </AuthContainer>
     );
