@@ -7,18 +7,20 @@ import { authCheck } from '../utils/authCheck.tsx';
 import KakaoLogin from '../components/KakaoLogin.tsx';
 
 const AUTH: string = process.env.REACT_APP_AUTH as string;
-const USERNAME = process.env.REACT_APP_USER_NAME;
-const USERPASSWORD = process.env.REACT_APP_USER_PASSWORD;
+const HOST = process.env.REACT_APP_HOST;
+const PORT = process.env.REACT_APP_PORT;
+const NAME = process.env.REACT_APP_ADMIN_NAME;
+const PASSWORD = process.env.REACT_APP_ADMIN_PASSWORD;
 
 interface LoginItem {
-    username: string;
+    name: string;
     password: string;
 }
 
 const AuthPage: React.FC = () => {
     const [status, setStatus] = useState<boolean>(false);
     const [loginData, setLoginData] = useState<LoginItem>({
-        username: '',
+        name: '',
         password: '',
     });
     const navigate = useNavigate();
@@ -31,13 +33,31 @@ const AuthPage: React.FC = () => {
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // 폼 제출 기본 동작 방지
-        if (loginData.username === USERNAME && loginData.password === USERPASSWORD){
+
+        if (loginData.name === NAME && loginData.password === PASSWORD){
             successMessage("환영합니다 관리자님!");
             localStorage.setItem("auth", AUTH);
             navigate("/");
+            return;
         }
-        else {
-            errorMessage('유저가 아님!!');
+
+        const response = await fetch(`${HOST}:${PORT}/auth/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username: loginData.name, password: loginData.password }),
+        });
+    
+        if (response.ok) {
+            const data = await response.json();
+            const token = data.token;
+            
+            // 토큰을 로컬 스토리지에 저장
+            localStorage.setItem('jwtToken', token);
+            successMessage("환영합니다 회원님!");
+        } else {
+            console.error('로그인 실패..');
         }
     };
 
@@ -50,17 +70,54 @@ const AuthPage: React.FC = () => {
         } catch (e) { errorMessage('에러'); }
     }
 
+    async function login(username, password) {
+        const response = await fetch('http://yourserver.com/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+        });
+    
+        if (response.ok) {
+            const data = await response.json();
+            const token = data.token;
+            
+            // 토큰을 로컬 스토리지에 저장
+            localStorage.setItem('jwtToken', token);
+            console.log('로그인 성공:', token);
+        } else {
+            console.error('로그인 실패');
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem('jwtToken'); // 토큰 삭제
+        console.log('로그아웃 성공');
+    }
+
+    function checkAuth() {
+        const token = localStorage.getItem('jwtToken');
+        if (token) {
+            console.log('사용자가 인증됨');
+            // 인증된 사용자에 대한 UI 업데이트
+        } else {
+            console.log('사용자가 인증되지 않음');
+            // 비인증 사용자에 대한 UI 업데이트
+        }
+    }
+
     return (
         <AuthContainer>
             {status ? <AdminBox>
-                <button onClick={handleLogout}>관리자 로그아웃</button>
+                <button onClick={handleLogout}>로그아웃</button>
                 <button onClick={() => navigate("/")}>HomePage</button>
             </AdminBox> :  
             <AuthBox onSubmit={handleLogin}>
-                <h2>Auth User</h2>
+                <h2>Auth | User</h2>
                 <input
-                    placeholder="username"
-                    onChange={(e) => setLoginData((prevState) => ({ ...prevState, username: e.target.value }))}
+                    placeholder="name"
+                    onChange={(e) => setLoginData((prevState) => ({ ...prevState, name: e.target.value }))}
                     required
                 />
                 <input

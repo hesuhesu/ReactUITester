@@ -4,7 +4,7 @@ import axios from 'axios';
 const KAKAO_REST_API_KEY = process.env.REACT_APP_REST_API_KEY; // 발급받은 REST API 키
 const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI; // 설정한 Redirect URI
 
-const Callback = () => {
+const Callback:React.FC = () => {
   useEffect(() => {
     const getToken = async () => {
       const code = new URL(window.location.href).searchParams.get('code');
@@ -41,11 +41,9 @@ const Callback = () => {
     getToken();
   }, []);
 
-  const user = JSON.parse(localStorage.getItem('user'));
-
   return (
     <div>
-      <h1>안녕하세요 {user?.properties.nickname}님?</h1>
+      <h1>로그인 중...</h1>
     </div>
   );
 };
