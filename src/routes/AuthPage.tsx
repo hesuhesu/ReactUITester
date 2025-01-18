@@ -24,40 +24,49 @@ const AuthPage: React.FC = () => {
         name: '',
         password: '',
     });
+
     const navigate = useNavigate();
-    
+
     useEffect(() => {
-        if (authCheck() === 0){ return; }
+        if (authCheck() === 0) { return; }
         setStatus(!status);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // 폼 제출 기본 동작 방지
-    
+
         if (loginData.name === NAME && loginData.password === PASSWORD) {
             successMessage("환영합니다 관리자님!");
             localStorage.setItem("auth", AUTH);
             navigate("/");
             return;
         }
-    
+
         try {
             const response = await axios.post(`${HOST}:${PORT}/auth/login`, {
                 username: loginData.name,
                 password: loginData.password,
             });
-    
+
             // 응답이 성공적일 경우
             const token = response.data.token;
-    
+
             // 토큰을 로컬 스토리지에 저장
             successMessage("환영합니다 회원님!");
             localStorage.setItem('jwtToken', token);
             navigate("/");
             return;
         } catch (error) {
-            console.error('로그인 실패:', error.response ? error.response.data : error.message);
+            if (error.response) {
+                if (error.response.status === 401) {
+                    errorMessage("Failed Login");
+                } else if (error.response.status === 500) {
+                    errorMessage("server Error");
+                }
+            } else {
+                errorMessage("ETC Error");
+            }
         }
     };
 
@@ -76,8 +85,8 @@ const AuthPage: React.FC = () => {
             await axios.post(`${HOST}:${PORT}/auth/register`, {
                 username: loginData.name, password: loginData.password
             })
-            .then(() => {successMessage("회원 가입 완료!")})
-            .catch(() => {errorMessage("회원가입 실패!")})
+                .then(() => { successMessage("회원 가입 완료!") })
+                .catch(() => { errorMessage("회원가입 실패!") })
         } catch (error) {
             errorMessage("회원가입 실패!");
         }
@@ -88,25 +97,25 @@ const AuthPage: React.FC = () => {
             {status ? <AdminBox>
                 <button onClick={handleLogout}>로그아웃</button>
                 <button onClick={() => navigate("/")}>HomePage</button>
-            </AdminBox> :  
-            <AuthBox onSubmit={handleLogin}>
-                <h2>Auth | User</h2>
-                <input
-                    placeholder="name"
-                    onChange={(e) => setLoginData((prevState) => ({ ...prevState, name: e.target.value }))}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    onChange={(e) => setLoginData((prevState) => ({ ...prevState, password: e.target.value }))}
-                    required
-                />
-                <button type="submit">Login</button>
-                <button type="button" onClick={handleRegister}>Register</button>
-                <button onClick={() => navigate("/")}>HomePage</button>
-                <KakaoLogin/>
-            </AuthBox>}
+            </AdminBox> :
+                <AuthBox onSubmit={handleLogin}>
+                    <h2>Auth | User</h2>
+                    <input
+                        placeholder="name"
+                        onChange={(e) => setLoginData((prevState) => ({ ...prevState, name: e.target.value }))}
+                        required
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        onChange={(e) => setLoginData((prevState) => ({ ...prevState, password: e.target.value }))}
+                        required
+                    />
+                    <button type="submit">Login</button>
+                    <button type="button" onClick={handleRegister}>Register</button>
+                    <button onClick={() => navigate("/")}>HomePage</button>
+                    <KakaoLogin />
+                </AuthBox>}
         </AuthContainer>
     );
 }

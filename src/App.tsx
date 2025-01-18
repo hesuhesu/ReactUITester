@@ -12,15 +12,10 @@ import DiaryDetail from './routes/DiaryDetail.tsx';
 import QuillEditor from "./routes/QuillEditor.tsx";
 import QuillEditorUpdate from "./routes/QuillEditorUpdate.tsx";
 import AuthPage from "./routes/AuthPage.tsx";
-import PrivateRoute from './utils/PrivateRoute.tsx';
+import Admin from "./routes/Admin.tsx";
 import Callback from './routes/Callback.tsx';
-
-// npm install axios sweetalert2 react-paginate react-router-dom
-// npm install katex quill-image-resize quill-image-drop-module quill-image-drop-and-paste --save
-// npm install styled-components three babel-plugin-styled-components
-// npm install highlight.js compression-webpack-plugin --save-dev
-// npm install --save-dev ts-jest @types/jest
-// npm install @tanstack/react-query
+import PrivateRoute from './utils/PrivateRoute.tsx';
+import { authCheck } from './utils/authCheck.tsx';
 
 const queryClient = new QueryClient();
 
@@ -46,13 +41,16 @@ const App: React.FC = () => {
               <Route path="/project" element={<Project />} />
               <Route path="/diary" element={<Diary />} />
               <Route path="/diary_detail/:_id" element={<DiaryDetail />} />
-              <Route element={<PrivateRoute />}>
-                <Route path="/quilleditor" element={<QuillEditor />} />
-                <Route path="/quilleditor_update/:_id" element={<QuillEditorUpdate />} />
+              <Route element={<PrivateRoute authCheck={authCheck} />}>
+                <Route path="/quill_editor" element={<QuillEditor />} />
+                <Route path="/quill_editor_update/:_id" element={<QuillEditorUpdate />} />
               </Route>
             </Route>
+            <Route element={<PrivateRoute authCheck={authCheck}/>}>
+              <Route path={`/${process.env.REACT_APP_ADMIN_PAGE}`} element={<Admin />} />
+            </Route>
             <Route path="/authpage" element={<AuthPage />} />
-            <Route path="/oauth" element={<Callback/>}/>
+            <Route path="/oauth" element={<Callback />} />
           </Routes>
         </QueryClientProvider>
       </GlobalStateProvider>

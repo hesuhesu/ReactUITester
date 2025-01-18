@@ -1,5 +1,7 @@
 const AUTH: string | undefined = process.env.REACT_APP_ADMIN_AUTH;
 
+export type AuthCheckFunction = () => number;
+
 export const authCheck = (): number => {
     if (localStorage.length === 0) { // LocalStorage가 깨끗하면 종료
         return 0;
