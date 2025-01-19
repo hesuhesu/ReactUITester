@@ -14,14 +14,14 @@ const HOST = process.env.REACT_APP_HOST;
 const PORT = process.env.REACT_APP_PORT;
 
 interface LoginItem {
-    name: string;
+    username: string;
     password: string;
 }
 
 const AuthPage: React.FC = () => {
     const [status, setStatus] = useState<boolean>(false);
     const [loginData, setLoginData] = useState<LoginItem>({
-        name: '',
+        username: '',
         password: '',
     });
 
@@ -36,7 +36,7 @@ const AuthPage: React.FC = () => {
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // 폼 제출 기본 동작 방지
 
-        if (loginData.name === NAME && loginData.password === PASSWORD) {
+        if (loginData.username === NAME && loginData.password === PASSWORD) {
             successMessage("환영합니다 관리자님!");
             localStorage.setItem("auth", AUTH);
             navigate("/");
@@ -44,10 +44,7 @@ const AuthPage: React.FC = () => {
         }
 
         try {
-            const response = await axios.post(`${HOST}:${PORT}/auth/login`, {
-                username: loginData.name,
-                password: loginData.password,
-            });
+            const response = await axios.post(`${HOST}:${PORT}/auth/login`, loginData);
 
             // 응답이 성공적일 경우
             const token = response.data.token;
@@ -82,9 +79,7 @@ const AuthPage: React.FC = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`${HOST}:${PORT}/auth/register`, {
-                username: loginData.name, password: loginData.password
-            })
+            await axios.post(`${HOST}:${PORT}/auth/register`, loginData)
                 .then(() => { successMessage("회원 가입 완료!") })
                 .catch(() => { errorMessage("회원가입 실패!") })
         } catch (error) {
@@ -101,8 +96,8 @@ const AuthPage: React.FC = () => {
                 <AuthBox onSubmit={handleLogin}>
                     <h2>Auth | User</h2>
                     <input
-                        placeholder="name"
-                        onChange={(e) => setLoginData((prevState) => ({ ...prevState, name: e.target.value }))}
+                        placeholder="username"
+                        onChange={(e) => setLoginData((prevState) => ({ ...prevState, username: e.target.value }))}
                         required
                     />
                     <input

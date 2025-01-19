@@ -50,7 +50,7 @@ const DiaryDetail: React.FC = () => {
             params: { _id: params }
         }).then((response) => {
             setData(response.data.list);
-            if (authCheck() === 0){
+            if (authCheck() !== 1){
                 return;
             }
             setAdmin(1);
@@ -101,7 +101,7 @@ const DiaryDetail: React.FC = () => {
                     <button onClick={() => navigate(-1)}>돌아가기</button>
                     {admin === 1 && (
                     <>
-                        <button onClick={() => navigate(`/quilleditor_update/${params}`, { state: data })}>수정하기</button>
+                        <button onClick={() => navigate(`/quill_editor_update/${params}`, { state: data })}>수정하기</button>
                         <button onClick={handleDelete}>삭제하기</button>
                     </>
                     )}

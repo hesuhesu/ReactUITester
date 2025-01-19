@@ -51,7 +51,7 @@ const Diary: React.FC = () => {
                 timeoutId = setTimeout(() => setIsLoading(false), 500);
             } 
         })();
-        if (authCheck() === 0){ return; }
+        if (authCheck() !== 1){ return; }
         setStatus(true);
         return () => {
             clearTimeout(timeoutId);
@@ -74,7 +74,7 @@ const Diary: React.FC = () => {
     return (
         <DiaryContainer>
             <ButtonContainer>
-                {status && <button onClick={() => navigate("/quilleditor")} aria-label="게시물 작성">게시물 작성하기</button>} 
+                {status && <button onClick={() => navigate("/quill_editor")} aria-label="게시물 작성">게시물 작성하기</button>} 
             </ButtonContainer>
             <SelectCategory
                 selectedCategory={selectedCategory}
@@ -166,12 +166,16 @@ const ButtonContainer = styled.div`
 
 const CardsContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(25vw, 1fr)); /* 카드 크기 조정 */
+    grid-template-columns: repeat(auto-fit, minmax(30vw, 4fr)); /* 카드 크기 조정 */
     gap: 2rem; /* 카드 간격 */
     width: 100%;
-    max-width: 50vw; /* 컨테이너 최대 너비 */
+    max-width: 80vw; /* 컨테이너 최대 너비 */
     margin: 0 auto; /* 가운데 정렬 */
     padding: 1rem;
+
+    @media (max-width: 1200px) {
+        grid-template-columns: 1fr
+    }
 `;
 
 const Card = styled.div`
@@ -193,8 +197,7 @@ const Card = styled.div`
 `;
 
 const CardImage = styled.img`
-    width: 300px; /* 이미지 크기 */
-    height: 300px; /* 이미지 크기 */
+    width: 15vw; /* 이미지 크기 */
     object-fit: cover;
     margin-bottom: 1rem;
 `;
@@ -205,14 +208,50 @@ const CardContent = styled.div`
     align-items: center;
     justify-content: center;
     h2 {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         font-weight: bold;
         padding: 0.5rem;
         margin-bottom: 10px;
+
+        /* 글자 수 제한 */
+        white-space: nowrap;       /* 줄 바꿈 방지 */
+        overflow: hidden;          /* 넘치는 텍스트 숨기기 */
+        text-overflow: ellipsis;   /* '...'으로 표시 */
+        max-width: 35vw;
     }
 
     small {
         font-size: 0.875rem;
+    }
+
+    @media (max-width: 1200px) {
+        h2 {
+            max-width: 60vw;  
+        }
+    }
+
+    @media (max-width: 960px) {
+        h2 {
+            font-size: 1.0rem;
+        }
+
+        small {
+            font-size: 0.7rem;
+        }
+    }
+
+    @media (max-width: 780px) {
+        h2 {
+            font-size: 0.9rem;
+            max-width: 70vw;
+        }
+    }
+
+    @media (max-width: 600px) {
+        h2 {
+            font-size: 0.75rem; // 12px
+            max-width: 75vw;
+        }
     }
 `;
 
