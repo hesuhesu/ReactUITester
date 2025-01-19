@@ -7,18 +7,15 @@ import { vibrate1, fadeIn } from '../components/Animation.tsx';
 import { authCheck } from '../utils/authCheck.tsx';
 import { errorMessage, successMessage } from '../utils/SweetAlertEvent.tsx';
 import Spinner from '../components/Spinner.tsx';
+import DiaryDetailHeader from '../components/DiaryDetail/DiaryDetailHeader.tsx';
 import ScrollButton from '../components/DiaryDetail/ScrollButton.tsx';
-import 'react-quill/dist/quill.snow.css'; // Quill snow스타일 시트 불러오기
-import '../scss/QuillEditor.scss';
+import Comment from '../components/DiaryDetail/Comment.tsx';
+import { HOST, PORT } from '../utils/Variable.tsx';
 import hljs from "highlight.js";
-import "highlight.js/styles/github.css";
 
 hljs.configure({
   languages: ["javascript", "python", "java", "cpp"],
 });
-
-const HOST = process.env.REACT_APP_HOST;
-const PORT = process.env.REACT_APP_PORT;
 
 interface Data {
     title: string;
@@ -92,11 +89,7 @@ const DiaryDetail: React.FC = () => {
 
     return (
             <DiaryDetailContainer>
-                <HeaderOne>
-                    <img src={require(`../assets/images/${data.category.toLowerCase()}.svg`)} alt=""/>
-                    <p>{data.title}</p>
-                </HeaderOne>
-                <HeaderTwo>작성 일시 : {data.createdAt}</HeaderTwo>
+                <DiaryDetailHeader data={data}/>
                 <ButtonContainer>
                     <button onClick={() => navigate(-1)}>돌아가기</button>
                     {admin === 1 && (
@@ -114,7 +107,8 @@ const DiaryDetail: React.FC = () => {
                     modules={modules}
                     />
                 </QuillContainer>
-                <ScrollButton/>
+                <Comment/>
+                <ScrollButton navigate={navigate}/>
             </DiaryDetailContainer>
       );
     };
@@ -123,40 +117,11 @@ const DiaryDetailContainer = styled.div`
     overflow: hidden;
     background-color: rgba(214, 230, 245, 0.925);
     animation: ${fadeIn} 0.5s ease-in-out;
-`;
-
-const HeaderOne = styled.h1`
-    height: 15vw;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-    position: relative;
-    font-size: 1.5vw;
-    color: #282c34;
-    text-shadow: 
-        2px 2px 0 rgba(214, 230, 245, 0.925), // 오른쪽 아래
-        -2px -2px 0 rgba(214, 230, 245, 0.925), // 왼쪽 위
-        2px -2px 0 rgba(214, 230, 245, 0.925), // 오른쪽 위
-        -2px 2px 0 rgba(214, 230, 245, 0.925); // 왼쪽 아래
     
-    img {
-        position: absolute; /* 절대 위치 */
-        height: 70%;
-        opacity: 0.3;
-        left: 50%; /* 중앙 정렬 */
-        transform: translate(-50%); /* 중앙 정렬 보정 */
-    }
-
-    p {
-        position: relative; /* 상대 위치 */
-        margin: 0; /* 기본 마진 제거 */
-    }
-`;
-const HeaderTwo = styled.h2`
-    display:flex;
-    justify-content: right;
-    font-size: 20px;
-    color: #282c34;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
 `;
 
 const ButtonContainer = styled.div`
@@ -189,8 +154,8 @@ const ButtonContainer = styled.div`
 `;
 
 const QuillContainer = styled.div`
-    border: 0.625rem ridge #282c34; // 10px
-    border-radius: 0.625rem 0.625rem 0 0; // 10px 10px 0 0
+    border: 0.3rem solid #282c34; // 10px
+    border-radius: 0.3rem;
     -webkit-user-select:all;
     -moz-user-select:all;
     -ms-user-select:all;

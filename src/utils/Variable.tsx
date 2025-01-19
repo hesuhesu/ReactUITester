@@ -1,3 +1,6 @@
+export const HOST:string = process.env.REACT_APP_HOST as string;
+export const PORT:string = process.env.REACT_APP_PORT as string;
+
 interface Project {
     title: string,
     description: string,

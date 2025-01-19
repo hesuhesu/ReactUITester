@@ -6,12 +6,11 @@ import { jelloVertical } from '../components/Animation.tsx';
 import { errorMessage, successMessage } from '../utils/SweetAlertEvent.tsx';
 import { authCheck } from '../utils/authCheck.tsx';
 import KakaoLogin from '../components/KakaoLogin.tsx';
+import { HOST, PORT } from '../utils/Variable.tsx';
 
 const AUTH: string = process.env.REACT_APP_ADMIN_AUTH as string;
 const NAME = process.env.REACT_APP_ADMIN_NAME;
 const PASSWORD = process.env.REACT_APP_ADMIN_PASSWORD;
-const HOST = process.env.REACT_APP_HOST;
-const PORT = process.env.REACT_APP_PORT;
 
 interface LoginItem {
     username: string;

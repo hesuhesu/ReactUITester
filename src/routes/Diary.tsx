@@ -7,14 +7,12 @@ import { authCheck } from '../utils/authCheck.tsx';
 import { fadeIn, jelloHorizontal } from '../components/Animation.tsx';
 import Spinner from '../components/Spinner.tsx';
 import Pagination from '../components/Diary/Pagination.tsx';
-import { CategoryList } from '../utils/Variable.tsx';
+import { CategoryList, HOST, PORT } from '../utils/Variable.tsx';
 import SelectCategory from '../components/Diary/SelectCategory.tsx';
 
-const HOST = process.env.REACT_APP_HOST;
-const PORT = process.env.REACT_APP_PORT;
 const ITEMS_PER_PAGE = 10;
 
-interface ReviewItem {
+interface API {
     _id: string;
     title: string;
     content: string;
@@ -23,7 +21,7 @@ interface ReviewItem {
 }
 
 const Diary: React.FC = () => {
-    const [api, setApi] = useState<ReviewItem[]>([]);
+    const [api, setApi] = useState<API[]>([]);
     const [status, setStatus] = useState<boolean>(false); // 관리자 인증
     const { state, dispatch } = useGlobalState();
     const { selectedCategory, currentPage } = state;

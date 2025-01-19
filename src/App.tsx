@@ -15,7 +15,11 @@ import AuthPage from "./routes/AuthPage.tsx";
 import Admin from "./routes/Admin.tsx";
 import Callback from './routes/Callback.tsx';
 import PrivateRoute from './utils/PrivateRoute.tsx';
-import { authCheck } from './utils/authCheck.tsx';
+
+import './scss/QuillEditor.scss';
+import 'katex/dist/katex.min.css'; // formular 활성화
+import 'react-quill/dist/quill.snow.css'; // Quill snow스타일 시트 불러오기
+import "highlight.js/styles/github.css";
 
 const queryClient = new QueryClient();
 
@@ -39,17 +43,17 @@ const App: React.FC = () => {
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/project" element={<Project />} />
-              <Route path="/diary" element={<Diary />} />
-              <Route path="/diary_detail/:_id" element={<DiaryDetail />} />
-              <Route element={<PrivateRoute authCheck={authCheck} />}>
-                <Route path="/quill_editor" element={<QuillEditor />} />
-                <Route path="/quill_editor_update/:_id" element={<QuillEditorUpdate />} />
+              <Route path="/diary" element={<Diary/>} />
+              <Route path="/diary_detail/:_id" element={<DiaryDetail/>} />
+              <Route element={<PrivateRoute/>}>
+                <Route path="/quill_editor" element={<QuillEditor/>} />
+                <Route path="/quill_editor_update/:_id" element={<QuillEditorUpdate/>} />
               </Route>
             </Route>
-            <Route element={<PrivateRoute authCheck={authCheck}/>}>
+            <Route element={<PrivateRoute/>}>
               <Route path={`/${process.env.REACT_APP_ADMIN_PAGE}`} element={<Admin />} />
             </Route>
-            <Route path="/authpage" element={<AuthPage />} />
+            <Route path="/authpage" element={<AuthPage/>} />
             <Route path="/oauth" element={<Callback />} />
           </Routes>
         </QueryClientProvider>
