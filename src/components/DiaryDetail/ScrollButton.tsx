@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleUp, faArrowAltCircleDown, faCircleCheck } from '@fortawesome/free-regular-svg-icons';
 
 interface Props {
-    navigate: (path: number) => void;
+    navigate: (path: string) => void;
 }
 
 const ScrollButton: React.FC<Props> = ({ navigate }) => {
@@ -55,7 +55,7 @@ const ScrollButton: React.FC<Props> = ({ navigate }) => {
             <button onClick={scrollToTop}>
                 <FontAwesomeIcon icon={faArrowAltCircleUp} size="2x" />
             </button>
-            <button onClick={() => navigate(-1)}>
+            <button onClick={() => navigate('/diary')}>
                 <FontAwesomeIcon icon={faCircleCheck} size="2x" />
             </button>
             <button onClick={scrollToBottom}>

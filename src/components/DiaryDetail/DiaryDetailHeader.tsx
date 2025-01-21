@@ -30,7 +30,7 @@ const DiaryDetailHeaderContainer = styled.div`
         display: flex;
         justify-content: center; 
         align-items: center;
-        font-size: 20px;
+        font-size: 1rem;
         color: #282c34;
     }
 `;

@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 import { jelloVertical } from '../components/Animation.tsx';
 import { errorMessage, successMessage } from '../utils/SweetAlertEvent.tsx';
 import { authCheck } from '../utils/authCheck.tsx';
-import KakaoLogin from '../components/KakaoLogin.tsx';
+// import KakaoLogin from '../components/KakaoLogin.tsx';
 import { HOST, PORT } from '../utils/Variable.tsx';
 
 const AUTH: string = process.env.REACT_APP_ADMIN_AUTH as string;
@@ -38,20 +38,17 @@ const AuthPage: React.FC = () => {
         if (loginData.username === NAME && loginData.password === PASSWORD) {
             successMessage("환영합니다 관리자님!");
             localStorage.setItem("auth", AUTH);
-            navigate("/");
+            navigate(-1);
             return;
         }
 
         try {
             const response = await axios.post(`${HOST}:${PORT}/auth/login`, loginData);
 
-            // 응답이 성공적일 경우
-            const token = response.data.token;
-
-            // 토큰을 로컬 스토리지에 저장
+            // 토큰을 localStorage에 저장
+            localStorage.setItem('jwtToken', response.data.token);
             successMessage("환영합니다 회원님!");
-            localStorage.setItem('jwtToken', token);
-            navigate("/");
+            navigate(-1);
             return;
         } catch (error) {
             if (error.response) {
@@ -66,21 +63,11 @@ const AuthPage: React.FC = () => {
         }
     };
 
-    const handleLogout = async (e) => {
-        e.preventDefault();
-        try {
-            successMessage("로그아웃!");
-            localStorage.clear();
-            setStatus(prevStatus => !prevStatus);
-        } catch (e) { errorMessage('에러'); }
-    }
-
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`${HOST}:${PORT}/auth/register`, loginData)
-                .then(() => { successMessage("회원 가입 완료!") })
-                .catch(() => { errorMessage("회원가입 실패!") })
+            await axios.post(`${HOST}:${PORT}/auth/register`, loginData);
+            successMessage("회원 가입 완료!")
         } catch (error) {
             errorMessage("회원가입 실패!");
         }
@@ -88,12 +75,11 @@ const AuthPage: React.FC = () => {
 
     return (
         <AuthContainer>
-            {status ? <AdminBox>
-                <button onClick={handleLogout}>로그아웃</button>
-                <button onClick={() => navigate("/")}>HomePage</button>
-            </AdminBox> :
                 <AuthBox onSubmit={handleLogin}>
-                    <h2>Auth | User</h2>
+                    <h2>Auth</h2>
+                    <h3>
+                        댓글 작성을 위한 인증입니다. 어떠한 개인 정보도 취합하지 않습니다.
+                    </h3>
                     <input
                         placeholder="username"
                         onChange={(e) => setLoginData((prevState) => ({ ...prevState, username: e.target.value }))}
@@ -108,8 +94,8 @@ const AuthPage: React.FC = () => {
                     <button type="submit">Login</button>
                     <button type="button" onClick={handleRegister}>Register</button>
                     <button onClick={() => navigate("/")}>HomePage</button>
-                    <KakaoLogin />
-                </AuthBox>}
+                    {/* <KakaoLogin /> */}
+                </AuthBox>
         </AuthContainer>
     );
 }
@@ -129,7 +115,7 @@ const Structure = css`
 
     @media (max-width: 768px) {
         width: 20rem; // 320px
-        padding: 2rem,; // 32px
+        padding: 2rem; // 32px
     }
 
     @media (max-width: 480px) {
@@ -194,10 +180,9 @@ const AuthContainer = styled.div`
 
 const AuthBox = styled.form`
     ${Structure}
-`;
-
-const AdminBox = styled.div`
-    ${Structure}
+    h3 {
+        font-size:0.8rem;
+    }
 `;
 
 export default AuthPage;

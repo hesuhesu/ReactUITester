@@ -9,7 +9,7 @@ const Admin: React.FC = () => {
   const handleLogout = () => {
     successMessage("관리자님 로그아웃 완료!");
     localStorage.clear();
-    navigate("/");
+    navigate(-1);
   }
 
   return (

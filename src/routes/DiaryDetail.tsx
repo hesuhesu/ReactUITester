@@ -27,7 +27,7 @@ interface Data {
 }
 
 const DiaryDetail: React.FC = () => {
-    const params = useParams()._id
+    const params:string | undefined = useParams()._id 
     const [admin, setAdmin]= useState<Number>(0);
     const navigate = useNavigate();
     const [data, setData] = useState<Data>({
@@ -91,7 +91,7 @@ const DiaryDetail: React.FC = () => {
             <DiaryDetailContainer>
                 <DiaryDetailHeader data={data}/>
                 <ButtonContainer>
-                    <button onClick={() => navigate(-1)}>돌아가기</button>
+                    <button onClick={() => navigate('/diary')}>돌아가기</button>
                     {admin === 1 && (
                     <>
                         <button onClick={() => navigate(`/quill_editor_update/${params}`, { state: data })}>수정하기</button>
@@ -107,7 +107,7 @@ const DiaryDetail: React.FC = () => {
                     modules={modules}
                     />
                 </QuillContainer>
-                <Comment/>
+                <Comment params={params}/>
                 <ScrollButton navigate={navigate}/>
             </DiaryDetailContainer>
       );

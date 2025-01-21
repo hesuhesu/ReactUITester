@@ -14,7 +14,6 @@ hljs.configure({
   languages: ["javascript", "python", "java", "cpp"],
 });
 
-
 const QuillEditorUpdate: React.FC = () => {
     const location = useLocation();
     const [title, setTitle] = useState<string>('');
