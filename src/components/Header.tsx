@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { textFlickerInGlow, fadeInUp, fadeIn } from './Animation.tsx';
+import { textFlickerInGlow, fadeInUp, fadeIn } from '../utils/Animation.tsx';
 import { authCheck } from '../utils/authCheck.tsx';
 import { successMessage } from '../utils/SweetAlertEvent.tsx';
 

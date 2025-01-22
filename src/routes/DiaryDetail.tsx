@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
 import ReactQuill from 'react-quill';
-import { vibrate1, fadeIn } from '../components/Animation.tsx';
+import { vibrate1, fadeIn } from '../utils/Animation.tsx';
 import { authCheck } from '../utils/authCheck.tsx';
 import { errorMessage, successMessage } from '../utils/SweetAlertEvent.tsx';
 import Spinner from '../components/Spinner.tsx';

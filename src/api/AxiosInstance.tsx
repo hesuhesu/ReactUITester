@@ -12,9 +12,9 @@ const axiosInstance = axios.create({
 // 요청 시 토큰을 자동으로 추가하는 Interceptor
 axiosInstance.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token'); // 로컬 스토리지에 저장된 토큰
+    const token = localStorage.getItem('jwtToken'); // 로컬 스토리지에 저장된 토큰
     if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
+      config.headers['Authorization'] = token;
     }
     return config;
   },

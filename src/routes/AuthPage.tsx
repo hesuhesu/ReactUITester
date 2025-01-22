@@ -2,15 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled, { css } from 'styled-components';
-import { jelloVertical } from '../components/Animation.tsx';
+import { jelloVertical } from '../utils/Animation.tsx';
 import { errorMessage, successMessage } from '../utils/SweetAlertEvent.tsx';
 import { authCheck } from '../utils/authCheck.tsx';
 // import KakaoLogin from '../components/KakaoLogin.tsx';
-import { HOST, PORT } from '../utils/Variable.tsx';
-
-const AUTH: string = process.env.REACT_APP_ADMIN_AUTH as string;
-const NAME = process.env.REACT_APP_ADMIN_NAME;
-const PASSWORD = process.env.REACT_APP_ADMIN_PASSWORD;
+import { HOST, PORT, ADMIN_AUTH, ADMIN_NAME, ADMIN_PASSWORD } from '../utils/Variable.tsx';
+import { login, register } from '../api/Auth.tsx'
 
 interface LoginItem {
     username: string;
@@ -35,9 +32,9 @@ const AuthPage: React.FC = () => {
     const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault(); // 폼 제출 기본 동작 방지
 
-        if (loginData.username === NAME && loginData.password === PASSWORD) {
+        if (loginData.username === ADMIN_NAME && loginData.password === ADMIN_PASSWORD) {
             successMessage("환영합니다 관리자님!");
-            localStorage.setItem("auth", AUTH);
+            localStorage.setItem("auth", ADMIN_AUTH);
             navigate(-1);
             return;
         }
@@ -69,7 +66,15 @@ const AuthPage: React.FC = () => {
             await axios.post(`${HOST}:${PORT}/auth/register`, loginData);
             successMessage("회원 가입 완료!")
         } catch (error) {
-            errorMessage("회원가입 실패!");
+            if (error.response) {
+                if (error.response.status === 400) {
+                    errorMessage("이미 존재하는 유저입니다.");
+                } else if (error.response.status === 401) {
+                    errorMessage("공백이 있습니다.");
+                }
+            } else {
+                errorMessage("ETC Error");
+            }
         }
     };
 

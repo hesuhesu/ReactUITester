@@ -4,7 +4,7 @@ import { useGlobalState } from '../utils/GlobalState.tsx';
 import axios from 'axios';
 import styled from 'styled-components';
 import { authCheck } from '../utils/authCheck.tsx';
-import { fadeIn, jelloHorizontal } from '../components/Animation.tsx';
+import { fadeIn, jelloHorizontal } from '../utils/Animation.tsx';
 import Spinner from '../components/Spinner.tsx';
 import Pagination from '../components/Diary/Pagination.tsx';
 import { CategoryList, HOST, PORT } from '../utils/Variable.tsx';
@@ -126,45 +126,45 @@ const ButtonContainer = styled.div`
     button {
         margin-top: 1rem; 
         margin-bottom: 1rem; 
-        padding: 0.5rem 1rem; // 8px 16px
+        padding: 0.5rem 1rem;
         background-color: #282c34;
         border: none;
-        border-radius: 0.625rem; // 10px 
+        border-radius: 0.625rem;
         color: white;
         font-weight: bold;
         cursor: pointer;
-        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2); // 0 4px 8px
+        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
 
         &:hover {
-            box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.25); // 0 6px 12px
+            box-shadow: 0 0.375rem 0.75rem rgba(0, 0, 0, 0.25);
             animation: ${jelloHorizontal} 1s ease forwards;
         }
 
         &:active {
-            box-shadow: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.2); // 0 3px 6px
+            box-shadow: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.2);
             transform: translateY(1px);
         }
 
         @media (max-width: 768px) {
-            font-size: 0.875rem; // 14px
-            padding: 0.5rem 1rem; // 8px 16px
+            font-size: 0.875rem; 
+            padding: 0.5rem 1rem;
         }
 
         @media (max-width: 480px) {
-            font-size: 0.75rem; // 12px
-            padding: 0.375rem 0.875rem; // 6px 14px
+            font-size: 0.75rem; 
+            padding: 0.375rem 0.875rem;
         }
 
         @media (max-width: 344px) {
-            font-size: 0.625rem; // 10px 
-            padding: 0.25rem 0.75rem; // 4px 12px
+            font-size: 0.625rem;
+            padding: 0.25rem 0.75rem;
         }
     }
 `;
 
 const CardsContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(30vw, 4fr)); /* 카드 크기 조정 */
+    grid-template-columns: 1fr 1fr;
     gap: 2rem; /* 카드 간격 */
     width: 100%;
     max-width: 80vw; /* 컨테이너 최대 너비 */
@@ -216,39 +216,31 @@ const CardContent = styled.div`
         overflow: hidden;          /* 넘치는 텍스트 숨기기 */
         text-overflow: ellipsis;   /* '...'으로 표시 */
         max-width: 35vw;
+
+        @media (max-width: 1200px) {
+            max-width: 60vw;  
+        }
+
+        @media (max-width: 960px) {
+            font-size: 1.0rem;
+        }
+
+        @media (max-width: 780px) {
+            font-size: 0.9rem;
+            max-width: 70vw;
+        }
+
+        @media (max-width: 600px) {
+            font-size: 0.75rem; 
+            max-width: 75vw;
+        }
     }
 
     small {
         font-size: 0.875rem;
-    }
 
-    @media (max-width: 1200px) {
-        h2 {
-            max-width: 60vw;  
-        }
-    }
-
-    @media (max-width: 960px) {
-        h2 {
-            font-size: 1.0rem;
-        }
-
-        small {
+        @media (max-width: 960px) {
             font-size: 0.7rem;
-        }
-    }
-
-    @media (max-width: 780px) {
-        h2 {
-            font-size: 0.9rem;
-            max-width: 70vw;
-        }
-    }
-
-    @media (max-width: 600px) {
-        h2 {
-            font-size: 0.75rem; // 12px
-            max-width: 75vw;
         }
     }
 `;

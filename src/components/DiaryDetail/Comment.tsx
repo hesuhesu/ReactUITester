@@ -93,14 +93,19 @@ const Comment: React.FC<Props> = ({ params }) => {
 
         } catch (error) {
             if (error.response.status === 401) {
-                errorMessage("토큰 만료! 재 로그인 필요합니다");
-                localStorage.clear();
+                errorMessage("로그인 해주세요!");
+            }
+            else if (error.response.status === 402) {
+                errorMessage("작성자와 일치하지 않습니다.");
             }
             else if (error.response.status === 403) {
                 errorMessage("권한이 없습니다..");
             }
+            else if (error.response.status === 404) {
+                errorMessage("Comment 가 없습니다..?");
+            } 
             else {
-                errorMessage("데이터 요청 실패..");
+                errorMessage("Error");
             }
         }
     };
