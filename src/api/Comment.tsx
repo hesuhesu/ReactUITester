@@ -1,2 +1,0 @@
-import AxiosInstance from './AxiosInstance';
-

@@ -1,65 +1,37 @@
-import React from 'react';
-import { Routes, Route, BrowserRouter, Outlet } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { GlobalStateProvider } from './utils/GlobalState.tsx';
-import Header from "./components/Header.tsx";
-import Footer from "./components/Footer.tsx";
-import Home from "./routes/Home.tsx";
-import About from './routes/About.tsx';
-import Project from './routes/Project.tsx';
-import Diary from './routes/Diary.tsx';
-import DiaryDetail from './routes/DiaryDetail.tsx';
-import QuillEditor from "./routes/QuillEditor.tsx";
-import QuillEditorUpdate from "./routes/QuillEditorUpdate.tsx";
-import AuthPage from "./routes/AuthPage.tsx";
-import Admin from "./routes/Admin.tsx";
-import Callback from './routes/Callback.tsx';
-import PrivateRoute from './utils/PrivateRoute.tsx';
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 
-import './scss/QuillEditor.scss';
-import 'katex/dist/katex.min.css'; // formular 활성화
-import 'react-quill/dist/quill.snow.css'; // Quill snow스타일 시트 불러오기
-import "highlight.js/styles/github.css";
+function App() {
+  // npm install --save-dev --save-exact prettier
+  // npm install eslint-config-prettier
+  const [count, setCount] = useState(0)
 
-const queryClient = new QueryClient();
-
-const Layout: React.FC = () => {
   return (
     <>
-      <Header />
-      <Outlet />
-      <Footer />
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.tsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
     </>
   )
 }
 
-const App: React.FC = () => {
-  return (
-    <BrowserRouter>
-      <GlobalStateProvider>
-        <QueryClientProvider client={queryClient}>
-          <Routes>
-            <Route element={<Layout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/project" element={<Project />} />
-              <Route path="/diary" element={<Diary/>} />
-              <Route path="/diary_detail/:_id" element={<DiaryDetail/>} />
-              <Route element={<PrivateRoute/>}>
-                <Route path="/quill_editor" element={<QuillEditor/>} />
-                <Route path="/quill_editor_update/:_id" element={<QuillEditorUpdate/>} />
-              </Route>
-            </Route>
-            <Route element={<PrivateRoute/>}>
-              <Route path={`/${process.env.REACT_APP_ADMIN_PAGE}`} element={<Admin />} />
-            </Route>
-            <Route path="/authpage" element={<AuthPage/>} />
-            <Route path="/oauth" element={<Callback />} />
-          </Routes>
-        </QueryClientProvider>
-      </GlobalStateProvider>
-    </BrowserRouter>
-  );
-}
-
-export default App;
+export default App
