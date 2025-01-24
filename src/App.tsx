@@ -1,7 +1,13 @@
-import "./App.css";
+import Header from "./components/Header.tsx";
+import Home from "./components/Home.tsx";
 
 function App() {
-  return <h1 className="text-3xl font-bold underline italic">Vite + React</h1>;
+  return (
+    <div>
+      <Header/>
+      <Home/>
+    </div>
+  )
 }
 
 export default App;
